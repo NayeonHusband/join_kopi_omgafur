@@ -1,5 +1,6 @@
-package den.join.form;
+package den.join.main;
 
+import den.join.form.*;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.extras.FlatSVGIcon;
 import com.formdev.flatlaf.util.UIScale;
@@ -16,9 +17,8 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import den.join.main.FormMenuUtama;
-import den.application.form.other.FormDashboard;
-import den.application.form.other.FormInbox;
-import den.application.form.other.FormRead;
+import den.join.form.FormDashboard;
+import den.join.form.FormProduk;
 import den.join.menu.Menu;
 import den.join.menu.MenuAction;
 
@@ -68,25 +68,23 @@ public class MainForm extends JLayeredPane {
     }
 
     private void initMenuEvent() {
-        menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
-            // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
-            if (index == 0) {
-                FormMenuUtama.showForm(new FormDashboard());
-            } else if (index == 1) {
-                if (subIndex == 1) {
-                    FormMenuUtama.showForm(new FormInbox());
-                } else if (subIndex == 2) {
-                    FormMenuUtama.showForm(new FormRead());
-                } else {
-                    action.cancel();
-                }
-            } else if (index == 9) {
-                FormMenuUtama.logout();
-            } else {
-                action.cancel();
-            }
-        });
-    }
+    menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
+        // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
+        if (index == 0) {
+            FormMenuUtama.showForm(new FormDashboard());
+        } else if (index == 1) {
+            if (subIndex == 1) {
+            }  
+            } else if (index == 13) {
+                FormMenuUtama.showForm(new FormProduk());
+        } else if (index == 14) {
+            FormMenuUtama.logout();  
+        } else {
+            action.cancel();
+        }
+    });
+}
+
 
     private void setMenuFull(boolean full) {
         String icon;

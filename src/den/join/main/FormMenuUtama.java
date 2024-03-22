@@ -10,7 +10,7 @@ import java.awt.Font;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import den.join.form.FormLogin;
-import den.join.form.MainForm;
+import den.join.main.MainForm;
 import raven.toast.Notifications;
 
 /**

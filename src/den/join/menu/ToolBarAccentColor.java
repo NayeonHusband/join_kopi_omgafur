@@ -1,4 +1,4 @@
-package den.join.menumode;
+package den.join.menu;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.FlatLaf;
