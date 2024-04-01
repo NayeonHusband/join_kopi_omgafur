@@ -79,7 +79,7 @@ public class produkDAO implements ServiceProduk {
         PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql = "SELECT * FROM produk";
+        String sql = "SELECT * FROM product";
         
         try {
             st = conn.prepareStatement(sql);
@@ -107,7 +107,7 @@ public class produkDAO implements ServiceProduk {
                 PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql = "SELECT * FROM produk WHERE nama_produk LIKE '%"+id+"%' "
+        String sql = "SELECT * FROM product WHERE nama_produk LIKE '%"+id+"%' "
                 + "OR id_kategori LIKE '%"+id+"%'"
                 + "OR id_supplier LIKE '%"+id+"%'"
                 + "OR barcode LIKE '%"+id+"%'";

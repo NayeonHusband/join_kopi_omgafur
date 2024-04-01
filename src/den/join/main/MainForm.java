@@ -72,10 +72,7 @@ public class MainForm extends JLayeredPane {
         // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
         if (index == 0) {
             FormMenuUtama.showForm(new FormDashboard());
-        } else if (index == 1) {
-            if (subIndex == 1) {
-            }  
-            } else if (index == 13) {
+            } else if (index == 1) {
                 FormMenuUtama.showForm(new FormProduk());
         } else if (index == 14) {
             FormMenuUtama.logout();  
