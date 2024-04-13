@@ -26,7 +26,7 @@ import den.join.menu.MenuAction;
  *
  * @author den
  */
-public class MainForm extends JLayeredPane {
+    public class MainForm extends JLayeredPane {
 
     public MainForm() {
         init();

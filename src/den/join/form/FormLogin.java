@@ -60,7 +60,7 @@ public class FormLogin extends javax.swing.JPanel {
         });
 
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitle.setText("Login Account");
+        lbTitle.setText("Login Account@!");
 
         lbUser.setText("Username");
 
@@ -88,7 +88,7 @@ public class FormLogin extends javax.swing.JPanel {
                             .addGroup(loginLayout.createSequentialGroup()
                                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbPass)
-                                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(loginLayout.createSequentialGroup()

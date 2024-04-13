@@ -26,7 +26,7 @@ public class FormMenuUtama extends javax.swing.JFrame {
     public FormMenuUtama() {
         initComponents();
         setSize(new Dimension(1366, 768));
-        setLocationRelativeTo(null);
+        setLocationRelativeTo(null); //centering
         mainForm = new MainForm();
         loginForm = new FormLogin();
         setContentPane(loginForm);
@@ -89,7 +89,6 @@ public class FormMenuUtama extends javax.swing.JFrame {
             app = new FormMenuUtama();
             //  app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             app.setVisible(true);
-            //anjay
         });
     }
 
