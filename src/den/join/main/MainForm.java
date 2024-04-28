@@ -65,7 +65,7 @@ import den.join.menu.MenuAction;
             menuButton = new JButton();
         }
         String icon = (getComponentOrientation().isLeftToRight()) ? "menu_left.svg" : "menu_right.svg";
-        menuButton.setIcon(new FlatSVGIcon("den/icon/svg/" + icon, 0.8f));
+        menuButton.setIcon(new FlatSVGIcon("den/icon/iconsvg/" + icon, 0.8f));
     }
 
     private void initMenuEvent() {
@@ -104,8 +104,10 @@ import den.join.menu.MenuAction;
     public void showForm(Component component) {
         panelBody.removeAll();
         panelBody.add(component);
-        panelBody.repaint();
+        
+        //update and recalculate form
         panelBody.revalidate();
+        panelBody.repaint();
     }
 
     public void setSelectedMenu(int index, int subIndex) {
@@ -144,6 +146,7 @@ import den.join.menu.MenuAction;
         public void layoutContainer(Container parent) {
             synchronized (parent.getTreeLock()) {
                 boolean ltr = parent.getComponentOrientation().isLeftToRight();
+                System.out.println("ltr" + String.valueOf(ltr));
                 Insets insets = UIScale.scale(parent.getInsets());
                 int x = insets.left;
                 int y = insets.top;
