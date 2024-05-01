@@ -1,5 +1,6 @@
 package den.tablemodel;
 
+import den.model.ModelProduk;
 import den.model.ModelSupplier;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +10,10 @@ import javax.swing.table.AbstractTableModel;
 public class TableModelSupplier extends AbstractTableModel{
     
     private List<ModelSupplier> list = new ArrayList<>();
+    
+    public ModelSupplier getData(int index) {
+        return list.get(index); 
+    }
     
     public void clear(){
         list.clear();
@@ -28,7 +33,7 @@ public class TableModelSupplier extends AbstractTableModel{
         JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
     }
     
-    public void UpdateData(int row, ModelSupplier model){
+    public void updateData(int row, ModelSupplier model){
         list.set(row, model);
         fireTableDataChanged();
         JOptionPane.showMessageDialog(null, "Data Berhasil Diperbaharui");
@@ -37,6 +42,12 @@ public class TableModelSupplier extends AbstractTableModel{
     public void insertData(int row){
         list.remove(row);
         this.list.addAll(list);
+        fireTableRowsDeleted(row, row);
+        JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
+    }
+    
+    public void deleteData(int row) {
+        list.remove(row);
         fireTableRowsDeleted(row, row);
         JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
     }
