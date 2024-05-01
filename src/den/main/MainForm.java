@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import den.main.FormMenuUtama;
 import den.form.FormDashboard;
 import den.form.FormProduk;
+import den.form.FormKategori;
 import den.form.FormSupplier;
 import den.menu.Menu;
 import den.menu.MenuAction;
@@ -27,7 +28,7 @@ import den.menu.MenuAction;
  *
  * @author den
  */
-    public class MainForm extends JLayeredPane {
+public class MainForm extends JLayeredPane {
 
     public MainForm() {
         init();
@@ -75,7 +76,11 @@ import den.menu.MenuAction;
                 FormMenuUtama.showForm(new FormDashboard());
             } else if (index == 1) {
                 FormMenuUtama.showForm(new FormProduk());
+                if (subIndex == 1) {
+                }
             } else if (index == 2) {
+                FormMenuUtama.showForm(new FormKategori());
+            } else if (index == 3) {
                 FormMenuUtama.showForm(new FormSupplier());
             } else if (index == 14) {
                 FormMenuUtama.logout();
@@ -104,7 +109,7 @@ import den.menu.MenuAction;
     public void showForm(Component component) {
         panelBody.removeAll();
         panelBody.add(component);
-        
+
         //update and recalculate form
         panelBody.revalidate();
         panelBody.repaint();

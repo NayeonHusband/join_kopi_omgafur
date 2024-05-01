@@ -1,22 +1,30 @@
 package den.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import den.DAO.produkDAO;
-import den.model.ModelProduk;
-import den.service.ServiceProduk;
-import den.tablemodel.TableModelProduk;
+import den.DAO.KategoriDAO;
+import den.model.ModelKategori;
+import den.service.ServiceKategori;
+import den.tablemodel.TableModelKategori;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.TableColumnModel;
 
-public class FormProduk extends javax.swing.JPanel {
+public class FormKategori extends javax.swing.JPanel {
 
-    private final TableModelProduk tblModel = new TableModelProduk();
-    private final ServiceProduk servis = new produkDAO();
+    private final TableModelKategori tblModel = new TableModelKategori();
+    private final ServiceKategori servis = new KategoriDAO();
 
-    public FormProduk() {
+    public FormKategori() {
         initComponents();
         tblData.setModel(tblModel);
         loadData();
+        setLebarKolom();
+    }
+    private void setLebarKolom() {
+        TableColumnModel kolom =tblData.getColumnModel();
+        kolom.getColumn(0).setPreferredWidth(150);
+        kolom.getColumn(0).setMaxWidth(50);
+        kolom.getColumn(0).setMinWidth(50);
     }
 
     @SuppressWarnings("unchecked")
@@ -35,11 +43,11 @@ public class FormProduk extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
 
-        jLabel2.setText("MASTER > PRODUK ");
+        jLabel2.setText("MASTER > KATEGORI ");
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("DATA PRODUK");
+        jLabel3.setText("DATA KATEGORI");
         jLabel3.setFocusCycleRoot(true);
 
         btnhapus.setBackground(new java.awt.Color(36, 104, 155));
@@ -188,17 +196,17 @@ public class FormProduk extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void loadData() {
-        List<ModelProduk> list = servis.tampilData();
+        List<ModelKategori> list = servis.tampilData();
         tblModel.setData(list);
     }
 
     private void pencarianData() {
-        List<ModelProduk> list = servis.pencarianData(txtpencarian.getText());
+        List<ModelKategori> list = servis.pencarianData(txtpencarian.getText());
         tblModel.setData(list);
     }
 
     private void tambahData() {
-        Forminputproduk frominput = new Forminputproduk(null, true, 1, null, this);
+        Frominputkategori frominput = new Frominputkategori(null, true, 1, null, this);
         frominput.setVisible(true);
         loadData();
     }
@@ -206,8 +214,8 @@ public class FormProduk extends javax.swing.JPanel {
     private void perbaruiData() {
         int row = tblData.getSelectedRow();
         if (row != -1) {
-            ModelProduk produk = tblModel.getData(row);
-            Forminputproduk formInput = new Forminputproduk(null, true, row, produk, this);
+            ModelKategori model = tblModel.getData(row);
+            Frominputkategori formInput = new Frominputkategori(null, true, row, model, this);
             formInput.setVisible(true);
             loadData();
         } else {
@@ -218,10 +226,10 @@ public class FormProduk extends javax.swing.JPanel {
     private void hapusData() {
         int row = tblData.getSelectedRow();
         if (row != -1) {
-            ModelProduk produk = tblModel.getData(row);
+            ModelKategori model = tblModel.getData(row);
             if (JOptionPane.showConfirmDialog(null, "Yakin Ingin menghapus Data Ini ?",
                     "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
-                servis.hapusData(produk);
+                servis.hapusData(model);
                 tblModel.deleteData(row);
                 loadData();
             }
@@ -230,7 +238,7 @@ public class FormProduk extends javax.swing.JPanel {
         }
     }
 
-    public void refreshProduk() {
+    public void refreshTable() {
         loadData();
     }
 }

@@ -60,7 +60,7 @@ public class FormLogin extends javax.swing.JPanel {
         });
 
         lbTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lbTitle.setText("Login Account@!");
+        lbTitle.setText("Login Akun  ");
 
         lbUser.setText("Username");
 

@@ -2,17 +2,17 @@ package den.model;
 
 public class ModelSupplier {
     
-    private int idSupplier;
+    private int IdSupplier;
     private String namaSupplier;
     private String alamatSupplier;
     private String notelpSupplier;
 
     public int getIdSupplier() {
-        return idSupplier;
+        return IdSupplier;
     }
 
-    public void setIdSupplier(int idSupplier) {
-        this.idSupplier = idSupplier;
+    public void setIdSupplier(int IdSupplier) {
+        this.IdSupplier = IdSupplier;
     }
 
     public String getNamaSupplier() {

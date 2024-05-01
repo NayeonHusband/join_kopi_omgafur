@@ -1,6 +1,7 @@
 package den.main;
 
 import com.formdev.flatlaf.FlatLaf;
+import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
@@ -83,7 +84,8 @@ public class FormMenuUtama extends javax.swing.JFrame {
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("den.theme");
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-        FlatMacDarkLaf.setup();
+        //FlatMacDarkLaf.setup();
+        FlatLightLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new FormMenuUtama();
             //  app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
