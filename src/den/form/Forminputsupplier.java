@@ -98,7 +98,7 @@ public class Forminputsupplier extends javax.swing.JDialog {
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
-        btnBatal.setText("BATAL");
+        btnBatal.setText("BERSIHKAN");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
@@ -183,9 +183,9 @@ public class Forminputsupplier extends javax.swing.JDialog {
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSimpan)
-                    .addComponent(btnBatal))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnBatal)
+                    .addComponent(btnSimpan))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
 
@@ -299,22 +299,22 @@ public class Forminputsupplier extends javax.swing.JDialog {
         ModelSupplier model = new ModelSupplier();
         model.setNamaSupplier(namaSupplier);
         model.setIdSupplier(idSupplier);
-        
+
         if (txtNama.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nama Supplier Tidak Boleh Kosong");
         } else if (txtTelepon.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "No Telepon Tidak Boleh Kosong");
         } else if (txtAlamat.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
-        }else {
-            if (servis.validasiNamaSupplier(model)){
-            valid = true;
-        } else{ 
+        } else {
+            if (servis.validasiNamaSupplier(model)) {
+                valid = true;
+            } else {
                 JOptionPane.showMessageDialog(null, "Nama Supplier sudah ada\nSilahkan masukkan nama Supplier yang berbeda",
                         "Peringatan", JOptionPane.WARNING_MESSAGE);
             }
         }
-       return valid; 
+        return valid;
     }
 
     private void simpanData() {
@@ -322,11 +322,11 @@ public class Forminputsupplier extends javax.swing.JDialog {
             String namaSupplier = txtNama.getText();
             String teleponSupplier = txtTelepon.getText();
             String alamatSupplier = txtAlamat.getText();
-            
+
             ModelSupplier model = new ModelSupplier();
             model.setNamaSupplier(namaSupplier);
             model.setNotelpSupplier(teleponSupplier);
-            model.getAlamatSupplier();
+            model.setAlamatSupplier(alamatSupplier);
 
             servis.tambahData(model);
             tblModel.insertData(model);
@@ -341,21 +341,22 @@ public class Forminputsupplier extends javax.swing.JDialog {
         txtAlamat.setText("");
     }
 
-    private void dataTable() {
-        idSupplier = supplier.getIdSupplier();
-        
-        txtNama.setText(supplier.getNamaSupplier());
-        txtTelepon.setText(String.valueOf(supplier.getNotelpSupplier()));
-        
-        btnSimpan.setText("PERBARUI");
-        jLabel2.setText("MASTER -> PRODUK -> PERBARUI DATA SUPPLIER");
-        jLabel3.setText("PERBARUI DATA SUPPLIER");
-        btnBatal.setText("Bersihkan");
-    }
-
     private void loadData() {
         List<ModelSupplier> list = servis.tampilData();
         tblModel.setData(list);
+    }
+
+    private void dataTable() {
+        idSupplier = supplier.getIdSupplier();
+
+        txtNama.setText(supplier.getNamaSupplier());
+        txtTelepon.setText(String.valueOf(supplier.getNotelpSupplier()));
+        txtAlamat.setText(supplier.getAlamatSupplier());
+
+        btnSimpan.setText("PERBARUI");
+        jLabel2.setText("MASTER -> PRODUK -> PERBARUI DATA SUPPLIER");
+        jLabel3.setText("PERBARUI DATA SUPPLIER");
+        btnBatal.setText("BATAL");
     }
 
     private void perbaruiData() {
@@ -364,13 +365,12 @@ public class Forminputsupplier extends javax.swing.JDialog {
             String nomorTelepon = txtTelepon.getText();
             String alamatSupplier = txtAlamat.getText();
 
-            
             ModelSupplier model = new ModelSupplier();
             model.setIdSupplier(idSupplier);
             model.setNamaSupplier(namaSupplier);
             model.setNotelpSupplier(nomorTelepon);
             model.setAlamatSupplier(alamatSupplier);
-           
+
             servis.perbaruiData(model);
             tblModel.updateData(row, model);
             resetFrom();

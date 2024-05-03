@@ -5,7 +5,7 @@ public class ModelPelanggan {
     
     private int idpelanggan;
     private String namapelanggan;
-    private String notelppelanggan;
+    private String notelpelanggan;
     private String alamatpelanggan;
     
     public int getIdpelanggan() {
@@ -24,12 +24,12 @@ public class ModelPelanggan {
         this.namapelanggan = namapelanggan;
     }
 
-    public String getNotelppelanggan() {
-        return notelppelanggan;
+    public String getNotelpelanggan() {
+        return notelpelanggan;
     }
 
-    public void setNotelppelanggan(String notelppelanggan) {
-        this.notelppelanggan = notelppelanggan;
+    public void setNotelpelanggan(String notelppelanggan) {
+        this.notelpelanggan = notelppelanggan;
     }
 
     public String getAlamatpelanggan() {

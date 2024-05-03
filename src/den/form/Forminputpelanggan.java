@@ -18,14 +18,14 @@ public class Forminputpelanggan extends javax.swing.JDialog {
     private int idPelanggan;
     private int row;
     private FormPelanggan formPelanggan;
-    
+
     public Forminputpelanggan(java.awt.Frame parent, boolean modal, int roe, ModelPelanggan Pelanggan, FormPelanggan formPelanggan) {
         super(parent, modal);
         this.pelanggan = Pelanggan;
         this.row = row;
         this.formPelanggan = formPelanggan;
         initComponents();
-        if(Pelanggan != null){
+        if (Pelanggan != null) {
             dataTable();
         }
         loadData();
@@ -54,9 +54,11 @@ public class Forminputpelanggan extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         txtnama = new javax.swing.JTextField();
         txtnotelp = new javax.swing.JTextField();
-        txtalamat = new javax.swing.JTextField();
         btnSimpan = new javax.swing.JButton();
         btnBatal = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtalamat = new javax.swing.JTextArea();
+        jSeparator1 = new javax.swing.JSeparator();
 
         jLabel1.setText("jLabel1");
 
@@ -67,29 +69,29 @@ public class Forminputpelanggan extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("MASTER > PELANGGAN > TAMBAH");
+        jLabel2.setText("MASTER > PELANGGAN > TAMBAH DATA PELANGGAN");
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("DATA PELANGGAN");
+        jLabel3.setText("TAMBAH DATA PELANGGAN");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap(23, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(68, 68, 68))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(jLabel3)
                 .addGap(0, 30, Short.MAX_VALUE))
         );
@@ -98,9 +100,11 @@ public class Forminputpelanggan extends javax.swing.JDialog {
         jLabel4.setText("Nama Pelanggan");
 
         jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("Telepon");
 
         jLabel6.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("Alamat");
 
         txtnotelp.addActionListener(new java.awt.event.ActionListener() {
@@ -112,7 +116,7 @@ public class Forminputpelanggan extends javax.swing.JDialog {
         btnSimpan.setBackground(new java.awt.Color(36, 104, 155));
         btnSimpan.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
-        btnSimpan.setText("SIMPAN");
+        btnSimpan.setText("TAMBAH");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSimpanActionPerformed(evt);
@@ -122,70 +126,73 @@ public class Forminputpelanggan extends javax.swing.JDialog {
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
         btnBatal.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
         btnBatal.setForeground(new java.awt.Color(255, 255, 255));
-        btnBatal.setText("BATAL");
+        btnBatal.setText("BERSIHKAN");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
             }
         });
 
+        txtalamat.setColumns(20);
+        txtalamat.setRows(5);
+        jScrollPane1.setViewportView(txtalamat);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel4))
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnama)
-                    .addComponent(txtnotelp)
-                    .addComponent(txtalamat))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(55, 55, 55))
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtnotelp, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(txtnama)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(btnSimpan)
+                        .addGap(56, 56, 56)
+                        .addComponent(btnBatal)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtnama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnotelp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtalamat, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnSimpan, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(btnBatal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(41, 41, 41))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSimpan)
+                    .addComponent(btnBatal))
+                .addGap(44, 44, 44))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,22 +200,23 @@ public class Forminputpelanggan extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         // TODO add your handling code here:
-        if(btnSimpan.getText().equals("SIMPAN")){
+        if (btnSimpan.getText().equals("TAMBAH")) {
             SimpanData();
-        } else if (btnSimpan.getText().equals("PERBARUI")){
-            PerbaruiData();
+        } else if (btnSimpan.getText().equals("PERBARUI")) {
+            perbaruiData();
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
         // TODO add your handling code here:
-        if(btnSimpan.getText().equals("SIMPAN")){
+        if (btnSimpan.getText().equals("TAMBAH")) {
             resetForm();
-        } else if (btnSimpan.getText().equals("PERBARUI")){
+        } else if (btnSimpan.getText().equals("PERBARUI")) {
             dispose();
         }
     }//GEN-LAST:event_btnBatalActionPerformed
@@ -271,86 +279,92 @@ public class Forminputpelanggan extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtalamat;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea txtalamat;
     private javax.swing.JTextField txtnama;
     private javax.swing.JTextField txtnotelp;
     // End of variables declaration//GEN-END:variables
 
     private void resetForm() {
-    txtnama.setText("");
-    txtnotelp.setText("");
-    txtalamat.setText("");
-}
-    
+        txtnama.setText("");
+        txtnotelp.setText("");
+        txtalamat.setText("");
+    }
+
     private void loadData() {
         List<ModelPelanggan> list = servis.tampilData();
         tblModel.setData(list);
     }
-    
+
     private boolean validasiInput() {
         boolean valid = false;
         String namaPelanggan = txtnama.getText();
         ModelPelanggan model = new ModelPelanggan();
         model.setNamapelanggan(namaPelanggan);
         model.setIdpelanggan(idPelanggan);
-        
-        if (txtnama.getText().trim().isEmpty()){
+
+        if (txtnama.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nama Pelanggan Tidak Boleh Kosong");
-        } else if (txtnotelp.getText().trim().isEmpty()){
+        } else if (txtnotelp.getText().trim().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nomor Telepon Tidak Boleh Kosong");
-        } else if(txtalamat.getText().trim().isEmpty()){
-        JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
-    } else {
-          valid=true;
-       }
+        } else if (txtalamat.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Alamat Tidak Boleh Kosong");
+        } else {
+            valid = true;
+        }
         return valid;
     }
 
     private void SimpanData() {
-        if(validasiInput()== true){
+        if (validasiInput() == true) {
             String namaPelanggan = txtnama.getText();
             String teleponPelanggan = txtnotelp.getText();
             String alamatPelanggan = txtalamat.getText();
-            
+
             ModelPelanggan model = new ModelPelanggan();
             model.setNamapelanggan(namaPelanggan);
-            model.setNotelppelanggan(teleponPelanggan);
+            model.setNotelpelanggan(teleponPelanggan);
             model.setAlamatpelanggan(alamatPelanggan);
-            
+
             servis.tambahData(model);
             tblModel.insertData(model);
             formPelanggan.refreshData();
             resetForm();
         }
     }
-    
+
     private void dataTable() {
-        btnSimpan.setText("PERBARUI");
-        
+
         idPelanggan = pelanggan.getIdpelanggan();
-        
+
         txtnama.setText(pelanggan.getNamapelanggan());
-        txtnotelp.setText(pelanggan.getNotelppelanggan());
+        txtnotelp.setText(pelanggan.getNotelpelanggan());
         txtalamat.setText(pelanggan.getAlamatpelanggan());
-        
-        jLabel1.setText("MASTER > PELANGGAN > PERBARUI");
+
+        btnSimpan.setText("PERBARUI");
+        jLabel2.setText("MASTER > PELANGGAN > PERBARUI DATA PELANGGAN");
+        jLabel3.setText("PERBARUI DATA PELANGGAN");
+        btnBatal.setText("BATAL");
+
     }
-    
-    private void PerbaruiData(){
-        if(validasiInput()== true){
+
+    private void perbaruiData() {
+        if (validasiInput() == true) {
             String namaPelanggan = txtnama.getText();
             String teleponPelanggan = txtnotelp.getText();
             String alamatPelanggan = txtalamat.getText();
-            
+
             ModelPelanggan model = new ModelPelanggan();
+            model.setIdpelanggan(idPelanggan);
             model.setNamapelanggan(namaPelanggan);
-            model.setNotelppelanggan(teleponPelanggan);
+            model.setNotelpelanggan(teleponPelanggan);
             model.setAlamatpelanggan(alamatPelanggan);
-            
+
             servis.perbaruiData(model);
-            tblModel.UpdateData(row, model);
+            tblModel.updateData(row, model);
             resetForm();
             dispose();
+        }
     }
-}
 }

@@ -94,7 +94,7 @@ public class Frominputkategori extends javax.swing.JDialog {
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
-        btnBatal.setText("BATAL");
+        btnBatal.setText("BERSIHKAN");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
@@ -118,7 +118,7 @@ public class Frominputkategori extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 343, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,11 +126,11 @@ public class Frominputkategori extends javax.swing.JDialog {
                 .addComponent(txtNama, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(84, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSimpan)
-                .addGap(43, 43, 43)
+                .addGap(42, 42, 42)
                 .addComponent(btnBatal)
-                .addGap(80, 80, 80))
+                .addGap(72, 72, 72))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -284,8 +284,10 @@ public class Frominputkategori extends javax.swing.JDialog {
         btnSimpan.setText("PERBARUI");
         idkategori = model.getIdKategori();
         txtNama.setText(model.getNamaKategori());
+        btnSimpan.setText("PERBARUI");
         jLabel2.setText("MASTER -> KATEGORI -> PERBARUI DATA KATEGORI");
         jLabel3.setText("PERBARUI DATA KATEGORI");
+        btnBatal.setText("BATAL");
     }
 
     private void loadData() {

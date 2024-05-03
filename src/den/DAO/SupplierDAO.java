@@ -22,12 +22,12 @@ public class SupplierDAO implements ServiceSupplier {
     public void tambahData(ModelSupplier model) {
         PreparedStatement st = null;
         try {
-            String sql = "INSERT INTO supplier(nama_supplier, alamat, telepon) VALUES (?,?,?)";
+            String sql = "INSERT INTO supplier(nama_supplier, telepon, alamat) VALUES (?,?,?)";
 
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaSupplier());
-            st.setString(2, model.getAlamatSupplier());
-            st.setString(3, model.getNotelpSupplier());
+            st.setString(2, model.getNotelpSupplier());
+            st.setString(3, model.getAlamatSupplier());
 
             st.executeUpdate();
             st.close();
@@ -40,13 +40,13 @@ public class SupplierDAO implements ServiceSupplier {
     public void perbaruiData(ModelSupplier model) {
         PreparedStatement st = null;
         try {
-            String sql = "UPDATE supplier SET nama_supplier=?, alamat=?, telepon=?, tanggal=? WHERE id_supplier=?";
+            String sql = "UPDATE supplier SET nama_supplier=?, telepon=?, alamat=? WHERE id_supplier=?";
 
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaSupplier());
-            st.setString(2, model.getAlamatSupplier());
-            st.setString(3, model.getNotelpSupplier());
-            st.setInt(3, model.getIdSupplier());
+            st.setString(2, model.getNotelpSupplier());
+            st.setString(3, model.getAlamatSupplier());
+            st.setInt(4, model.getIdSupplier());
 
             st.executeUpdate();
         } catch (SQLException e) {
@@ -81,8 +81,8 @@ public class SupplierDAO implements ServiceSupplier {
                 ModelSupplier model = new ModelSupplier();
                 model.setIdSupplier(rs.getInt("id_supplier"));
                 model.setNamaSupplier(rs.getString("nama_supplier"));
-                model.setAlamatSupplier(rs.getString("alamat"));
                 model.setNotelpSupplier(rs.getString("telepon"));
+                model.setAlamatSupplier(rs.getString("alamat"));
 
                 list.add(model);
             }
@@ -99,8 +99,8 @@ public class SupplierDAO implements ServiceSupplier {
         List list = new ArrayList();
         String sql = "SELECT * FROM supplier WHERE nama_supplier LIKE '%" + id + "%' "
                 + "OR nama_supplier LIKE '%" + id + "%' "
-                + "OR alamat LIKE '%" + id + "%' "
-                + "OR telepon LIKE '%" + id + "%' ";
+                + "OR telepon LIKE '%" + id + "%' "
+                + "OR alamat LIKE '%" + id + "%' ";
 
         try {
             st = conn.prepareStatement(sql);
@@ -109,8 +109,8 @@ public class SupplierDAO implements ServiceSupplier {
                 ModelSupplier model = new ModelSupplier();
                 model.setIdSupplier(rs.getInt("id_supplier"));
                 model.setNamaSupplier(rs.getString("nama_supplier"));
-                model.setAlamatSupplier(rs.getString("alamat"));
                 model.setNotelpSupplier(rs.getString("telepon"));
+                model.setAlamatSupplier(rs.getString("alamat"));
 
                 list.add(model);
             }

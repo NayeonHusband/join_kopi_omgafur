@@ -107,7 +107,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
-        btnBatal.setText("BATAL");
+        btnBatal.setText("BERSIHKAN");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBatalActionPerformed(evt);
@@ -167,6 +167,11 @@ public class Forminputproduk extends javax.swing.JDialog {
         });
 
         cbxSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih supplier", "1", "2", "3", "4", "5", "6" }));
+        cbxSupplier.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxSupplierActionPerformed(evt);
+            }
+        });
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setForeground(new java.awt.Color(51, 51, 51));
@@ -311,6 +316,10 @@ public class Forminputproduk extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSimpanActionPerformed
 
+    private void cbxSupplierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxSupplierActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxSupplierActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -436,7 +445,6 @@ public class Forminputproduk extends javax.swing.JDialog {
     }
 
     private void resetFrom() {
-        btnBatal.setText("Clear");
         txtNama.setText("");
         cbxKategori.setSelectedIndex(0);
         txtHarga.setText("");
@@ -460,7 +468,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         btnSimpan.setText("PERBARUI");
         jLabel2.setText("MASTER -> PRODUK -> PERBARUI DATA PRODUK");
         jLabel3.setText("PERBARUI DATA PRODUK");
-        btnBatal.setText("Clear");
+        btnBatal.setText("BATAL");
     }
 
     private void loadData() {

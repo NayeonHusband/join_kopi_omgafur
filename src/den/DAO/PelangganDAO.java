@@ -8,28 +8,28 @@ import java.util.List;
 import java.sql.*;
 import java.util.ArrayList;
 
-public class PelangganDAO implements ServicePelanggan{
+public class PelangganDAO implements ServicePelanggan {
 
     private Connection conn;
-    
+
     public PelangganDAO() {
-        conn =  koneksi.getConnection();
+        conn = koneksi.getConnection();
     }
-    
+
     @Override
     public void tambahData(ModelPelanggan model) {
         PreparedStatement st = null;
         try {
-            String sql = "INSERT INTO pelanggan(nama_pelanggan, alamat, telepon) VALUES (?,?,?)";
-            
+            String sql = "INSERT INTO pelanggan(nama_pelanggan, telepon, alamat) VALUES (?,?,?)";
+
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamapelanggan());
-            st.setString(2, model.getAlamatpelanggan());
-            st.setString(3, model.getNotelppelanggan());
-            
+            st.setString(2, model.getNotelpelanggan());
+            st.setString(3, model.getAlamatpelanggan());
+
             st.executeUpdate();
             st.close();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -38,15 +38,16 @@ public class PelangganDAO implements ServicePelanggan{
     public void perbaruiData(ModelPelanggan model) {
         PreparedStatement st = null;
         try {
-            String sql =" UPDATE pelanggan SET nama_pelanggan=?, telepon=?, alamat=? WHERE id_pelanggan=?";
-            
+            String sql = "UPDATE pelanggan SET nama_pelanggan=?, telepon=?, alamat=? WHERE id_pelanggan=?";
+
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamapelanggan());
-            st.setString(2, model.getAlamatpelanggan());
-            st.setString(3, model.getNotelppelanggan());
-            
+            st.setString(2, model.getNotelpelanggan());
+            st.setString(3, model.getAlamatpelanggan());
+            st.setInt(4, model.getIdpelanggan());
+
             st.executeUpdate();
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -59,7 +60,7 @@ public class PelangganDAO implements ServicePelanggan{
             st = conn.prepareStatement(sql);
             st.setInt(1, model.getIdpelanggan());
             st.executeUpdate();
-        } catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -69,21 +70,20 @@ public class PelangganDAO implements ServicePelanggan{
         PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql= "SELECT * FROM pelanggan";
+        String sql = "SELECT * FROM pelanggan";
         try {
             st = conn.prepareStatement(sql);
             rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 ModelPelanggan model = new ModelPelanggan();
                 model.setIdpelanggan(rs.getInt("id_pelanggan"));
                 model.setNamapelanggan(rs.getString("nama_pelanggan"));
-                model.setNotelppelanggan(rs.getString("telepon"));
+                model.setNotelpelanggan(rs.getString("telepon"));
                 model.setAlamatpelanggan(rs.getString("alamat"));
-                
-                
+
                 list.add(model);
             }
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return list;
@@ -94,22 +94,21 @@ public class PelangganDAO implements ServicePelanggan{
         PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql = "SELECT * FROM pelanggan WHERE id_pelanggan LIKE '%"+id+"%' "
-                + " OR nama_pelanggan LIE '%"+id+"%' "
-                + " OR telepon LIE '%"+id+"%' "
-                + " OR alamat LIKE '%"+id+"%' " ;
-        
+        String sql = "SELECT * FROM pelanggan WHERE id_pelanggan LIKE '%" + id + "%' "
+                + " OR nama_pelanggan LIkE '%" + id + "%' "
+                + " OR telepon LIKE '%" + id + "%' "
+                + " OR alamat LIKE '%" + id + "%' ";
+
         try {
-           st = conn.prepareStatement(sql);
+            st = conn.prepareStatement(sql);
             rs = st.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 ModelPelanggan model = new ModelPelanggan();
                 model.setIdpelanggan(rs.getInt("id_pelanggan"));
                 model.setNamapelanggan(rs.getString("nama_pelanggan"));
-                model.setNotelppelanggan(rs.getString("telepon"));
+                model.setNotelpelanggan(rs.getString("telepon"));
                 model.setAlamatpelanggan(rs.getString("alamat"));
-                
-                
+
                 list.add(model);
             }
             rs.close();
