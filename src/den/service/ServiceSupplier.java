@@ -1,5 +1,6 @@
 package den.service;
 
+import den.model.ModelKategori;
 import den.model.ModelSupplier;
 import java.util.List;
 
@@ -12,5 +13,6 @@ public interface ServiceSupplier {
     List<ModelSupplier> pencarianData(String id);
     
     boolean validasiNamaSupplier (ModelSupplier model);
-    
+    List<ModelSupplier>ambilSupplier();
+    String ambilSupplierID(int id);
 }

@@ -6,11 +6,11 @@ public class ModelProduk {
     
     private int idproduk;
     private String namaProduk;
-    private String idKategori;
+    private Double idKategori;
     private Long harga;
     private int stok;
     private int gram;
-    private String idSupplier;
+    private Double idSupplier;
     private String barcode;
     private Date expired;
 
@@ -30,12 +30,12 @@ public class ModelProduk {
         this.namaProduk = namaProduk;
     }
 
-    public String getIdKategori() {
+    public Double getIdKategori() {
         return idKategori;
     }
 
-    public void setIdKategori(String idKategori) {
-        this.idKategori = idKategori;
+    public void setIdKategori(Double IdKategori) {
+        this.idKategori = IdKategori;
     }
 
     public Long getHarga() {

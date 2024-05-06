@@ -1,12 +1,23 @@
 package den.form;
 
+import den.DAO.KategoriDAO;
+import den.DAO.SupplierDAO;
 import den.DAO.produkDAO;
+import den.model.ModelKategori;
 import den.model.ModelProduk;
+import den.model.ModelSupplier;
+import den.service.ServiceKategori;
 import den.service.ServiceProduk;
+import den.service.ServiceSupplier;
 import den.tablemodel.TableModelProduk;
+import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 public class Forminputproduk extends javax.swing.JDialog {
 
@@ -17,11 +28,20 @@ public class Forminputproduk extends javax.swing.JDialog {
     private int row;
     private FormProduk formProduk;
 
+    private ServiceKategori servis_ktg = new KategoriDAO();
+    private ServiceSupplier servis_sup = new SupplierDAO();
+    
+    private Double idKategori;
+    private Double idSupplier;
+    
+    private final Map<String, Integer> kategoriMap;
+
     public Forminputproduk(java.awt.Frame parent, boolean modal, int row, ModelProduk produk, FormProduk formProduk) {
         super(parent, modal);
         this.produk = produk;
         this.row = row;
         this.formProduk = formProduk;
+        kategoriMap = new HashMap<>();
         initComponents();
 
         if (produk != null) {
@@ -66,6 +86,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         btnSimpan.setBackground(new java.awt.Color(36, 104, 155));
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("TAMBAH");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,6 +128,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
+        btnBatal.setForeground(new java.awt.Color(255, 255, 255));
         btnBatal.setText("BERSIHKAN");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +175,7 @@ public class Forminputproduk extends javax.swing.JDialog {
             }
         });
 
-        cbxKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih kategori", "1", "2", "3", "4", "5", "6" }));
+        cbxKategori.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Kategori" }));
         cbxKategori.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxKategoriActionPerformed(evt);
@@ -166,7 +188,7 @@ public class Forminputproduk extends javax.swing.JDialog {
             }
         });
 
-        cbxSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih supplier", "1", "2", "3", "4", "5", "6" }));
+        cbxSupplier.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pilih Supplier" }));
         cbxSupplier.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxSupplierActionPerformed(evt);
@@ -311,6 +333,7 @@ public class Forminputproduk extends javax.swing.JDialog {
     private void btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanActionPerformed
         if (btnSimpan.getText().equals("TAMBAH")) {
             simpanData();
+
         } else if (btnSimpan.getText().equals("PERBARUI")) {
             perbaruiData();
         }
@@ -392,6 +415,46 @@ public class Forminputproduk extends javax.swing.JDialog {
     private javax.swing.JTextField txtStok;
     // End of variables declaration//GEN-END:variables
 
+    private void ambilSupplier() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        model.addElement("Pilih Supplier");
+
+        List<ModelSupplier> list = servis_sup.ambilSupplier();
+        for (ModelSupplier supplier : list) {
+            model.addElement(supplier.getNamaSupplier());
+            kategoriMap.put(supplier.getNamaSupplier(), supplier.getIdSupplier());
+        }
+
+        cbxSupplier.setModel(model);
+        cbxSupplier.addActionListener(e -> {
+            String NamaSupplier = cbxSupplier.getSelectedItem().toString();
+            if (!"Pilih Supplier".equals(NamaSupplier)) {
+                idSupplier = kategoriMap.get(NamaSupplier);
+
+            }
+        });
+    }
+
+    private void ambilKategori() {
+        DefaultComboBoxModel<String> model = new DefaultComboBoxModel<>();
+        model.addElement("Pilih Kategori");
+
+        List<ModelKategori> list = servis_ktg.ambilKategori();
+        for (ModelKategori kategori : list) {
+            model.addElement(kategori.getNamaKategori());
+            kategoriMap.put(kategori.getNamaKategori(), kategori.getIdKategori());
+        }
+
+        cbxKategori.setModel(model);
+        cbxKategori.addActionListener(e -> {
+            String NamaKategori = cbxKategori.getSelectedItem().toString();
+            if (!"Pilih Kategori".equals(NamaKategori)) {
+                idKategori = kategoriMap.get(NamaKategori);
+
+            }
+        });
+    }
+
     private boolean validasiInput() {
         boolean valid = false;
         if (txtNama.getText().trim().isEmpty()) {
@@ -419,17 +482,17 @@ public class Forminputproduk extends javax.swing.JDialog {
     private void simpanData() {
         if (validasiInput() == true) {
             String namaProduk = txtNama.getText();
-            String idKategori = cbxKategori.getSelectedItem().toString();
+            //String idKategori = cbxKategori.getSelectedItem().toString();
             Long harga = Long.parseLong(txtHarga.getText());
             int stok = Integer.parseInt(txtStok.getText());
             int gram = Integer.parseInt(txtGram.getText());
-            String idSupplier = cbxSupplier.getSelectedItem().toString();
+            //String idSupplier = cbxSupplier.getSelectedItem().toString();
             String barcode = txtBarcode.getText();
             Date expired = jdateExpired.getDate();
 
             ModelProduk produk = new ModelProduk();
-            produk.setNamaProduk(namaProduk);
             produk.setIdKategori(idKategori);
+            produk.setNamaProduk(namaProduk);
             produk.setHarga(harga);
             produk.setStok(stok);
             produk.setGram(gram);
@@ -446,11 +509,11 @@ public class Forminputproduk extends javax.swing.JDialog {
 
     private void resetFrom() {
         txtNama.setText("");
-        cbxKategori.setSelectedIndex(0);
+       // cbxKategori.setSelectedIndex(0);
         txtHarga.setText("");
         txtStok.setText("");
         txtGram.setText("");
-        cbxSupplier.setSelectedIndex(0);
+       // cbxSupplier.setSelectedIndex(0);
         txtBarcode.setText("");
         jdateExpired.setDate(null);
     }
@@ -458,32 +521,55 @@ public class Forminputproduk extends javax.swing.JDialog {
     private void dataTable() {
         idProduk = produk.getIdproduk();
         txtNama.setText(produk.getNamaProduk());
-        cbxKategori.setSelectedItem(produk.getIdKategori());
+        //  cbxKategori.setSelectedItem(produk.getIdKategori());
         txtHarga.setText(String.valueOf(produk.getHarga()));
         txtStok.setText(String.valueOf(produk.getStok()));
         txtGram.setText(String.valueOf(produk.getGram()));
-        cbxSupplier.setSelectedItem(produk.getIdSupplier());
+        //cbxSupplier.setSelectedItem(produk.getIdSupplier());
         txtBarcode.setText(produk.getBarcode());
         jdateExpired.setDate(produk.getExpired());
+
+        idKategori = produk.getIdKategori();
+        idSupplier = produk.getIdSupplier();
+        
+        ambilKategoriID(idKategori);
+        ambilSupplierID(idSupplier);
+
         btnSimpan.setText("PERBARUI");
         jLabel2.setText("MASTER -> PRODUK -> PERBARUI DATA PRODUK");
         jLabel3.setText("PERBARUI DATA PRODUK");
         btnBatal.setText("BATAL");
     }
 
+    private void ambilKategoriID(Double id) {
+        String namaKategori = servis_ktg.ambilKategoriID(id);
+        SwingUtilities.invokeLater(() -> {
+            cbxKategori.setSelectedItem(namaKategori);
+        });
+    }
+
+    private void ambilSupplierID(Double id) {
+        String namaSupplier = servis_sup.ambilSupplierID(id);
+        SwingUtilities.invokeLater(() -> {
+            cbxSupplier.setSelectedItem(namaSupplier);
+        });
+    }
+
     private void loadData() {
         List<ModelProduk> list = servis.tampilData();
         tblModel.setData(list);
+        ambilKategori();
+        ambilSupplier();
     }
 
     private void perbaruiData() {
         if (validasiInput() == true) {
             String namaProduk = txtNama.getText();
-            String idKategori = cbxKategori.getSelectedItem().toString();
+            // String idKategori = cbxKategori.getSelectedItem().toString();
             Long harga = Long.parseLong(txtHarga.getText());
             int stok = Integer.parseInt(txtStok.getText());
             int gram = Integer.parseInt(txtGram.getText());
-            String idSupplier = cbxSupplier.getSelectedItem().toString();
+            // String idSupplier = cbxSupplier.getSelectedItem().toString();
             String barcode = txtBarcode.getText();
             Date expired = jdateExpired.getDate();
 

@@ -1,6 +1,7 @@
 package den.DAO;
 
 import den.koneksi.koneksi;
+import den.model.ModelKategori;
 import den.model.ModelSupplier;
 import den.service.ServiceSupplier;
 import java.awt.event.ItemEvent;
@@ -157,4 +158,49 @@ public class SupplierDAO implements ServiceSupplier {
         }
         return valid;
     }
+
+    @Override
+    public List<ModelSupplier> ambilSupplier() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List list = new ArrayList();
+        String sql = "SELECT id_supplier, nama_supplier FROM supplier";
+
+        try {
+            st = conn.prepareStatement(sql);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                ModelSupplier model = new ModelSupplier();
+                model.setIdSupplier(rs.getInt("id_supplier"));
+                model.setNamaSupplier(rs.getString("nama_supplier"));
+
+                list.add(model);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
+    @Override
+    public String ambilSupplierID(int id) {
+
+        String namaSupplier = null;
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        String sql = "SELECT nama_supplier FROM supplier WHERE id_supplier=?";
+
+        try {
+            st = conn.prepareStatement(sql);
+            st.setInt(1, id);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                namaSupplier = rs.getString("nama_supplier");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return namaSupplier;
+    }
 }
+

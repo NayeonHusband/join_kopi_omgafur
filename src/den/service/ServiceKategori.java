@@ -13,7 +13,6 @@ public interface ServiceKategori {
     List<ModelKategori> pencarianData(String id);
     
     boolean validasiNamaKategori (ModelKategori model);
-    
-    
-    
+    List<ModelKategori>ambilKategori();
+    String ambilKategoriID(int id);
 }

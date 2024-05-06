@@ -57,6 +57,7 @@ public class Forminputsupplier extends javax.swing.JDialog {
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         btnSimpan.setBackground(new java.awt.Color(36, 104, 155));
+        btnSimpan.setForeground(new java.awt.Color(255, 255, 255));
         btnSimpan.setText("TAMBAH");
         btnSimpan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -98,6 +99,7 @@ public class Forminputsupplier extends javax.swing.JDialog {
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
+        btnBatal.setForeground(new java.awt.Color(255, 255, 255));
         btnBatal.setText("BERSIHKAN");
         btnBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
