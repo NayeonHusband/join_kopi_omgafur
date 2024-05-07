@@ -26,11 +26,11 @@ public class produkDAO implements ServiceProduk {
             String sql = "INSERT INTO product(nama_produk, id_kategori, harga, stok, gram, id_supplier, barcode, expired) VALUES (?,?,?,?,?,?,?,?)";
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaProduk());
-            st.setDouble(2, model.getIdKategori());
+            st.setInt(2, model.getIdKategori());
             st.setLong(3, model.getHarga());
             st.setInt(4, model.getStok());
             st.setInt(5, model.getGram());
-            st.setDouble(6, model.getIdSupplier());
+            st.setInt(6, model.getIdSupplier());
             st.setString(7, model.getBarcode());
             st.setDate(8, new java.sql.Date(model.getExpired().getTime()));
 
@@ -51,10 +51,10 @@ public class produkDAO implements ServiceProduk {
                     + " harga=?, stok=?, id_supplier=?, barcode=? WHERE id_produk=?";
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaProduk());
-            st.setDouble(2, model.getIdKategori());
+            st.setInt(2, model.getIdKategori());
             st.setLong(3, model.getHarga());
             st.setInt(4, model.getStok());
-            st.setDouble(5, model.getIdSupplier());
+            st.setInt(5, model.getIdSupplier());
             st.setString(6, model.getBarcode());
             st.setInt(7, model.getIdproduk());
 
@@ -91,11 +91,11 @@ public class produkDAO implements ServiceProduk {
                 ModelProduk produk = new ModelProduk();
                 produk.setIdProduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
-                produk.setIdKategori(rs.getDouble("id_kategori"));
+                produk.setIdKategori(rs.getInt("id_kategori"));
                 produk.setHarga(rs.getLong("harga"));
                 produk.setStok(rs.getInt("stok"));
                 produk.setGram(rs.getInt("gram"));
-                produk.setIdSupplier(rs.getDouble("id_supplier"));
+                produk.setIdSupplier(rs.getInt("id_supplier"));
                 produk.setBarcode(rs.getString("Barcode"));
                 produk.setExpired(rs.getDate("expired"));
 
@@ -124,10 +124,10 @@ public class produkDAO implements ServiceProduk {
                 ModelProduk produk = new ModelProduk();
                 produk.setIdProduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
-                produk.setIdKategori(rs.getDouble("id_kategori"));
+                produk.setIdKategori(rs.getInt("id_kategori"));
                 produk.setHarga(rs.getLong("harga"));
                 produk.setStok(rs.getInt("stok"));
-                produk.setIdSupplier(rs.getDouble("id_supplier"));
+                produk.setIdSupplier(rs.getInt("id_supplier"));
                 produk.setBarcode(rs.getString("Barcode"));
 
                 list.add(produk);

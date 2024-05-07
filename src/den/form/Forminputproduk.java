@@ -31,8 +31,8 @@ public class Forminputproduk extends javax.swing.JDialog {
     private ServiceKategori servis_ktg = new KategoriDAO();
     private ServiceSupplier servis_sup = new SupplierDAO();
     
-    private Double idKategori;
-    private Double idSupplier;
+    private int idkategori;
+    private int idSupplier;
     
     private final Map<String, Integer> kategoriMap;
 
@@ -449,7 +449,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         cbxKategori.addActionListener(e -> {
             String NamaKategori = cbxKategori.getSelectedItem().toString();
             if (!"Pilih Kategori".equals(NamaKategori)) {
-                idKategori = kategoriMap.get(NamaKategori);
+                idkategori = kategoriMap.get(NamaKategori);
 
             }
         });
@@ -491,7 +491,7 @@ public class Forminputproduk extends javax.swing.JDialog {
             Date expired = jdateExpired.getDate();
 
             ModelProduk produk = new ModelProduk();
-            produk.setIdKategori(idKategori);
+            produk.setIdKategori(idkategori);
             produk.setNamaProduk(namaProduk);
             produk.setHarga(harga);
             produk.setStok(stok);
@@ -529,10 +529,10 @@ public class Forminputproduk extends javax.swing.JDialog {
         txtBarcode.setText(produk.getBarcode());
         jdateExpired.setDate(produk.getExpired());
 
-        idKategori = produk.getIdKategori();
+        idkategori = produk.getIdKategori();
         idSupplier = produk.getIdSupplier();
         
-        ambilKategoriID(idKategori);
+        ambilKategoriID(idkategori);
         ambilSupplierID(idSupplier);
 
         btnSimpan.setText("PERBARUI");
@@ -541,14 +541,14 @@ public class Forminputproduk extends javax.swing.JDialog {
         btnBatal.setText("BATAL");
     }
 
-    private void ambilKategoriID(Double id) {
+    private void ambilKategoriID(int id) {
         String namaKategori = servis_ktg.ambilKategoriID(id);
         SwingUtilities.invokeLater(() -> {
             cbxKategori.setSelectedItem(namaKategori);
         });
     }
 
-    private void ambilSupplierID(Double id) {
+    private void ambilSupplierID(int id) {
         String namaSupplier = servis_sup.ambilSupplierID(id);
         SwingUtilities.invokeLater(() -> {
             cbxSupplier.setSelectedItem(namaSupplier);
@@ -576,7 +576,7 @@ public class Forminputproduk extends javax.swing.JDialog {
             ModelProduk produk = new ModelProduk();
             produk.setIdProduk(idProduk);
             produk.setNamaProduk(namaProduk);
-            produk.setIdKategori(idKategori);
+            produk.setIdKategori(idkategori);
             produk.setHarga(harga);
             produk.setStok(stok);
             produk.setGram(gram);

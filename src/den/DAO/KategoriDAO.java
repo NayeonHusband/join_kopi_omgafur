@@ -169,7 +169,7 @@ public class KategoriDAO implements ServiceKategori {
     }
 
     @Override
-    public String ambilKategoriID(Double id) {
+    public String ambilKategoriID(int id) {
         String namaKategori = null;
         PreparedStatement st= null;
         ResultSet rs = null;
