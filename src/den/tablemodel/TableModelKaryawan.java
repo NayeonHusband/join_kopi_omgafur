@@ -45,7 +45,7 @@ public class TableModelKaryawan extends AbstractTableModel {
         JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
     }
 
-    private final String[] columnNames = {"ID", "Nama Karyawan", "Username", "Password", "Telepon", "Alamat", "Role"};
+    private final String[] columnNames = {"ID", "Nama Karyawan", "Username", "Telepon", "Alamat", "Role"};
 
     @Override
     public int getRowCount() {
@@ -62,18 +62,16 @@ public class TableModelKaryawan extends AbstractTableModel {
         ModelKaryawan model = list.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return model.getIdKaryawan();
+                return "    " + model.getIdKaryawan();
             case 1:
                 return model.getNamaKaryawan();
             case 2:
                 return model.getUsername();
             case 3:
-                return model.getPassword();
-            case 4:
                 return model.getTelepon();
-            case 5:
+            case 4:
                 return model.getAlamat();
-            case 6:
+            case 5:
                 return model.getRole();
 
             default:

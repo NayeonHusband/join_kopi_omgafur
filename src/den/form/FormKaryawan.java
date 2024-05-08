@@ -211,8 +211,8 @@ public class FormKaryawan extends javax.swing.JPanel {
     }
 
     private void tambahData() {
-        Forminputkaryawan formKaryawan = new Forminputkaryawan(null, true, 1, null, this);
-        formKaryawan.setVisible(true);
+        Forminputkaryawan formInput = new Forminputkaryawan(null, true, 1, null, this);
+        formInput.setVisible(true);
         loadData();
     }
 
@@ -220,8 +220,8 @@ public class FormKaryawan extends javax.swing.JPanel {
         int row = tblData.getSelectedRow();
         if (row != -1) {
             ModelKaryawan model = tblModel.getData(row);
-            Forminputkaryawan formKaryawan = new Forminputkaryawan(null, true, row, model, this);
-            formKaryawan.setVisible(true);
+            Forminputkaryawan formInput = new Forminputkaryawan(null, true, row, model, this);
+            formInput.setVisible(true);
             loadData();
         } else {
             JOptionPane.showMessageDialog(null, "Pilih Data Yang Ingin Diperbarui");

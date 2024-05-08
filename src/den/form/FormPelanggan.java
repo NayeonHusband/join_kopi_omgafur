@@ -221,7 +221,6 @@ public class FormPelanggan extends javax.swing.JPanel {
     }
     
     private void PencarianData(){
-        
         List<ModelPelanggan> list = servis.pencarianData(txtpencarian.getText());
         tblModel.setData(list);
     }

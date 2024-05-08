@@ -15,7 +15,7 @@ public class koneksi {
     public static Connection getConnection() {
         if (connection==null) {
             try {
-                String url = "jdbc:mysql://localhost:3306/joinkopi1";
+                String url = "jdbc:mysql://localhost:3306/joininkopi1";
                 String user = "root";
                 String pass = "";
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
