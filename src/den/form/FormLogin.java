@@ -2,12 +2,17 @@ package den.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.util.UIScale;
+import den.DAO.KaryawanDAO;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.LayoutManager;
 import den.main.FormMenuUtama;
+import den.menu.LightDarkMode;
+import den.model.ModelKaryawan;
+import den.service.ServiceKaryawan;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,29 +20,49 @@ import den.main.FormMenuUtama;
  */
 public class FormLogin extends javax.swing.JPanel {
 
+    private ServiceKaryawan servis = new KaryawanDAO();
+
     public FormLogin() {
         initComponents();
-        init();
+        setLayoutForm();
     }
 
-    private void init() {
-        setLayout(new LoginFormLayout());
-        login.setLayout(new LoginLayout());
-        lbTitle.putClientProperty(FlatClientProperties.STYLE, ""
-                + "font:$h1.font");
-        login.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Login.background;"
-                + "arc:20;"
-                + "border:30,40,50,30");
+    private void resetForm() {
+        txtUser.setText("");
+        txtPass.setText("");
+    }
 
-        txtPass.putClientProperty(FlatClientProperties.STYLE, ""
-                + "showRevealButton:true;"
-                + "showCapsLock:true");
-        cmdLogin.putClientProperty(FlatClientProperties.STYLE, ""
-                + "borderWidth:0;"
-                + "focusWidth:0");
-        txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Username");
-        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
+    private boolean validasiInput() {
+        boolean valid = false;
+        if (txtUser.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "username tidak boleh kosong");
+        } else if (txtPass.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Password tidk boleh koong");
+        } else {
+            valid = true;
+        }
+        return valid;
+    }
+
+    private void prosesLogin() {
+        if (validasiInput() == true) {
+            String user = txtUser.getText();
+            String pass = txtPass.getText();
+
+            ModelKaryawan model = new ModelKaryawan();
+            model.setUsername(user);
+            model.setPassword(pass);
+
+            ModelKaryawan modelKar = servis.prosesLogin(model);
+            if (modelKar != null) {
+                FormMenuUtama.login(modelKar);
+                resetForm();
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Username dan Password salah", "Pesan",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -139,12 +164,32 @@ public class FormLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmdLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdLoginActionPerformed
-        FormMenuUtama.login();
+        prosesLogin();
     }//GEN-LAST:event_cmdLoginActionPerformed
 
     private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
+
+    private void setLayoutForm() {
+        setLayout(new LoginFormLayout());
+        login.setLayout(new LoginLayout());
+        lbTitle.putClientProperty(FlatClientProperties.STYLE, ""
+                + "font:$h1.font");
+        login.putClientProperty(FlatClientProperties.STYLE, ""
+                + "background:$Login.background;"
+                + "arc:20;"
+                + "border:30,40,50,30");
+
+        txtPass.putClientProperty(FlatClientProperties.STYLE, ""
+                + "showRevealButton:true;"
+                + "showCapsLock:true");
+        cmdLogin.putClientProperty(FlatClientProperties.STYLE, ""
+                + "borderWidth:0;"
+                + "focusWidth:0");
+        txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Username");
+        txtPass.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Password");
+    }
 
     private class LoginFormLayout implements LayoutManager {
 

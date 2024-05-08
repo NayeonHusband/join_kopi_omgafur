@@ -1,5 +1,6 @@
 package den.DAO;
 
+import com.mysql.cj.protocol.Resultset;
 import den.DAO.KaryawanDAO;
 import den.koneksi.koneksi;
 import den.model.ModelKaryawan;
@@ -45,10 +46,10 @@ public class KaryawanDAO implements ServiceKaryawan {
         try {
             String sql = "UPDATE karyawan SET nama_karyawan=?, username=?, telepon=?, alamat=?, role=? WHERE id_karyawan=?";
 
-           st = conn.prepareStatement(sql);
+            st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaKaryawan());
             st.setString(2, model.getUsername());
-          //  st.setString(3, model.getPassword());
+            //  st.setString(3, model.getPassword());
             st.setString(3, model.getTelepon());
             st.setString(4, model.getAlamat());
             st.setString(5, model.getRole());
@@ -87,11 +88,10 @@ public class KaryawanDAO implements ServiceKaryawan {
                 model.setIdKaryawan(rs.getInt("id_karyawan"));
                 model.setNamaKaryawan(rs.getString("nama_karyawan"));
                 model.setUsername(rs.getString("username"));
-             //   model.setPassword(rs.getString("password"));
+                //   model.setPassword(rs.getString("password"));
                 model.setTelepon(rs.getString("telepon"));
                 model.setAlamat(rs.getString("alamat"));
                 model.setRole(rs.getString("role"));
-
 
                 list.add(model);
             }
@@ -125,7 +125,6 @@ public class KaryawanDAO implements ServiceKaryawan {
                 model.setAlamat(rs.getString("alamat"));
                 model.setRole(rs.getString("role"));
 
-
                 list.add(model);
             }
             rs.close();
@@ -142,18 +141,54 @@ public class KaryawanDAO implements ServiceKaryawan {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] encodehash = digest.digest(password.getBytes());
             StringBuilder hexString = new StringBuilder(2 * encodehash.length);
-            
+
             for (byte b : encodehash) {
                 String hex = Integer.toHexString(0xff & b);
-                if(hex.length() == 1) {
+                if (hex.length() == 1) {
                     hexString.append('0');
                 }
                 hexString.append(hex);
             }
             return hexString.toString();
-        }catch (NoSuchAlgorithmException e) {
+        } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
         return null;
     }
+
+    @Override
+    public ModelKaryawan prosesLogin(ModelKaryawan model) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        ModelKaryawan modelKar = null;
+        String sql = "SELECT * FROM karyawan WHERE username=? AND password=?";
+
+        try {
+            st = conn.prepareStatement(sql);
+            st.setString(1, model.getUsername());
+            st.setString(2, generateSHA256(model.getPassword()));
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                modelKar = new ModelKaryawan();
+                modelKar.setIdKaryawan(rs.getInt("id_karyawan"));
+                modelKar.setNamaKaryawan(rs.getString("nama_karyawan"));
+                modelKar.setUsername(rs.getString("username"));
+                modelKar.setRole(rs.getString("role"));
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            if (st != null) {
+                try {
+                    st.close();
+                } catch (SQLException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        }
+        return modelKar;
+    }
+
 }

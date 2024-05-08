@@ -11,6 +11,7 @@ import java.awt.Font;
 import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import den.form.FormLogin;
+import den.model.ModelKaryawan;
 import raven.toast.Notifications;
 
 /**
@@ -38,7 +39,7 @@ public class FormMenuUtama extends javax.swing.JFrame {
         app.mainForm.showForm(component);
     }
 
-    public static void login() {
+    public static void login(ModelKaryawan model) {
         FlatAnimatedLafChange.showSnapshot();
         app.setContentPane(app.mainForm);
         app.mainForm.applyComponentOrientation(app.getComponentOrientation());

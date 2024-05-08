@@ -12,4 +12,5 @@ public interface ServiceKaryawan {
     List<ModelKaryawan> pencarianData(String id);
     
     String generateSHA256(String password);
+    ModelKaryawan prosesLogin(ModelKaryawan model);
 }
