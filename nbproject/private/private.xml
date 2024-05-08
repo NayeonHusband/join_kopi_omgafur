@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/DAO/KaryawanDAO.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/tablemodel/TableModelKaryawan.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/model/ModelKaryawan.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/DAO/PenjualanDetailDAO.java</file>
             <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/form/Forminputkaryawan.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/form/FormKaryawan.java</file>
-            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/service/ServiceKaryawan.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/DAO/PenjualanDAO.java</file>
+            <file>file:/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/form/Forminputpelanggan.java</file>
         </group>
     </open-files>
 </project-private>

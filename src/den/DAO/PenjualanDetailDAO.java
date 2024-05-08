@@ -113,7 +113,7 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         }
         return list;
     }
-
+    
     @Override
     public List<ModelPenjualanDetail> pencarianData(String id,String kataKunci) {
         PreparedStatement st = null;

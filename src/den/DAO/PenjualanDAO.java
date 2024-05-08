@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 public class PenjualanDAO implements ServicePenjualan {
 
@@ -62,8 +63,8 @@ public class PenjualanDAO implements ServicePenjualan {
                 ModelKaryawan  ky  = new ModelKaryawan();
                 
                 pj.setIdPenjualan       (rs.getString("id_penjualan"));
-                pl.setIdPelanggan       (rs.getInt("id_pelanggan"));
-                pl.setNamaPelanggan     (rs.getString("nama_pelanggan"));
+                pl.setIdpelanggan       (rs.getInt("id_pelanggan"));
+                pl.setNamapelanggan     (rs.getString("nama_pelanggan"));
                 pj.setTanggal           (rs.getString("tanggal"));
                 pj.setTotalHarga        (rs.getLong("total_harga"));
                 pj.setBayar             (rs.getDouble("bayar"));
@@ -108,8 +109,8 @@ public class PenjualanDAO implements ServicePenjualan {
                 ModelKaryawan ky = new ModelKaryawan();
                 
                 pj.setIdPenjualan       (rs.getString("id_penjualan"));
-                pl.setIdPelanggan       (rs.getInt("id_pelanggan"));
-                pl.setNamaPelanggan     (rs.getString("nama_pelanggan"));
+                pl.setIdpelanggan       (rs.getInt("id_pelanggan"));
+                pl.setNamapelanggan     (rs.getString("nama_pelanggan"));
                 pj.setTanggal           (rs.getString("tanggal"));
                 pj.setTotalHarga        (rs.getLong("total_harga"));
                 pj.setBayar             (rs.getDouble("bayar"));
@@ -121,7 +122,7 @@ public class PenjualanDAO implements ServicePenjualan {
                 pj.setModelPelanggan    (pl);
                 pj.setModelKaryawan     (ky);
                 
-                lsi.add(pj);
+                list.add(pj);
             }
             rs.close();
             st.close();
