@@ -222,8 +222,9 @@ public class FormProduk extends javax.swing.JPanel {
             barcode.setI(11.0f);
             
             
-            barcode.renderBarcode("C:\\Users\\User\\Desktop\\join_kopi_omgafur\\join_kopi_omgafur\\build\\classes\\utils\\1.png");
-            JOptionPane.showMessageDialog(null, "done");
+            barcode.renderBarcode(System.getProperty("user.dir")+"/src/utils/1.png");
+            
+            JOptionPane.showMessageDialog(null, System.getProperty("user.dir")+"src/utils/1.png");
          } else {
             JOptionPane.showMessageDialog(null, "Pilih Data Yang Ingin Diperbarui");
         }}
