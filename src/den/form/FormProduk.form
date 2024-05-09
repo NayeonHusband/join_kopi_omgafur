@@ -36,16 +36,18 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jSeparator1" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jPanel2" alignment="0" pref="1183" max="32767" attributes="0"/>
+                  <Component id="jPanel2" alignment="0" pref="1211" max="32767" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
-                      <Component id="btntambah" pref="79" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
+                      <Component id="test_generate" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btntambah" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="btnperbarui" pref="89" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="btnhapus" pref="71" max="32767" attributes="0"/>
+                      <Component id="btnhapus" max="32767" attributes="0"/>
                       <EmptySpace min="-2" pref="416" max="-2" attributes="0"/>
-                      <Component id="jLabel1" pref="50" max="32767" attributes="0"/>
+                      <Component id="jLabel1" pref="53" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtpencarian" min="-2" pref="306" max="-2" attributes="0"/>
                   </Group>
@@ -68,6 +70,7 @@
                               <Component id="btnhapus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="btnperbarui" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="btntambah" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="test_generate" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -107,7 +110,7 @@
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="27" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -214,6 +217,20 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Search :"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="test_generate">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="9b" green="68" red="24" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Test Generate"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="test_generateActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

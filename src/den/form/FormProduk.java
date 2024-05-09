@@ -1,5 +1,6 @@
 package den.form;
 
+import com.barcodelib.barcode.Linear;
 import com.formdev.flatlaf.FlatClientProperties;
 import den.DAO.produkDAO;
 import den.model.ModelProduk;
@@ -36,6 +37,7 @@ public class FormProduk extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        test_generate = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
         jPanel2.setPreferredSize(new java.awt.Dimension(189, 91));
@@ -67,7 +69,7 @@ public class FormProduk extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 27, Short.MAX_VALUE))
+                .addGap(0, 25, Short.MAX_VALUE))
         );
 
         btnhapus.setBackground(new java.awt.Color(36, 104, 155));
@@ -124,21 +126,32 @@ public class FormProduk extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
         jLabel1.setText("Search :");
 
+        test_generate.setBackground(new java.awt.Color(36, 104, 155));
+        test_generate.setForeground(new java.awt.Color(255, 255, 255));
+        test_generate.setText("Test Generate");
+        test_generate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                test_generateActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1183, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1211, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(132, 132, 132)
-                .addComponent(btntambah, javax.swing.GroupLayout.DEFAULT_SIZE, 79, Short.MAX_VALUE)
+                .addGap(47, 47, 47)
+                .addComponent(test_generate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btntambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnperbarui, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnhapus, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
+                .addComponent(btnhapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(416, 416, 416)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -157,7 +170,8 @@ public class FormProduk extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnperbarui, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(test_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))
         );
@@ -196,6 +210,28 @@ public class FormProduk extends javax.swing.JPanel {
         hapusData();
     }//GEN-LAST:event_btnhapusActionPerformed
 
+    private void test_generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test_generateActionPerformed
+        try{
+            Linear barcode = new Linear();
+        barcode.setType(Linear.CODE128);
+        
+        int row = tblData.getSelectedRow();
+        if (row != -1) {
+            ModelProduk produk = tblModel.getData(row);
+            barcode.setData(produk.getBarcode());
+            barcode.setI(11.0f);
+            
+            
+            barcode.renderBarcode("C:\\Users\\User\\Desktop\\join_kopi_omgafur\\join_kopi_omgafur\\build\\classes\\utils\\1.png");
+            JOptionPane.showMessageDialog(null, "done");
+         } else {
+            JOptionPane.showMessageDialog(null, "Pilih Data Yang Ingin Diperbarui");
+        }}
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_test_generateActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnhapus;
@@ -210,6 +246,7 @@ public class FormProduk extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblData;
+    private javax.swing.JButton test_generate;
     private javax.swing.JTextField txtpencarian;
     // End of variables declaration//GEN-END:variables
 
