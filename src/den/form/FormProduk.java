@@ -1,13 +1,21 @@
 package den.form;
 
 import com.barcodelib.barcode.Linear;
+
 import com.formdev.flatlaf.FlatClientProperties;
 import den.DAO.produkDAO;
 import den.model.ModelProduk;
 import den.service.ServiceProduk;
 import den.tablemodel.TableModelProduk;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.util.List;
 import javax.swing.JOptionPane;
+import net.glxn.qrgen.QRCode;
+import net.glxn.qrgen.exception.QRGenerationException;
+import net.glxn.qrgen.image.ImageType;
+
 
 public class FormProduk extends javax.swing.JPanel {
 
@@ -38,6 +46,7 @@ public class FormProduk extends javax.swing.JPanel {
         tblData = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         test_generate = new javax.swing.JButton();
+        generate_qr = new javax.swing.JButton();
 
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
         jPanel2.setPreferredSize(new java.awt.Dimension(189, 91));
@@ -135,6 +144,15 @@ public class FormProduk extends javax.swing.JPanel {
             }
         });
 
+        generate_qr.setBackground(new java.awt.Color(36, 104, 155));
+        generate_qr.setForeground(new java.awt.Color(255, 255, 255));
+        generate_qr.setText("Generate qr");
+        generate_qr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generate_qrActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -150,8 +168,10 @@ public class FormProduk extends javax.swing.JPanel {
                 .addComponent(btnperbarui, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnhapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(416, 416, 416)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(generate_qr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(297, 297, 297)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -171,7 +191,8 @@ public class FormProduk extends javax.swing.JPanel {
                         .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnperbarui, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(test_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(test_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(generate_qr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))
         );
@@ -233,11 +254,35 @@ public class FormProduk extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_test_generateActionPerformed
 
+    private void generate_qrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate_qrActionPerformed
+       try{
+        
+        int row = tblData.getSelectedRow();
+        if (row != -1) {
+            ModelProduk produk = tblModel.getData(row);
+            ByteArrayOutputStream bOut = QRCode.from(produk.getBarcode()).to(ImageType.PNG).stream();
+            
+            String FileName = String.valueOf(produk.getIdproduk());
+            
+            FileOutputStream fOut = new FileOutputStream(new File(System.getProperty("user.dir")+"/src/utils/"+FileName+".png"));
+            fOut.write(bOut.toByteArray());
+            fOut.flush();
+            
+            JOptionPane.showMessageDialog(null, System.getProperty("user.dir")+"/src/utils/"+FileName+".png");
+         } else {
+            JOptionPane.showMessageDialog(null, "Pilih Data Yang Ingin Diperbarui");
+        }}
+        catch(Exception e){
+            e.printStackTrace();
+        }
+    }//GEN-LAST:event_generate_qrActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnhapus;
     private javax.swing.JButton btnperbarui;
     private javax.swing.JButton btntambah;
+    private javax.swing.JButton generate_qr;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

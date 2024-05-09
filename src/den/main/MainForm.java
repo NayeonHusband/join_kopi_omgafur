@@ -23,6 +23,7 @@ import den.form.FormKategori;
 import den.form.FormSupplier;
 import den.menu.Menu;
 import den.menu.MenuAction;
+import den.model.ModelKaryawan;
 
 /**
  *
@@ -30,14 +31,19 @@ import den.menu.MenuAction;
  */
 public class MainForm extends JLayeredPane {
 
-    public MainForm() {
-        init();
+
+    public MainForm(ModelKaryawan mk) {
+        
+
+        init(mk);
+        System.out.println("mk "+mk);
+
     }
 
-    private void init() {
+    private void init(ModelKaryawan mk) {
         setBorder(new EmptyBorder(5, 5, 5, 5));
         setLayout(new MainFormLayout());
-        menu = new Menu();
+        menu = new Menu(mk);
         panelBody = new JPanel(new BorderLayout());
         initMenuArrowIcon();
         menuButton.putClientProperty(FlatClientProperties.STYLE, ""

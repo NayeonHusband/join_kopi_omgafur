@@ -46,8 +46,10 @@
                       <Component id="btnperbarui" pref="89" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
                       <Component id="btnhapus" max="32767" attributes="0"/>
-                      <EmptySpace min="-2" pref="416" max="-2" attributes="0"/>
-                      <Component id="jLabel1" pref="53" max="32767" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="generate_qr" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="297" max="-2" attributes="0"/>
+                      <Component id="jLabel1" pref="58" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtpencarian" min="-2" pref="306" max="-2" attributes="0"/>
                   </Group>
@@ -71,6 +73,7 @@
                               <Component id="btnperbarui" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="btntambah" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="test_generate" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="generate_qr" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
@@ -230,6 +233,20 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="test_generateActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JButton" name="generate_qr">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="9b" green="68" red="24" type="rgb"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Generate qr"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="generate_qrActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>

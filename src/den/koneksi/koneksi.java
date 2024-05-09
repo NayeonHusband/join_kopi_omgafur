@@ -20,6 +20,7 @@ public class koneksi {
                 String pass = "";
                 DriverManager.registerDriver(new com.mysql.jdbc.Driver());
                 connection = (Connection) DriverManager.getConnection(url, user, pass);
+                    
             } catch (SQLException ex) {
                 Logger.getLogger(koneksi.class.getName()).log(Level.SEVERE, null, ex);
                 

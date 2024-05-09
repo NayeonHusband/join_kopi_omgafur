@@ -13,6 +13,11 @@ import den.menu.LightDarkMode;
 import den.model.ModelKaryawan;
 import den.service.ServiceKaryawan;
 import javax.swing.JOptionPane;
+import den.koneksi.koneksi;
+import den.menu.Menu;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 /**
  *
@@ -48,14 +53,17 @@ public class FormLogin extends javax.swing.JPanel {
         if (validasiInput() == true) {
             String user = txtUser.getText();
             String pass = txtPass.getText();
-
-            ModelKaryawan model = new ModelKaryawan();
+            
+            
+            
+          ModelKaryawan model = new ModelKaryawan();
             model.setUsername(user);
             model.setPassword(pass);
 
             ModelKaryawan modelKar = servis.prosesLogin(model);
             if (modelKar != null) {
                 FormMenuUtama.login(modelKar);
+                
                 resetForm();
             } else {
                 JOptionPane.showMessageDialog(null,

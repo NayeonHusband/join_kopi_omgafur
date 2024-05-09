@@ -21,14 +21,14 @@ import raven.toast.Notifications;
 public class FormMenuUtama extends javax.swing.JFrame {
 
     private static FormMenuUtama app;
-    private final MainForm mainForm;
+    private static MainForm mainForm;
     private final FormLogin loginForm;
+
 
     public FormMenuUtama() {
         initComponents();
         setSize(new Dimension(1366, 768));
         setLocationRelativeTo(null); //centering
-        mainForm = new MainForm();
         loginForm = new FormLogin();
         setContentPane(loginForm);
         Notifications.getInstance().setJFrame(this);
@@ -40,6 +40,9 @@ public class FormMenuUtama extends javax.swing.JFrame {
     }
 
     public static void login(ModelKaryawan model) {
+//        System.out.println("model"+model.getRole());
+        mainForm = new MainForm(model);
+
         FlatAnimatedLafChange.showSnapshot();
         app.setContentPane(app.mainForm);
         app.mainForm.applyComponentOrientation(app.getComponentOrientation());

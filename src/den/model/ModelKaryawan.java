@@ -1,7 +1,9 @@
 package den.model;
 
+import java.sql.Connection;
+
 public class ModelKaryawan {
-        
+       
     private int idKaryawan;
     private String namaKaryawan;
     private String username;
@@ -10,6 +12,7 @@ public class ModelKaryawan {
     private String alamat;
     private String role; 
 
+    
     public int getIdKaryawan() {
         return idKaryawan;
     }
