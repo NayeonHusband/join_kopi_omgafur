@@ -3,6 +3,7 @@ package den.menu;
 import com.formdev.flatlaf.FlatClientProperties;
 import com.formdev.flatlaf.ui.FlatUIUtils;
 import com.formdev.flatlaf.util.UIScale;
+import den.model.ModelKaryawan;
 import java.awt.Component;
 import java.awt.Container;
 import java.awt.Dimension;
@@ -22,7 +23,7 @@ import javax.swing.JScrollPane;
  */
 public class Menu extends JPanel {
 
-    private final String menuItems[][] = {
+    private final String menuItemsAdmin[][] = {
         {"~MAIN~"},
         {"Dashboard"},
         {"~MASTER~"},
@@ -79,6 +80,8 @@ public class Menu extends JPanel {
     private final List<MenuEvent> events = new ArrayList<>();
     private boolean menuFull = true;
     private final String headerName = "Join Kopi";
+    private ModelKaryawan mk;
+    private String[][] menuItems=null;
 
     protected final boolean hideMenuTitleOnMinimum = true;
     protected final int menuTitleLeftInset = 5;
@@ -90,6 +93,14 @@ public class Menu extends JPanel {
     public Menu() {
         init();
     }
+    
+    public Menu(ModelKaryawan model){
+        this.mk = model;
+        System.out.println("coba "+ model);
+                init();
+
+    }
+
 
     private void init() {
         setLayout(new MenuLayout());
@@ -132,6 +143,12 @@ public class Menu extends JPanel {
     }
 
     private void createMenu() {
+        if (mk.getRole().equals("Admin")){
+            menuItems = menuItemsAdmin;
+        }else{
+            menuItems = menuItemsUser;
+        }
+        
         int index = 0;
         for (int i = 0; i < menuItems.length; i++) {
             String menuName = menuItems[i][0];
