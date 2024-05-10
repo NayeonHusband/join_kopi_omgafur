@@ -18,7 +18,7 @@ public class ModelProduk {
         return idproduk;
     }
 
-    public void setIdProduk(int idproduk) {
+    public void setIdproduk(int idproduk) {
         this.idproduk = idproduk;
     }
 
@@ -34,8 +34,8 @@ public class ModelProduk {
         return idKategori;
     }
 
-    public void setIdKategori(int IdKategori) {
-        this.idKategori = IdKategori;
+    public void setIdKategori(int idKategori) {
+        this.idKategori = idKategori;
     }
 
     public Long getHarga() {
@@ -53,7 +53,7 @@ public class ModelProduk {
     public void setStok(int stok) {
         this.stok = stok;
     }
-    
+
     public int getGram() {
         return gram;
     }
@@ -77,7 +77,7 @@ public class ModelProduk {
     public void setBarcode(String barcode) {
         this.barcode = barcode;
     }
-    
+
     public Date getExpired() {
         return expired;
     }
@@ -85,4 +85,5 @@ public class ModelProduk {
     public void setExpired(Date expired) {
         this.expired = expired;
     }
+
 }

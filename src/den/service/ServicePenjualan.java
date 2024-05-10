@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface ServicePenjualan {
     
-    void tambahData (ModelPenjualan model);
+    void tambahData     (ModelPenjualan model);
     
     
     List<ModelPenjualan> tampilData();

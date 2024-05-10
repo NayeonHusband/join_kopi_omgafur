@@ -27,7 +27,7 @@ public class produkDAO implements ServiceProduk {
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaProduk());
             st.setInt(2, model.getIdKategori());
-            st.setLong(3, model.getHarga());
+            st.setDouble(3, model.getHarga());
             st.setInt(4, model.getStok());
             st.setInt(5, model.getGram());
             st.setInt(6, model.getIdSupplier());
@@ -52,7 +52,7 @@ public class produkDAO implements ServiceProduk {
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaProduk());
             st.setInt(2, model.getIdKategori());
-            st.setLong(3, model.getHarga());
+            st.setDouble(3, model.getHarga());
             st.setInt(4, model.getStok());
             st.setInt(5, model.getIdSupplier());
             st.setString(6, model.getBarcode());
@@ -89,7 +89,7 @@ public class produkDAO implements ServiceProduk {
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelProduk produk = new ModelProduk();
-                produk.setIdProduk(rs.getInt("id_produk"));
+                produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
                 produk.setHarga(rs.getLong("harga"));
@@ -122,7 +122,7 @@ public class produkDAO implements ServiceProduk {
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelProduk produk = new ModelProduk();
-                produk.setIdProduk(rs.getInt("id_produk"));
+                produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
                 produk.setHarga(rs.getLong("harga"));

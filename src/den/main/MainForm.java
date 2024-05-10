@@ -31,12 +31,10 @@ import den.model.ModelKaryawan;
  */
 public class MainForm extends JLayeredPane {
 
-
     public MainForm(ModelKaryawan mk) {
-        
 
         init(mk);
-        System.out.println("mk "+mk);
+        System.out.println("mk " + mk);
 
     }
 

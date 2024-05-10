@@ -574,7 +574,7 @@ public class Forminputproduk extends javax.swing.JDialog {
             Date expired = jdateExpired.getDate();
 
             ModelProduk produk = new ModelProduk();
-            produk.setIdProduk(idProduk);
+            produk.setIdproduk(idProduk);
             produk.setNamaProduk(namaProduk);
             produk.setIdKategori(idkategori);
             produk.setHarga(harga);

@@ -98,7 +98,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
                 ModelProduk pd = new ModelProduk();
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
                 
-                pd.setIdProduk           (rs.getInt("id_produk"));
+                pd.setIdproduk           (rs.getInt("id_produk"));
                 pd.setBarcode              (rs.getString("barcode"));
                 pd.setNamaProduk            (rs.getString("nama_produk"));
                 pd.setHarga               (rs.getLong("harga"));

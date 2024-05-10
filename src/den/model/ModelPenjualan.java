@@ -3,10 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package den.model;
-import java.util.Date;
 
 public class ModelPenjualan {
-
+    
+    private String idPenjualan;
+    private ModelKaryawan modelKaryawan;
+    private ModelPelanggan modelPelanggan;
+    private String tanggal;
+    private double totalHarga;
+    private double bayar;
+    private double diskon;
+    private double kembali;
+    
     public String getIdPenjualan() {
         return idPenjualan;
     }
@@ -70,13 +78,5 @@ public class ModelPenjualan {
     public void setKembali(double kembali) {
         this.kembali = kembali;
     }
-    private String idPenjualan;
-    private ModelKaryawan modelKaryawan;
-    private ModelPelanggan modelPelanggan;
-    private String tanggal;
-    private double totalHarga;
-    private double bayar;
-    private double diskon;
-    private double kembali;
-
 }
+

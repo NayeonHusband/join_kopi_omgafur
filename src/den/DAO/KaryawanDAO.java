@@ -167,9 +167,7 @@ public class KaryawanDAO implements ServiceKaryawan {
             st = conn.prepareStatement(sql);
             st.setString(1, model.getUsername());
             st.setString(2, generateSHA256(model.getPassword()));
-            rs = st.executeQuery();
-
-            if (rs.next()) {
+            rs = st.executeQuery();          if (rs.next()) {
                 modelKar = new ModelKaryawan();
                 modelKar.setIdKaryawan(rs.getInt("id_karyawan"));
                 modelKar.setNamaKaryawan(rs.getString("nama_karyawan"));

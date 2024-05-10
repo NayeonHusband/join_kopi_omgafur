@@ -3,9 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package den.model;
+
 import java.util.Date;
 
 public class ModelPenjualanDetail {
+
+    private ModelPenjualan modelPenjualan;
+    private ModelProduk modelProduk;
+    private int jumlah;
+    private double subTotal;
 
     public ModelPenjualan getModelPenjualan() {
         return modelPenjualan;
@@ -38,11 +44,5 @@ public class ModelPenjualanDetail {
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
-    private ModelPenjualan modelPenjualan;
-    private ModelProduk modelProduk;
-    private int jumlah;
-    private double subTotal;
-  
-
 
 }
