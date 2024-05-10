@@ -26,7 +26,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
          PreparedStatement st = null;
         try {
 
-            String sql = "INSERT INTO penjualan_smt(id_produk, barcode, tnama_produk, harga, stok, jumlah, subtotal) VALUES (?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO penjualan_smt(id_produk, barcode, nama_produk, harga, stok, jumlah, subtotal) VALUES (?,?,?,?,?,?,?)";
             st = conn.prepareStatement(sql);
             st.setInt                   (1, model.getModelProduk().getIdproduk());
             st.setString                (2, model.getModelProduk().getBarcode());
@@ -98,14 +98,14 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
                 ModelProduk pd = new ModelProduk();
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
                 
-                pd.setIdproduk           (rs.getInt("id_produk"));
-                pd.setBarcode              (rs.getString("barcode"));
-                pd.setNamaProduk            (rs.getString("nama_produk"));
-                pd.setHarga               (rs.getLong("harga"));
-                pd.setStok             (rs.getInt("stok"));
+                pd.setIdproduk          (rs.getInt("id_produk"));
+                pd.setBarcode           (rs.getString("barcode"));
+                pd.setNamaProduk        (rs.getString("nama_produk"));
+                pd.setHarga             (rs.getLong("harga"));
+                pd.setStok              (rs.getInt("stok"));
                 
-                det.setJumlah(rs.getInt("jumlah"));
-                det.setSubTotal(rs.getLong("subtotal"));
+                det.setJumlah           (rs.getInt("jumlah"));
+                det.setSubTotal         (rs.getLong("subtotal"));
                 
                 smt.setModelProduk((pd));
                 smt.setModelPenDet(det);

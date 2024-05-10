@@ -10,5 +10,5 @@ public interface ServicePenjualanDetail {
     void hapusDataSementara();
     
     List<ModelPenjualanDetail> tampilData(String id);
-    List<ModelPenjualanDetail> pencarianData(String id);
+    List<ModelPenjualanDetail> pencarianData(String id, String kataKunci);
 }
