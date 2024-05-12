@@ -4,18 +4,21 @@ package den.form;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Component;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+
 import java.util.Random;
 import javax.swing.JLabel;
-import raven.toast.Notifications;
+
 import raven.chart.data.category.DefaultCategoryDataset;
 import net.miginfocom.swing.MigLayout;
 import raven.chart.line.LineChart;
 import utils.DateCalculator;
 import raven.chart.ChartLegendRenderer;
+
 
 /**
  *
@@ -41,10 +44,10 @@ public class FormDashboard extends javax.swing.JPanel {
         int randomDate = 30;
         for (int i = 1; i <= randomDate; i++) {
             String date = df.format(cal.getTime());
-            categoryDataset.addValue(ran.nextInt(700) + 5, "Income", date);
-            categoryDataset.addValue(ran.nextInt(700) + 5, "Expense", date);
-            categoryDataset.addValue(ran.nextInt(700) + 5, "Profit", date);
-            categoryDataset.addValue(ran.nextInt(700) + 5, "Test", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Income", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Expense", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Profit", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Test", date);
 
             
 
@@ -72,6 +75,7 @@ public class FormDashboard extends javax.swing.JPanel {
                     }
                 }
             });
+            
         } catch (ParseException e) {
             System.err.println(e);
         }
