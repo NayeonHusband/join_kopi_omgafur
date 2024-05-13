@@ -96,8 +96,7 @@ public class Menu extends JPanel {
     
     public Menu(ModelKaryawan model){
         this.mk = model;
-        System.out.println("coba "+ model);
-                init();
+        init();
 
     }
 
