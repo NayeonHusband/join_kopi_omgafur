@@ -11,5 +11,6 @@ public interface ServiceProduk {
     
     List<ModelProduk> tampilData();
     List<ModelProduk> pencarianData(String id);
+    List<ModelProduk> pencarianDataByBarcode(String id);
     
 }

@@ -263,7 +263,6 @@ public class Frominputkategori extends javax.swing.JDialog {
         }
        return valid; 
     }
-
     private void simpanData() {
         if (validasiInput() == true) {
             String namaKategori = txtNama.getText();

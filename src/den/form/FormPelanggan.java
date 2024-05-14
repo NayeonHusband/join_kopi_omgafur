@@ -47,13 +47,15 @@ public class FormPelanggan extends javax.swing.JPanel {
         btnhapus = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
+        jLabel3 = new javax.swing.JLabel();
 
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MASTER > PELANGGAN");
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("DATA PELANGGAN");
 
@@ -63,9 +65,9 @@ public class FormPelanggan extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 976, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addComponent(jLabel2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -90,7 +92,7 @@ public class FormPelanggan extends javax.swing.JPanel {
         });
 
         btntambah.setBackground(new java.awt.Color(36, 104, 155));
-        btntambah.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btntambah.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btntambah.setForeground(new java.awt.Color(255, 255, 255));
         btntambah.setText("TAMBAH");
         btntambah.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +102,7 @@ public class FormPelanggan extends javax.swing.JPanel {
         });
 
         btnedit.setBackground(new java.awt.Color(36, 104, 155));
-        btnedit.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnedit.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnedit.setForeground(new java.awt.Color(255, 255, 255));
         btnedit.setText("PERBARUI");
         btnedit.addActionListener(new java.awt.event.ActionListener() {
@@ -110,7 +112,7 @@ public class FormPelanggan extends javax.swing.JPanel {
         });
 
         btnhapus.setBackground(new java.awt.Color(36, 104, 155));
-        btnhapus.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
+        btnhapus.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnhapus.setForeground(new java.awt.Color(255, 255, 255));
         btnhapus.setText("HAPUS");
         btnhapus.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +121,7 @@ public class FormPelanggan extends javax.swing.JPanel {
             }
         });
 
+        tblData.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -132,19 +135,25 @@ public class FormPelanggan extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblData);
 
+        jLabel3.setBackground(new java.awt.Color(0, 0, 0));
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLabel3.setText("Search :");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(btntambah, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addGap(64, 64, 64)
+                .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnedit, javax.swing.GroupLayout.DEFAULT_SIZE, 183, Short.MAX_VALUE)
+                .addComponent(btnedit)
                 .addGap(18, 18, 18)
-                .addComponent(btnhapus, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                .addGap(223, 223, 223)
-                .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(356, 356, 356)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(txtpencarian, javax.swing.GroupLayout.DEFAULT_SIZE, 298, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -157,9 +166,10 @@ public class FormPelanggan extends javax.swing.JPanel {
                     .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnedit, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnhapus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -207,6 +217,7 @@ public class FormPelanggan extends javax.swing.JPanel {
     private javax.swing.JButton btntambah;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

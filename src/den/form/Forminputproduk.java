@@ -517,7 +517,6 @@ public class Forminputproduk extends javax.swing.JDialog {
         txtBarcode.setText("");
         jdateExpired.setDate(null);
     }
-
     private void dataTable() {
         idProduk = produk.getIdproduk();
         txtNama.setText(produk.getNamaProduk());

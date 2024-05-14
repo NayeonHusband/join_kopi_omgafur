@@ -380,7 +380,6 @@ public class Forminputkaryawan extends javax.swing.JDialog {
             resetForm();
         }
     }
-
     private void dataTable() {
 
         idKaryawan = karyawan.getIdKaryawan();

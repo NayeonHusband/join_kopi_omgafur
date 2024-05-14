@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import den.main.FormMenuUtama;
 import den.form.FormDashboard;
-import den.form.FormProduk;
+import den.form.Forminputproduk;
 import den.form.FormKategori;
 import den.form.FormSupplier;
 import den.menu.Menu;
@@ -90,6 +90,8 @@ public class MainForm extends JLayeredPane {
                 FormMenuUtama.showForm(new FormKaryawan());
             } else if (index == 5) {
                 FormMenuUtama.showForm(new FormPelanggan());
+            } else if (index == 6) {
+                FormMenuUtama.showForm(new FormPenjualan());
             } else if (index == 11) {
                 FormMenuUtama.logout();
             } else {

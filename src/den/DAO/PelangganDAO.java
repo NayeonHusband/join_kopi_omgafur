@@ -118,4 +118,28 @@ public class PelangganDAO implements ServicePelanggan {
         }
         return list;
     }
-}
+
+    @Override
+    public List<ModelPelanggan> ambilPelanggan() {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List list = new ArrayList();
+        String sql = "SELECT id_pelanggan, nama_pelanggan FROM pelanggan";
+        try {
+            st = conn.prepareStatement(sql);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                ModelPelanggan model = new ModelPelanggan();
+                model.setIdpelanggan(rs.getInt("id_pelanggan"));
+                model.setNamapelanggan(rs.getString("nama_pelanggan"));
+
+                list.add(model);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+        
+    }
+
