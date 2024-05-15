@@ -101,7 +101,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
                 pd.setIdproduk          (rs.getInt("id_produk"));
                 pd.setBarcode           (rs.getString("barcode"));
                 pd.setNamaProduk        (rs.getString("nama_produk"));
-                pd.setHarga             (rs.getLong("harga"));
+                pd.setHarga             (rs.getDouble("harga"));
                 pd.setStok              (rs.getInt("stok"));
                 
                 det.setJumlah           (rs.getInt("jumlah"));

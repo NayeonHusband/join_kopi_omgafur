@@ -264,7 +264,7 @@ public class FormLogin extends javax.swing.JPanel {
             synchronized (parent.getTreeLock()) {
                 int width = parent.getWidth();
                 int height = parent.getHeight();
-                int loginWidth = UIScale.scale(320);
+                int loginWidth = UIScale.scale(400);
                 int loginHeight = login.getPreferredSize().height;
                 int x = (width - loginWidth) / 2;
                 int y = (height - loginHeight) / 2;
@@ -275,7 +275,7 @@ public class FormLogin extends javax.swing.JPanel {
 
     private class LoginLayout implements LayoutManager {
 
-        private final int titleGap = 10;
+        private final int titleGap = 50;
         private final int textGap = 10;
         private final int labelGap = 5;
         private final int buttonGap = 50;

@@ -10,4 +10,5 @@ public interface ServicePelanggan {
     
     List<ModelPelanggan> tampilData();
     List<ModelPelanggan> pencarianData(String id);
+    List<ModelPelanggan> ambilPelanggan();
 }

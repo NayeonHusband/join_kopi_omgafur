@@ -483,7 +483,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         if (validasiInput() == true) {
             String namaProduk = txtNama.getText();
             //String idKategori = cbxKategori.getSelectedItem().toString();
-            Long harga = Long.parseLong(txtHarga.getText());
+            Double harga = Double.parseDouble(txtHarga.getText());
             int stok = Integer.parseInt(txtStok.getText());
             int gram = Integer.parseInt(txtGram.getText());
             //String idSupplier = cbxSupplier.getSelectedItem().toString();
@@ -517,7 +517,6 @@ public class Forminputproduk extends javax.swing.JDialog {
         txtBarcode.setText("");
         jdateExpired.setDate(null);
     }
-
     private void dataTable() {
         idProduk = produk.getIdproduk();
         txtNama.setText(produk.getNamaProduk());
@@ -566,7 +565,7 @@ public class Forminputproduk extends javax.swing.JDialog {
         if (validasiInput() == true) {
             String namaProduk = txtNama.getText();
             // String idKategori = cbxKategori.getSelectedItem().toString();
-            Long harga = Long.parseLong(txtHarga.getText());
+            Double harga = Double.parseDouble(txtHarga.getText());
             int stok = Integer.parseInt(txtStok.getText());
             int gram = Integer.parseInt(txtGram.getText());
             // String idSupplier = cbxSupplier.getSelectedItem().toString();

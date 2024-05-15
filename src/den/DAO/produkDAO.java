@@ -34,7 +34,6 @@ public class produkDAO implements ServiceProduk {
             st.setString(7, model.getBarcode());
             st.setDate(8, new java.sql.Date(model.getExpired().getTime()));
 
-            
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
@@ -92,7 +91,7 @@ public class produkDAO implements ServiceProduk {
                 produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
-                produk.setHarga(rs.getLong("harga"));
+                produk.setHarga(rs.getDouble("harga"));
                 produk.setStok(rs.getInt("stok"));
                 produk.setGram(rs.getInt("gram"));
                 produk.setIdSupplier(rs.getInt("id_supplier"));
@@ -125,7 +124,7 @@ public class produkDAO implements ServiceProduk {
                 produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
-                produk.setHarga(rs.getLong("harga"));
+                produk.setHarga(rs.getDouble("harga"));
                 produk.setStok(rs.getInt("stok"));
                 produk.setIdSupplier(rs.getInt("id_supplier"));
                 produk.setBarcode(rs.getString("Barcode"));
@@ -139,4 +138,36 @@ public class produkDAO implements ServiceProduk {
         }
         return list;
     }
+
+    @Override
+    public List<ModelProduk> pencarianDataByBarcode(String id) {
+        PreparedStatement st = null;
+        ResultSet rs = null;
+        List<ModelProduk> list = new ArrayList();
+        String sql = "SELECT * FROM product WHERE barcode = ?";
+
+        try {
+            st = conn.prepareStatement(sql);
+            st.setString(1, id);
+            rs = st.executeQuery();
+            if (rs.next()) {
+                ModelProduk produk = new ModelProduk();
+                produk.setIdproduk(rs.getInt("id_produk"));
+                produk.setNamaProduk(rs.getString("nama_produk"));
+                produk.setIdKategori(rs.getInt("id_kategori"));
+                produk.setHarga(rs.getDouble("harga"));
+                produk.setStok(rs.getInt("stok"));
+                produk.setIdSupplier(rs.getInt("id_supplier"));
+                produk.setBarcode(rs.getString("Barcode"));
+
+                list.add(produk);
+            }
+            rs.close();
+            st.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }

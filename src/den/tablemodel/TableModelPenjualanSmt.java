@@ -65,19 +65,19 @@ public class TableModelPenjualanSmt extends AbstractTableModel {
             return "   " + (rowIndex + 1);
         } else {
             switch (columnIndex) {
-                case 0:
-                    return model.getModelProduk().getIdproduk();
                 case 1:
-                    return model.getModelProduk().getBarcode();
+                    return model.getModelProduk().getIdproduk();
                 case 2:
-                    return model.getModelProduk().getNamaProduk();
+                    return model.getModelProduk().getBarcode();
                 case 3:
-                    return model.getModelProduk().getHarga();
+                    return model.getModelProduk().getNamaProduk();
                 case 4:
-                    return model.getModelProduk().getStok();
+                    return model.getModelProduk().getHarga();
                 case 5:
-                    return model.getModelPenDet().getJumlah();
+                    return model.getModelProduk().getStok();
                 case 6:
+                    return model.getModelPenDet().getJumlah();
+                case 7:
                     return model.getModelPenDet().getSubTotal();
                 default:
                     return null;

@@ -61,7 +61,7 @@ public class TableModelProduk extends AbstractTableModel {
         ModelProduk produk = list.get(rowIndex);
         switch (columnIndex) {
             case 0:
-            return produk.getIdproduk();
+            return "    " + produk.getIdproduk();
             case 1:
             return produk.getNamaProduk();
             case 2:

@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import den.main.FormMenuUtama;
 import den.form.FormDashboard;
-import den.form.FormProduk;
+import den.form.Forminputproduk;
 import den.form.FormKategori;
 import den.form.FormSupplier;
 import den.menu.Menu;
@@ -32,7 +32,7 @@ import den.model.ModelKaryawan;
 public class MainForm extends JLayeredPane {
 
     public MainForm(ModelKaryawan mk) {
-
+        
         init(mk);
 
     }
@@ -51,7 +51,7 @@ public class MainForm extends JLayeredPane {
         menuButton.addActionListener((ActionEvent e) -> {
             setMenuFull(!menu.isMenuFull());
         });
-        initMenuEvent();
+        initMenuEvent(mk);
         setLayer(menuButton, JLayeredPane.POPUP_LAYER);
         add(menuButton);
         add(menu);
@@ -72,7 +72,7 @@ public class MainForm extends JLayeredPane {
         menuButton.setIcon(new FlatSVGIcon("den/iconsvg/" + icon, 0.8f));
     }
 
-    private void initMenuEvent() {
+    private void initMenuEvent(ModelKaryawan mk) {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
             if (index == 0) {
@@ -89,6 +89,8 @@ public class MainForm extends JLayeredPane {
                 FormMenuUtama.showForm(new FormKaryawan());
             } else if (index == 5) {
                 FormMenuUtama.showForm(new FormPelanggan());
+            } else if (index == 6) {
+                FormMenuUtama.showForm(new FormPenjualan(mk));
             } else if (index == 11) {
                 FormMenuUtama.logout();
             } else {
