@@ -35,7 +35,6 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.TableColumnModel;
 
-
 public class FormPenjualan extends javax.swing.JPanel {
 
     private TableModelPenjualan tblModelPen = new TableModelPenjualan();
@@ -839,7 +838,7 @@ public class FormPenjualan extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTotalActionPerformed
 
     private void txtJumlahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtJumlahActionPerformed
-       perbaruiDataSementara();
+        perbaruiDataSementara();
     }//GEN-LAST:event_txtJumlahActionPerformed
 // Form Tambah Data Penjualan-----------------------------------------------------------------
 
@@ -1067,7 +1066,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                 lblTotal.setText("Rp. " + total);
 
                 loadDataSementara();
-                 resetProduk();
+                resetProduk();
             } else {
                 JOptionPane.showMessageDialog(null, "Produk sudah di Tambahkan");
                 resetProduk();
@@ -1076,34 +1075,34 @@ public class FormPenjualan extends javax.swing.JPanel {
     }
 
     private void pencarianProdukFormDialog() {
-            boolean closable = true;
-            DataProduk modelForm = new DataProduk(null,closable);
-            modelForm.setVisible(true);
-            
-            if(modelForm.modelDialog.getBarcode()!= null){
-                idProduk = modelForm.modelDialog.getIdproduk();
-                txtNamaproduk.setText (modelForm.modelDialog.getNamaProduk());
-                txtHarga.setText (Double.toString(modelForm.modelDialog.getHarga()));
-                txtStok.setText (Integer.toString(modelForm.modelDialog.getStok()));
-                txtBarcode.setText(modelForm.modelDialog.getBarcode());
-                
-                String barcode = txtBarcode.getText();
-                String namaProduk = txtNamaproduk.getText();
-                double harga = Double.parseDouble(txtHarga.getText());
-                int stok = Integer.parseInt(txtStok.getText());
-                int jumlah = 1;
-                double subTotal = harga*jumlah;
-                
-                 boolean produkSudahAda = false;
+        boolean closable = true;
+        DataProduk modelForm = new DataProduk(null, closable);
+        modelForm.setVisible(true);
+
+        if (modelForm.modelDialog.getBarcode() != null) {
+            idProduk = modelForm.modelDialog.getIdproduk();
+            txtNamaproduk.setText(modelForm.modelDialog.getNamaProduk());
+            txtHarga.setText(Double.toString(modelForm.modelDialog.getHarga()));
+            txtStok.setText(Integer.toString(modelForm.modelDialog.getStok()));
+            txtBarcode.setText(modelForm.modelDialog.getBarcode());
+
+            String barcode = txtBarcode.getText();
+            String namaProduk = txtNamaproduk.getText();
+            double harga = Double.parseDouble(txtHarga.getText());
+            int stok = Integer.parseInt(txtStok.getText());
+            int jumlah = 1;
+            double subTotal = harga * jumlah;
+
+            boolean produkSudahAda = false;
             for (int i = 0; i < tblModelSmt.getRowCount(); i++) {
                 if (tblModelSmt.getData(i).getModelProduk().getBarcode().equals(barcode)) {
                     produkSudahAda = true;
                     break;
                 }
             }
-                
-                 if (!produkSudahAda) {
-                
+
+            if (!produkSudahAda) {
+
                 ModelPenjualanSmt smt = new ModelPenjualanSmt();
                 ModelProduk pd = new ModelProduk();
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
@@ -1134,173 +1133,174 @@ public class FormPenjualan extends javax.swing.JPanel {
                 resetProduk();
             }
         }
-         
-            }
-    private void dataTableSementara(){
-                    int row = tblDataSementara.getSelectedRow();
-                    
-                    idProduk= Integer.valueOf(tblDataSementara.getValueAt(row, 1).toString().trim());
-                    txtBarcode.setText(tblDataSementara.getValueAt(row, 2).toString());
-                    txtNamaproduk.setText(tblDataSementara.getValueAt(row,3).toString());
-                    txtHarga.setText(tblDataSementara.getValueAt(row, 4).toString());
-                    txtStok.setText(tblDataSementara.getValueAt(row, 5).toString());
-                    txtJumlah.setText(tblDataSementara.getValueAt(row, 6).toString());
-                    
-                    nonAktif();
-                    txtJumlah.setEnabled(true);
-                    btnPerbaruiSmt.setEnabled(true);
-                    btnHapusSmt.setEnabled(true);
-                    btnBatalSmt.setEnabled(true);
-            }
-    private void perbaruiDataSementara(){
-        if(!txtJumlah.getText().equals("")){
+
+    }
+
+    private void dataTableSementara() {
+        int row = tblDataSementara.getSelectedRow();
+
+        idProduk = Integer.valueOf(tblDataSementara.getValueAt(row, 1).toString().trim());
+        txtBarcode.setText(tblDataSementara.getValueAt(row, 2).toString());
+        txtNamaproduk.setText(tblDataSementara.getValueAt(row, 3).toString());
+        txtHarga.setText(tblDataSementara.getValueAt(row, 4).toString());
+        txtStok.setText(tblDataSementara.getValueAt(row, 5).toString());
+        txtJumlah.setText(tblDataSementara.getValueAt(row, 6).toString());
+
+        nonAktif();
+        txtJumlah.setEnabled(true);
+        btnPerbaruiSmt.setEnabled(true);
+        btnHapusSmt.setEnabled(true);
+        btnBatalSmt.setEnabled(true);
+    }
+
+    private void perbaruiDataSementara() {
+        if (!txtJumlah.getText().equals("")) {
             String barcode = txtBarcode.getText();
             String namaProduk = txtNamaproduk.getText();
             double harga = Double.valueOf(txtHarga.getText());
             int stok = Integer.valueOf(txtStok.getText());
             int jumlah = Integer.valueOf(txtJumlah.getText());
-            double subTotal = harga*jumlah;
-            
-              ModelPenjualanSmt smt = new ModelPenjualanSmt();
-                ModelProduk pd = new ModelProduk();
-                ModelPenjualanDetail det = new ModelPenjualanDetail();
+            double subTotal = harga * jumlah;
 
-                pd.setIdproduk(idProduk);
-                pd.setBarcode(barcode);
-                pd.setNamaProduk(namaProduk);
-                pd.setHarga(harga);
-                pd.setStok(stok);
+            ModelPenjualanSmt smt = new ModelPenjualanSmt();
+            ModelProduk pd = new ModelProduk();
+            ModelPenjualanDetail det = new ModelPenjualanDetail();
 
-                det.setJumlah(jumlah);
-                det.setSubTotal(subTotal);
+            pd.setIdproduk(idProduk);
+            pd.setBarcode(barcode);
+            pd.setNamaProduk(namaProduk);
+            pd.setHarga(harga);
+            pd.setStok(stok);
 
-                smt.setModelProduk(pd);
-                smt.setModelPenDet(det);
-                
-                
-                servisSmt.tambahData(smt);
-                servisDet.sumTotal(det);
+            det.setJumlah(jumlah);
+            det.setSubTotal(subTotal);
 
-                txtSubtotal.setText(String.valueOf(det.getSubTotal()));
-                String total = txtSubtotal.getText();
-                txtTotal.setText(total);
-                lblTotal.setText("Rp. " + total);
+            smt.setModelProduk(pd);
+            smt.setModelPenDet(det);
 
-                loadDataSementara();
-                 resetProduk();
-                 txtBarcode.setEnabled(true);
-                 btnProduk.setEnabled(true);
-                 btnTambahSmt.setEnabled(true);
-    
-        }   else  {
+            servisSmt.tambahData(smt);
+            servisDet.sumTotal(det);
+
+            txtSubtotal.setText(String.valueOf(det.getSubTotal()));
+            String total = txtSubtotal.getText();
+            txtTotal.setText(total);
+            lblTotal.setText("Rp. " + total);
+
+            loadDataSementara();
+            resetProduk();
+            txtBarcode.setEnabled(true);
+            btnProduk.setEnabled(true);
+            btnTambahSmt.setEnabled(true);
+
+        } else {
             JOptionPane.showMessageDialog(null, "Jumlah Tidak Boleh Kosong");
         }
     }
-        private void hapusDataSementara(){
-            int row = tblDataSementara.getSelectedRow();
-            if(row != -1){
-                ModelPenjualanSmt model = tblModelSmt.getData(row);
-                if(JOptionPane.showConfirmDialog(null,"Yakin Akan Menghapus Data?",
-                        "Konfirmasi",JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION)
-                {
-                    servisSmt.hapusData(model);
-                    tblModelSmt.deleteData(row);
-                    loadDataSementara();
-                }
-            }else {
-                JOptionPane.showMessageDialog(null, "Pilih Dahulu Yang Akan Dihapus");
-            }
-            
-        }
-        private void hitungDiskon(){
-            try {
-                double subTotal = Double.parseDouble(txtSubtotal.getText());
-                int diskon = Integer.parseInt(txtPersen.getText());
-                double hasilDiskon = subTotal * (diskon / 100.0);
-                double total = subTotal - hasilDiskon; 
-                
-                txtDiskon.setText(String.valueOf(hasilDiskon));
-                txtTotal.setText(String.valueOf(total));
-                
-                String totalHarga = txtTotal.getText();
-                lblTotal.setText("Rp. " + totalHarga);
-                txtBayar.requestFocus();
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Masukkan Angka Yang Valid Pada Kolom Diskon");
-            }
-        }
-        private void pembayaran(){
-            try {
-                String totalStr = txtTotal.getText().replaceAll("[^\\d.]","");
-                double total = Double.parseDouble(totalStr);
-                double bayar = Double.parseDouble(txtBayar.getText());
-                double kembali = bayar - total;
-                
-                txtKembali.setText(String.format("%.0f", kembali));
-            } catch (NumberFormatException e) {
-                JOptionPane.showMessageDialog(this, "Masukkan Nominal Pembayaran Yang Valid");
-            }
-        }
-        
-        private boolean ValidasiSimpan(){
-            boolean valid = false;
-            if(idPelanggan == null){
-                JOptionPane.showMessageDialog(null,"Silahka Pilih Jenis Pelanggan");
-            }else if (txtTotal.getText().trim().isEmpty() ){
-                JOptionPane.showMessageDialog(null, "Total Tidak Boleh Kosong");
-            }else if (idKaryawan == null){
-                JOptionPane.showMessageDialog(null, "ID Karyawan Tidak Boleh Kosong");
-            }else{
-                valid = true;
-            }
-            return valid;
-        }
-        private void simpanData(){
-            if(ValidasiSimpan() == true){
-                String idPenjualan = txtNoTransaksi.getText();
-                String tanggal = lblTanggal.getText();
-                double total = Double.parseDouble(txtTotal.getText());
-                double diskon=Double.parseDouble(txtDiskon.getText());
-                double bayar = Double.parseDouble(txtBayar.getText());
-                double kembali = Double.parseDouble(txtKembali.getText());
-                
-                ModelPenjualan modelPen = new ModelPenjualan();
-                ModelProduk modelPro = new ModelProduk();
-                ModelPelanggan modelPel = new ModelPelanggan();
-                ModelKaryawan modelKar = new ModelKaryawan();
-                ModelPenjualanDetail modelDet = new ModelPenjualanDetail();
-                
-                //Menambah Penjualan
-                modelPen.setIdPenjualan(idPenjualan);
-                modelPen.setTanggal(tanggal);
-                modelPen.setTotalHarga(total);
-                modelPen.setBayar(bayar);
-                modelPen.setDiskon(diskon);
-                modelPen.setKembali(kembali);
-                modelPel.setIdpelanggan(idPelanggan);
-                modelKar.setIdKaryawan(idKaryawan);
-                
-                modelPen.setModelPelanggan(modelPel);
-                modelPen.setModelKaryawan(modelKar);
-                
-                //tambah detail penjualan
-                modelDet.setModelPenjualan(modelPen);
-                modelDet.setModelProduk(modelPro);
-                
-                servis.tambahData(modelPen);
-                servisDet.tambahData(modelDet);
-                servisDet.hapusDataSementara();
-                
-                tblModelPen.insertData(modelPen);
-                showPanel();
-                loadData();
+
+    private void hapusDataSementara() {
+        int row = tblDataSementara.getSelectedRow();
+        if (row != -1) {
+            ModelPenjualanSmt model = tblModelSmt.getData(row);
+            if (JOptionPane.showConfirmDialog(null, "Yakin Akan Menghapus Data?",
+                    "Konfirmasi", JOptionPane.OK_CANCEL_OPTION) == JOptionPane.OK_OPTION) {
+                servisSmt.hapusData(model);
+                tblModelSmt.deleteData(row);
                 loadDataSementara();
-                resetProduk();
-                resetPembayaran();
-                
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Pilih Dahulu Yang Akan Dihapus");
         }
+
+    }
+
+    private void hitungDiskon() {
+        try {
+            double subTotal = Double.parseDouble(txtSubtotal.getText());
+            int diskon = Integer.parseInt(txtPersen.getText());
+            double hasilDiskon = subTotal * (diskon / 100.0);
+            double total = subTotal - hasilDiskon;
+
+            txtDiskon.setText(String.valueOf(hasilDiskon));
+            txtTotal.setText(String.valueOf(total));
+
+            String totalHarga = txtTotal.getText();
+            lblTotal.setText("Rp. " + totalHarga);
+            txtBayar.requestFocus();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Masukkan Angka Yang Valid Pada Kolom Diskon");
+        }
+    }
+
+    private void pembayaran() {
+        try {
+            String totalStr = txtTotal.getText().replaceAll("[^\\d.]", "");
+            double total = Double.parseDouble(totalStr);
+            double bayar = Double.parseDouble(txtBayar.getText());
+            double kembali = bayar - total;
+
+            txtKembali.setText(String.format("%.0f", kembali));
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Masukkan Nominal Pembayaran Yang Valid");
+        }
+    }
+
+    private boolean ValidasiSimpan() {
+        boolean valid = false;
+        if (idPelanggan == null) {
+            JOptionPane.showMessageDialog(null, "Silahka Pilih Jenis Pelanggan");
+        } else if (txtTotal.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Total Tidak Boleh Kosong");
+        } else if (idKaryawan == null) {
+            JOptionPane.showMessageDialog(null, "ID Karyawan Tidak Boleh Kosong");
+        } else {
+            valid = true;
+        }
+        return valid;
+    }
+
+    private void simpanData() {
+        if (ValidasiSimpan() == true) {
+            String idPenjualan = txtNoTransaksi.getText();
+            String tanggal = lblTanggal.getText();
+            double total = Double.parseDouble(txtTotal.getText());
+            double diskon = Double.parseDouble(txtDiskon.getText());
+            double bayar = Double.parseDouble(txtBayar.getText());
+            double kembali = Double.parseDouble(txtKembali.getText());
+
+            ModelPenjualan modelPen = new ModelPenjualan();
+            ModelProduk modelPro = new ModelProduk();
+            ModelPelanggan modelPel = new ModelPelanggan();
+            ModelKaryawan modelKar = new ModelKaryawan();
+            ModelPenjualanDetail modelDet = new ModelPenjualanDetail();
+
+            //Menambah Penjualan
+            modelPen.setIdPenjualan(idPenjualan);
+            modelPen.setTanggal(tanggal);
+            modelPen.setTotalHarga(total);
+            modelPen.setBayar(bayar);
+            modelPen.setDiskon(diskon);
+            modelPen.setKembali(kembali);
+            modelPel.setIdpelanggan(idPelanggan);
+            modelKar.setIdKaryawan(idKaryawan);
+
+            modelPen.setModelPelanggan(modelPel);
+            modelPen.setModelKaryawan(modelKar);
+
+            //tambah detail penjualan
+            modelDet.setModelPenjualan(modelPen);
+            modelDet.setModelProduk(modelPro);
+
+            servis.tambahData(modelPen);
+            servisDet.tambahData(modelDet);
+            servisDet.hapusDataSementara();
+
+            tblModelPen.insertData(modelPen);
+            showPanel();
+            loadData();
+            loadDataSementara();
+            resetProduk();
+            resetPembayaran();
+
+        }
+    }
 }
-
-    
-
