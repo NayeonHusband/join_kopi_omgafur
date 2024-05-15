@@ -1,4 +1,3 @@
-
 package den.jdialog;
 
 import com.formdev.flatlaf.FlatClientProperties;
@@ -14,27 +13,32 @@ public class DataPenjualanDetail extends javax.swing.JDialog {
     private ServicePenjualanDetail servis = new PenjualanDetailDAO();
     private TableModelPenjualanDetail tblModel = new TableModelPenjualanDetail();
     private String id;
-    public DataPenjualanDetail(java.awt.Frame parent, boolean modal,String id) {
+
+    public DataPenjualanDetail(java.awt.Frame parent, boolean modal, String id) {
         super(parent, modal);
         initComponents();
-        
+
         this.id = id;
         tblData.setModel(tblModel);
         loadData();
-        
+
         setLebarKolom();
         setLayoutForm();
     }
-    
-    private void setLebarKolom(){
-            TableColumnModel kolom = tblData.getColumnModel();
-            kolom.getColumn(0).setPreferredWidth(50);
-            kolom.getColumn(0).setMaxWidth(50);
-            kolom.getColumn(0).setMinWidth(50);
-        }
-        private void setLayoutForm(){
-            txtPencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
-        }
+
+    private void setLebarKolom() {
+        TableColumnModel kolom = tblData.getColumnModel();
+        kolom.getColumn(0).setPreferredWidth(50);
+        kolom.getColumn(0).setMaxWidth(50);
+        kolom.getColumn(0).setMinWidth(50);
+    }
+
+    private void setLayoutForm() {
+        jPanel1.putClientProperty(FlatClientProperties.STYLE, ""
+                + "background:$Menu.background");
+        txtPencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -70,13 +74,12 @@ public class DataPenjualanDetail extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(308, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(309, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(392, 392, 392)
                 .addComponent(jLabel2)
-                .addContainerGap(391, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +195,7 @@ public class DataPenjualanDetail extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DataPenjualanDetail dialog = new DataPenjualanDetail(new javax.swing.JFrame(), true,null);
+                DataPenjualanDetail dialog = new DataPenjualanDetail(new javax.swing.JFrame(), true, null);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
@@ -214,12 +217,13 @@ public class DataPenjualanDetail extends javax.swing.JDialog {
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtPencarian;
     // End of variables declaration//GEN-END:variables
-         private void loadData(){
-        List<ModelPenjualanDetail>list = servis.tampilData(id);
+         private void loadData() {
+        List<ModelPenjualanDetail> list = servis.tampilData(id);
         tblModel.setData(list);
     }
-    private void pencarianData(){
-         List<ModelPenjualanDetail>list = servis.pencarianData(id,txtPencarian.getText());
+
+    private void pencarianData() {
+        List<ModelPenjualanDetail> list = servis.pencarianData(id, txtPencarian.getText());
         tblModel.setData(list);
     }
 }

@@ -65,25 +65,25 @@ public class TableModelPenjualan extends AbstractTableModel {
             return "   " + (rowIndex + 1);
         } else {
             switch (columnIndex) {
-                case 0:
-                    return model.getIdPenjualan();
                 case 1:
-                    return model.getModelPelanggan().getIdpelanggan();
+                    return model.getIdPenjualan();
                 case 2:
-                    return model.getModelPelanggan().getNamapelanggan();
+                    return model.getModelPelanggan().getIdpelanggan();
                 case 3:
-                    return model.getTanggal();
+                    return model.getModelPelanggan().getNamapelanggan();
                 case 4:
-                    return model.getTotalHarga();
+                    return model.getTanggal();
                 case 5:
-                    return model.getBayar();
+                    return model.getTotalHarga();
                 case 6:
-                    return model.getDiskon();
+                    return model.getBayar();
                 case 7:
-                    return model.getKembali();
+                    return model.getDiskon();
                 case 8:
-                    return model.getModelKaryawan().getIdKaryawan();
+                    return model.getKembali();
                 case 9:
+                    return model.getModelKaryawan().getIdKaryawan();
+                case 10:
                     return model.getModelKaryawan().getNamaKaryawan();
                 default:
                     return null;

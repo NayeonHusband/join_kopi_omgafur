@@ -93,7 +93,7 @@ public class PenjualanDAO implements ServicePenjualan {
                 + "pj.total_harga,pj.bayar,pj.diskon,pj.kembali,ky.id_karyawan,ky.nama_karyawan\n"
                 + "FROM penjualan pj\n"
                 + "INNER JOIN pelanggan pl ON pl.id_pelanggan = pj.id_pelanggan\n"
-                + "INNER JOIN karyawan ky ON ky.id_karyawan = ky.id_karyawan"
+                + "INNER JOIN karyawan ky ON ky.id_karyawan = ky.id_karyawan "
                 + "WHERE pj.id_penjualan LIKE '%" + id + "%'"
                 + "OR pl.id_pelanggan LIKE '%" + id + "%'"
                 + "OR pl.nama_pelanggan LIKE '%" + id + "%'"

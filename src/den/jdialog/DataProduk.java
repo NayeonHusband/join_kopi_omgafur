@@ -1,4 +1,3 @@
-
 package den.jdialog;
 
 import com.formdev.flatlaf.FlatClientProperties;
@@ -10,33 +9,36 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableColumnModel;
 
-
-
 public class DataProduk extends javax.swing.JDialog {
-    
+
     private ServiceProduk servis = new produkDAO();
     private TableModelProduk tblModel = new TableModelProduk();
-    public ModelProduk modelDialog = new ModelProduk ();
-    
+    public ModelProduk modelDialog = new ModelProduk();
+
     public DataProduk(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         tblData.setModel(tblModel);
         loadData();
-        
+
         setLebarKolom();
         setLayoutForm();
-        
+
     }
-        private void setLebarKolom(){
-            TableColumnModel kolom = tblData.getColumnModel();
-            kolom.getColumn(0).setPreferredWidth(50);
-            kolom.getColumn(0).setMaxWidth(50);
-            kolom.getColumn(0).setMinWidth(50);
-        }
-        private void setLayoutForm(){
-            txtPencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
-        }
+
+    private void setLebarKolom() {
+        TableColumnModel kolom = tblData.getColumnModel();
+        kolom.getColumn(0).setPreferredWidth(50);
+        kolom.getColumn(0).setMaxWidth(50);
+        kolom.getColumn(0).setMinWidth(50);
+    }
+
+    private void setLayoutForm() {
+        jPanel1.putClientProperty(FlatClientProperties.STYLE, ""
+                + "background:$Menu.background");
+        txtPencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -75,17 +77,15 @@ public class DataProduk extends javax.swing.JDialog {
                 .addContainerGap(169, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(169, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addGap(101, 101, 101))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(17, 17, 17)
                 .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                 .addContainerGap())
         );
@@ -98,6 +98,11 @@ public class DataProduk extends javax.swing.JDialog {
         txtPencarian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPencarianActionPerformed(evt);
+            }
+        });
+        txtPencarian.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPencarianKeyReleased(evt);
             }
         });
 
@@ -143,7 +148,7 @@ public class DataProduk extends javax.swing.JDialog {
                 .addComponent(txtPencarian, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,12 +170,16 @@ public class DataProduk extends javax.swing.JDialog {
     }//GEN-LAST:event_txtPencarianActionPerformed
 
     private void txtPencarianMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPencarianMouseReleased
-    pencarianData();
+
     }//GEN-LAST:event_txtPencarianMouseReleased
 
     private void tblDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDataMouseClicked
         pilihData();
     }//GEN-LAST:event_tblDataMouseClicked
+
+    private void txtPencarianKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPencarianKeyReleased
+        pencarianData();
+    }//GEN-LAST:event_txtPencarianKeyReleased
 
     /**
      * @param args the command line arguments
@@ -224,30 +233,30 @@ public class DataProduk extends javax.swing.JDialog {
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtPencarian;
     // End of variables declaration//GEN-END:variables
-    
-    private void loadData(){
-        List<ModelProduk>list = servis.tampilData();
+
+    private void loadData() {
+        List<ModelProduk> list = servis.tampilData();
         tblModel.setData(list);
     }
-    private void pencarianData(){
-         List<ModelProduk>list = servis.pencarianData(txtPencarian.getText());
+
+    private void pencarianData() {
+        List<ModelProduk> list = servis.pencarianData(txtPencarian.getText());
         tblModel.setData(list);
     }
-    private void pilihData(){
+
+    private void pilihData() {
         int row = tblData.getSelectedRow();
-        
-        if(row != -1){
+
+        if (row != -1) {
             modelDialog.setIdproduk(Integer.parseInt(tblData.getModel().getValueAt(row, 0).toString().trim()));
             modelDialog.setNamaProduk(tblData.getModel().getValueAt(row, 1).toString());
             modelDialog.setHarga(Double.parseDouble(tblData.getModel().getValueAt(row, 3).toString()));
             modelDialog.setStok(Integer.parseInt(tblData.getModel().getValueAt(row, 4).toString()));
-            modelDialog.setBarcode(tblData.getModel().getValueAt(row, 6).toString());
-            
+            modelDialog.setBarcode(tblData.getModel().getValueAt(row, 7).toString());
+
             dispose();
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Pilih Data Terlebih Dahulu!");
         }
     }
 }
-
-
