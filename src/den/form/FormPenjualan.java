@@ -68,7 +68,7 @@ public class FormPenjualan extends javax.swing.JPanel {
 
         setLebarKolom();
         setLayoutform();
-        init();
+        //init();
     }
 
     private void setLebarKolom() {

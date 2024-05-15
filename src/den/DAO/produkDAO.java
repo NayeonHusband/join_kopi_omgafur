@@ -91,7 +91,7 @@ public class produkDAO implements ServiceProduk {
                 produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
-                produk.setHarga(rs.getLong("harga"));
+                produk.setHarga(rs.getDouble("harga"));
                 produk.setStok(rs.getInt("stok"));
                 produk.setGram(rs.getInt("gram"));
                 produk.setIdSupplier(rs.getInt("id_supplier"));
@@ -124,7 +124,7 @@ public class produkDAO implements ServiceProduk {
                 produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
-                produk.setHarga(rs.getLong("harga"));
+                produk.setHarga(rs.getDouble("harga"));
                 produk.setStok(rs.getInt("stok"));
                 produk.setIdSupplier(rs.getInt("id_supplier"));
                 produk.setBarcode(rs.getString("Barcode"));
@@ -155,7 +155,7 @@ public class produkDAO implements ServiceProduk {
                 produk.setIdproduk(rs.getInt("id_produk"));
                 produk.setNamaProduk(rs.getString("nama_produk"));
                 produk.setIdKategori(rs.getInt("id_kategori"));
-                produk.setHarga(rs.getLong("harga"));
+                produk.setHarga(rs.getDouble("harga"));
                 produk.setStok(rs.getInt("stok"));
                 produk.setIdSupplier(rs.getInt("id_supplier"));
                 produk.setBarcode(rs.getString("Barcode"));
