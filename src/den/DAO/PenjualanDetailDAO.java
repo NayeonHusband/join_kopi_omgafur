@@ -25,7 +25,7 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         try {
 
-            String sql = "INSERT INTO penjualan_detail(id_penjualan, id_produk, jumlah, subtotal)"
+            String sql = "INSERT INTO detail_penjualan (id_penjualan, id_produk, jumlah, subtotal)"
                     + " SELECT'" + model.getModelPenjualan().getIdPenjualan() + "', "
                     + "id_produk,jumlah,subtotal FROM penjualan_smt";
             st = conn.prepareStatement(sql);
@@ -80,7 +80,7 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         ResultSet rs = null;
         List list = new ArrayList();
         String sql = "SELECT pj.id_penjualan,pd.id_produk,pd.nama_produk,det.jumlah,det.subtotal\n"
-                + "FROM penjualan_detail det\n"
+                + "FROM detail_penjualan det\n"
                 + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
                 + "INNER JOIN produk pd ON pd.id_produk = det.id_produk"
                 + "WHERE pj.id_penjualan='" + id + "'";
@@ -116,14 +116,14 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql = "SELECT pj.id_penjualan,pd.id_produk,pd.nama_produk,det.jumlah,det.subtotal\n"
-                + "FROM penjualan_detail det\n"
+        String sql = "SELECT pj.id_penjualan, pd.id_produk, pd.nama_produk, det.jumlah, det.subtotal\n"
+                + "FROM detail_penjualan det\n"
                 + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
-                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk"
-                + "WHERE pj.id_penjualan='" + id + "'"
-                + "AND pj.id_penjualan LIKE '%" + kataKunci + "%',"
-                + "OR pd.id_produk LIKE '%" + kataKunci + "%'"
-                + "OR pd.nama_produk LIKE '%" + kataKunci + "%'";
+                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk "
+                + "WHERE pj.id_penjualan='"+ id +"'"
+                + "AND (pj.id_penjualan LIKE '%"+kataKunci+"%',"
+                + "OR pd.id_produk LIKE '%"+kataKunci+"%'"
+                + "OR pd.nama_produk LIKE '%"+kataKunci+"%')";
         try {
             st = conn.prepareStatement(sql);
             rs = st.executeQuery();
