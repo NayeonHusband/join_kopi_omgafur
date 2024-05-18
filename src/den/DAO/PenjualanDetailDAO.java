@@ -1,35 +1,31 @@
 package den.DAO;
-packag
-packag java.sql.*;
-packag den.koneksi.koneksi;
-packag den.model.ModelPenjualanDetail;
-packag den.model.ModelPenjualan;
-packag den.model.ModelProduk;
-packag den.service.ServicePenjualanDetail;
-packag java.sql.Connection;
-packag java.sql.PreparedStatement;
-packag java.util.ArrayList;
-packag java.util.List;
-packag java.sql.Date;
-packag
-packag class PenjualanDetailDAO implements ServicePenjualanDetail {
-packag
-packagivate Connection conn;
-packag
-packagblic PenjualanDetailDAO() {
-packag  conn = koneksi.getConnection();
-packag
+
+import java.sql.*;
+import den.koneksi.koneksi;
+import den.model.ModelPenjualanDetail;
+import den.model.ModelPenjualan;
+import den.model.ModelProduk;
+import den.service.ServicePenjualanDetail;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.Date;
+
+public class PenjualanDetailDAO implements ServicePenjualanDetail {
+
+    private Connection conn;
+
+    public PenjualanDetailDAO() {
+        conn = koneksi.getConnection();
+    }
 
     @Override
     public void tambahData(ModelPenjualanDetail model) {
         PreparedStatement st = null;
         try {
 
-<<<<<<< HEAD
-            String sql = "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah, subtotal)"
-=======
             String sql = "INSERT INTO detail_penjualan (id_penjualan, id_produk, jumlah, subtotal)"
->>>>>>> 3ff55b3b05b5412df38bff96f5cbbdd00bb05fc8
                     + " SELECT'" + model.getModelPenjualan().getIdPenjualan() + "', "
                     + "id_produk,jumlah,subtotal FROM penjualan_smt";
             st = conn.prepareStatement(sql);
@@ -114,8 +110,7 @@ packag
         }
         return list;
     }
-
-    @Override
+ @Override
     public List<ModelPenjualanDetail> pencarianData(String id,String kataKunci) {
         PreparedStatement st = null;
         ResultSet rs = null;
@@ -154,4 +149,5 @@ packag
         }
         return list;
     }
+
 }
