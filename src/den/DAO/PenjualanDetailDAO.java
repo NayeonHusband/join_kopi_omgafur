@@ -1,31 +1,35 @@
 package den.DAO;
-
-import java.sql.*;
-import den.koneksi.koneksi;
-import den.model.ModelPenjualanDetail;
-import den.model.ModelPenjualan;
-import den.model.ModelProduk;
-import den.service.ServicePenjualanDetail;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.util.ArrayList;
-import java.util.List;
-import java.sql.Date;
-
-public class PenjualanDetailDAO implements ServicePenjualanDetail {
-
-    private Connection conn;
-
-    public PenjualanDetailDAO() {
-        conn = koneksi.getConnection();
-    }
+packag
+packag java.sql.*;
+packag den.koneksi.koneksi;
+packag den.model.ModelPenjualanDetail;
+packag den.model.ModelPenjualan;
+packag den.model.ModelProduk;
+packag den.service.ServicePenjualanDetail;
+packag java.sql.Connection;
+packag java.sql.PreparedStatement;
+packag java.util.ArrayList;
+packag java.util.List;
+packag java.sql.Date;
+packag
+packag class PenjualanDetailDAO implements ServicePenjualanDetail {
+packag
+packagivate Connection conn;
+packag
+packagblic PenjualanDetailDAO() {
+packag  conn = koneksi.getConnection();
+packag
 
     @Override
     public void tambahData(ModelPenjualanDetail model) {
         PreparedStatement st = null;
         try {
 
+<<<<<<< HEAD
             String sql = "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah, subtotal)"
+=======
+            String sql = "INSERT INTO detail_penjualan (id_penjualan, id_produk, jumlah, subtotal)"
+>>>>>>> 3ff55b3b05b5412df38bff96f5cbbdd00bb05fc8
                     + " SELECT'" + model.getModelPenjualan().getIdPenjualan() + "', "
                     + "id_produk,jumlah,subtotal FROM penjualan_smt";
             st = conn.prepareStatement(sql);
@@ -80,7 +84,7 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         ResultSet rs = null;
         List list = new ArrayList();
         String sql = "SELECT pj.id_penjualan,pd.id_produk,pd.nama_produk,det.jumlah,det.subtotal\n"
-                + "FROM penjualan_detail det\n"
+                + "FROM detail_penjualan det\n"
                 + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
                 + "INNER JOIN produk pd ON pd.id_produk = det.id_produk"
                 + "WHERE pj.id_penjualan='" + id + "'";
@@ -116,14 +120,14 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql = "SELECT pj.id_penjualan,pd.id_produk,pd.nama_produk,det.jumlah,det.subtotal\n"
-                + "FROM penjualan_detail det\n"
+        String sql = "SELECT pj.id_penjualan, pd.id_produk, pd.nama_produk, det.jumlah, det.subtotal\n"
+                + "FROM detail_penjualan det\n"
                 + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
-                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk"
-                + "WHERE pj.id_penjualan='" + id + "'"
-                + "AND pj.id_penjualan LIKE '%" + kataKunci + "%',"
-                + "OR pd.id_produk LIKE '%" + kataKunci + "%'"
-                + "OR pd.nama_produk LIKE '%" + kataKunci + "%'";
+                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk "
+                + "WHERE pj.id_penjualan='"+ id +"'"
+                + "AND (pj.id_penjualan LIKE '%"+kataKunci+"%',"
+                + "OR pd.id_produk LIKE '%"+kataKunci+"%'"
+                + "OR pd.nama_produk LIKE '%"+kataKunci+"%')";
         try {
             st = conn.prepareStatement(sql);
             rs = st.executeQuery();
