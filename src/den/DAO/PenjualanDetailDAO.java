@@ -25,7 +25,7 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         try {
 
-            String sql = "INSERT INTO penjualan_detail(id_penjualan, id_produk, jumlah, subtotal)"
+            String sql = "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah, subtotal)"
                     + " SELECT'" + model.getModelPenjualan().getIdPenjualan() + "', "
                     + "id_produk,jumlah,subtotal FROM penjualan_smt";
             st = conn.prepareStatement(sql);

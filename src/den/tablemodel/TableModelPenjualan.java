@@ -28,7 +28,9 @@ public class TableModelPenjualan extends AbstractTableModel {
     //peringatan data berhasil di tambahkan
     public void insertData(ModelPenjualan model) {
         list.add(model);
-        fireTableRowsInserted(list.size() - 1, list.size() - 1);
+        System.out.println("lise "+ list.size());
+        fireTableRowsInserted(list.size()-1, list.size() - 1);
+        System.out.println("Data ditambahkan " + model.getModelKaryawan().getIdKaryawan());
         JOptionPane.showMessageDialog(null, "Data Berhasil Ditambahkan");
     }
 

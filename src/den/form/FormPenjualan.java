@@ -929,7 +929,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         tblModelPen.setData(list);
 
         txtDiskon.setText("0");
-        nonAktif();
+//        nonAktif();
         txtBarcode.requestFocus();
         btnProduk.setEnabled(true);
         btnTambahSmt.setEnabled(true);
