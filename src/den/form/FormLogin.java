@@ -15,7 +15,6 @@ import den.service.ServiceKaryawan;
 import javax.swing.JOptionPane;
 import den.koneksi.koneksi;
 import den.menu.Menu;
-import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -86,7 +85,6 @@ public class FormLogin extends javax.swing.JPanel {
         txtUser = new javax.swing.JTextField();
         lbPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
-        auto = new javax.swing.JButton();
 
         cmdLogin.setText("Login");
         cmdLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +98,7 @@ public class FormLogin extends javax.swing.JPanel {
 
         lbUser.setText("Username");
 
+        txtUser.setText("reo123");
         txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtUserActionPerformed(evt);
@@ -108,16 +107,15 @@ public class FormLogin extends javax.swing.JPanel {
 
         lbPass.setText("Password");
 
+        txtPass.setText("reo123");
+        txtPass.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPassActionPerformed(evt);
+            }
+        });
         txtPass.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPassKeyPressed(evt);
-            }
-        });
-
-        auto.setText("auto");
-        auto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autoActionPerformed(evt);
             }
         });
 
@@ -135,7 +133,7 @@ public class FormLogin extends javax.swing.JPanel {
                             .addGroup(loginLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 42, Short.MAX_VALUE))
+                        .addGap(0, 36, Short.MAX_VALUE))
                     .addGroup(loginLayout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,14 +142,11 @@ public class FormLogin extends javax.swing.JPanel {
                                 .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lbPass)
                                     .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(loginLayout.createSequentialGroup()
-                                .addComponent(cmdLogin)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
             .addGroup(loginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(auto, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmdLogin)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
@@ -167,9 +162,7 @@ public class FormLogin extends javax.swing.JPanel {
                 .addComponent(lbPass)
                 .addGap(5, 5, 5)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(auto, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(50, 50, 50)
                 .addComponent(cmdLogin)
                 .addContainerGap())
         );
@@ -200,17 +193,15 @@ public class FormLogin extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUserActionPerformed
 
-    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            prosesLogin();
-        }
-    }//GEN-LAST:event_txtPassKeyPressed
+    private void txtPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPassActionPerformed
 
-    private void autoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autoActionPerformed
-        txtUser.setText("reo123");
-        txtPass.setText("reo123");
-        prosesLogin();
-    }//GEN-LAST:event_autoActionPerformed
+    }//GEN-LAST:event_txtPassActionPerformed
+
+    private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+      prosesLogin();
+   }
+    }//GEN-LAST:event_txtPassKeyPressed
 
     private void setLayoutForm() {
         setLayout(new LoginFormLayout());
@@ -226,9 +217,6 @@ public class FormLogin extends javax.swing.JPanel {
                 + "showRevealButton:true;"
                 + "showCapsLock:true");
         cmdLogin.putClientProperty(FlatClientProperties.STYLE, ""
-                + "borderWidth:0;"
-                + "focusWidth:0");
-        auto.putClientProperty(FlatClientProperties.STYLE, ""
                 + "borderWidth:0;"
                 + "focusWidth:0");
         txtUser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Username");
@@ -306,8 +294,6 @@ public class FormLogin extends javax.swing.JPanel {
                 height += txtPass.getPreferredSize().height;
                 height += UIScale.scale(buttonGap);
                 height += cmdLogin.getPreferredSize().height;
-                height += UIScale.scale(buttonGap);
-
                 return new Dimension(0, height);
             }
         }
@@ -341,14 +327,11 @@ public class FormLogin extends javax.swing.JPanel {
                 y += txtPass.getPreferredSize().height + UIScale.scale(buttonGap);
 
                 cmdLogin.setBounds(x, y, width, cmdLogin.getPreferredSize().height);
-                y += cmdLogin.getPreferredSize().height + UIScale.scale(buttonGap);
-                auto.setBounds(x, y, width, auto.getPreferredSize().height);
             }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton auto;
     private javax.swing.JButton cmdLogin;
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbTitle;

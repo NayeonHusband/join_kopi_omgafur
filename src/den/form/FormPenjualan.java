@@ -943,7 +943,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         tblModelPen.setData(list);
 
         txtDiskon.setText("0");
-//        nonAktif();
+        nonAktif();
         txtBarcode.requestFocus();
         btnProduk.setEnabled(true);
         btnTambahSmt.setEnabled(true);
@@ -1311,6 +1311,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                 servisDet.tambahData(modelDet);
                 servisDet.hapusDataSementara();
 
+//                System.out.println(servis.tampilData().size());
                 tblModelPen.insertData(modelPen);
                 showPanel();
                 loadData(); // Memuat ulang data ke tabel
