@@ -16,7 +16,7 @@ import java.awt.FontMetrics;
 import java.awt.Insets;
 
 import java.util.Random;
-import javafx.scene.control.ComboBox;
+//import javafx.scene.control.ComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
