@@ -91,7 +91,9 @@ public class MainForm extends JLayeredPane {
                 FormMenuUtama.showForm(new FormPelanggan());
             } else if (index == 6) {
                 FormMenuUtama.showForm(new FormPenjualan(mk));
-            } else if (index == 11) {
+            }else if (index == 9) {
+                FormMenuUtama.showForm(new FormLaporanPenjualan());
+            }else if (index == 11) {
                 FormMenuUtama.logout();
             } else {
                 action.cancel();
