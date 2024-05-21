@@ -3,15 +3,28 @@ package den.form;
 import com.formdev.flatlaf.FlatClientProperties;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.awt.FlowLayout;
+import java.awt.FontMetrics;
+import java.awt.Insets;
 
 import java.util.Random;
+import javafx.scene.control.ComboBox;
+import javax.swing.BorderFactory;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.ListCellRenderer;
+import javax.swing.border.LineBorder;
+import javax.swing.plaf.basic.BasicComboBoxEditor;
 
 import raven.chart.data.category.DefaultCategoryDataset;
 import net.miginfocom.swing.MigLayout;
@@ -29,35 +42,125 @@ public class FormDashboard extends javax.swing.JPanel {
 
     public FormDashboard() {
         initComponents();
-        setLayout(new MigLayout("fill,wrap,insets 30", "fill", "push[][grow,push,top ]"));
+        setLayout(new MigLayout("insets 10", "grow,push"));
         init();
-        lineChart.startAnimation();
-
     }
 
+        private void adjustComboBoxSize(JComboBox comboBox,String[] teks) {
+        FontMetrics fontMetrics = comboBox.getFontMetrics(comboBox.getFont());
+        int maxWidth = 0;
+        for (String item : teks) {
+            int width = fontMetrics.stringWidth(item);
+            if (width > maxWidth) {
+                maxWidth = width+100;
+            }
+        }
+        Insets insets = comboBox.getInsets();
+        int buttonWidth = 20; // approximate width of the arrow button
+        Dimension dimension = new Dimension(maxWidth + insets.left + insets.right + buttonWidth, comboBox.getPreferredSize().height);
+        comboBox.setPreferredSize(dimension);
+    }
+    
     private void init() {
-        JPanel panel1 = new JPanel(new MigLayout("", "left top",""));
-        panel1.putClientProperty(FlatClientProperties.STYLE, "arc:20");
-        panel1.setBackground(Color.BLACK);
-        JLabel label = new JLabel("Overview");
-        label.setForeground(Color.white);
-        panel1.add(label);
-        add(panel1);
-        createLineChart();
+        JPanel panel1 = new JPanel(new MigLayout("","grow,push"));
+
+        panel1.setBackground(Color.black);
+        panel1.putClientProperty(FlatClientProperties.STYLE, "arc: 20");
+        JLabel OverviewText = new JLabel("Overview");
+        OverviewText.putClientProperty(FlatClientProperties.STYLE, "font: bold $h2.font;foreground:#EBECF0");
+
+        //baris 2
+        panel1.add(OverviewText, "grow,wrap");
+
+        String[] teks = {"Test", "Anjay", "ASDASD", "ASDSADAA", "ASDSAAAAAADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA"};
+       
+        
+        
+        JComboBox combobox = new JComboBox(teks) {
+            class MyComboBoxEditor extends javax.swing.plaf.basic.BasicComboBoxEditor {
+
+                private JLabel label = new JLabel();
+                private JPanel panel = new JPanel();
+                private JPanel panel1 = new JPanel();
+                private JPanel panel2 = new JPanel();
+                private Object selectedItem;
+                
+                
+
+                public MyComboBoxEditor() {
+
+                    label.setFont(new Font("Arial", Font.PLAIN, 14));
+
+                    panel1.setLayout(new MigLayout("debug"));
+                    panel1.putClientProperty(FlatClientProperties.STYLE, "arc:10;background:#da6225");
+                    panel1.setOpaque(true); // Ensure panel1 is opaque
+
+                    panel2.add(panel1);
+                    panel2.setOpaque(true);
+
+                    panel.setLayout(new MigLayout ("insets 1 20 1 100","push,grow"));
+                    JLabel labelApp = new JLabel("App");
+                    labelApp.setFont(new Font("Roboto",Font.BOLD,20));
+                    panel.add(labelApp, "split 2");
+                    panel.add(panel2);
+                    
+                }
+
+                @Override
+                public Component getEditorComponent() {
+                    return this.panel;
+                }
+
+                @Override
+                public Object getItem() {
+                    return selectedItem == null ? null : selectedItem.toString();
+                }
+
+                @Override
+                public void setItem(Object item) {
+                    this.selectedItem = item;
+                    if (item != null) {
+
+                        label.setText(item.toString());
+                        label.setForeground(Color.white);
+                        panel1.add(label);
+                    } else {
+                        label.setText("");
+                    }
+//                    panel1.revalidate();
+//                    panel1.repaint();
+                }
+            }
+
+            {
+
+                setEditor(new MyComboBoxEditor());
+                setEditable(true);
+                setMaximumRowCount(3);
+
+            }
+        };
+        combobox.putClientProperty(FlatClientProperties.STYLE, "buttonSeparatorWidth:1");
+        adjustComboBoxSize(combobox, teks);
+        
+        panel1.add(combobox);
+        add(panel1, "wrap,grow");
+createLineChart();
 
     }
 
     private void createLineChartData() {
         DefaultCategoryDataset<String, String> categoryDataset = new DefaultCategoryDataset<>();
         Calendar cal = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("MMM dd, yyyy");
+        SimpleDateFormat df = new SimpleDateFormat("MMM dd");
         Random ran = new Random();
         int randomDate = 30;
         for (int i = 1; i <= randomDate; i++) {
             String date = df.format(cal.getTime());
-            categoryDataset.addValue(ran.nextInt(2000000), "Pemasukan", date);
-            categoryDataset.addValue(ran.nextInt(2000000), "Pengeluaran", date);
-            categoryDataset.addValue(ran.nextInt(2000000), "Keuntungan", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Income", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Expense", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Profit", date);
+            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Test", date);
 
             cal.add(Calendar.DATE, 1);
         }
@@ -68,10 +171,11 @@ public class FormDashboard extends javax.swing.JPanel {
         try {
             Date date = df.parse(categoryDataset.getColumnKey(0));
             Date dateEnd = df.parse(categoryDataset.getColumnKey(categoryDataset.getColumnCount() - 1));
+
             DateCalculator dcal = new DateCalculator(date, dateEnd);
             long diff = dcal.getDifferenceDays();
 
-            double d = Math.ceil((diff / 7f));
+            double d = Math.ceil((diff / 10f));
             lineChart.setLegendRenderer(new ChartLegendRenderer() {
                 @Override
                 public Component getLegendComponent(Object legend, int index) {
@@ -88,8 +192,7 @@ public class FormDashboard extends javax.swing.JPanel {
         }
 
         lineChart.setCategoryDataset(categoryDataset);
-        lineChart.getChartColor().addColor(Color.decode("#0096FF"), Color.decode("#FFBF00"),
-                Color.decode("#FFBF00"));
+        lineChart.getChartColor().addColor(Color.decode("#38bdf8"), Color.decode("#fb7185"), Color.decode("#FFBF00"), Color.decode("#FFBF00"));
 
         JLabel header = new JLabel("Data Pendapatan");
         header.putClientProperty(FlatClientProperties.STYLE, ""
@@ -103,7 +206,7 @@ public class FormDashboard extends javax.swing.JPanel {
         lineChart.setChartType(LineChart.ChartType.CURVE);
         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,$Component.borderColor,,20"); //
-        add(lineChart);
+        add(lineChart, "growx, wrap");
         createLineChartData();
     }
 
