@@ -15,6 +15,7 @@ import java.awt.Frame;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 
@@ -29,11 +30,9 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
 
    public FormLaporanPenjualan() {
         initComponents();
-
+        tampildata1();
         this.id = id;
-        tblData.setModel(tblModel);
-        loadData();
-
+      
         setLebarKolom();
         setLayoutForm();
     }
@@ -127,13 +126,13 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Penjualan", "ID Pelanggan", "Tanggal", "Total Harga", "ID Karyawan", "Bayar", "Kembali", "Diskon"
             }
         ));
         tblData.setRowHeight(30);
@@ -247,7 +246,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
         System.out.println(tanggalawal + tanggalakhir);
         try {
             int No = 1;
-            String sql = "SELECT * FROM penjualan WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
+            String sql = "SELECT * FROM penjualan WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir +"';";
             java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
             // Create a Statement
             java.sql.Statement stm = conn.createStatement();
@@ -256,13 +255,13 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
             DefaultTableModel table = (DefaultTableModel) tblData.getModel();
             table.setRowCount(0);
             while (res.next()) {
-
-                table.addRow(new Object[]{res.getString(1), res.getString(2), res.getInt(3), res.getString(4), res.getString(5), res.getString(6),
+                table.addRow(new Object[]{res.getString(1), res.getString(2), res.getDate(3), res.getString(4), res.getString(5), res.getString(6),
                     res.getString(7), res.getString(8), res.getString(9), res.getString(10)});
             }
         } catch (Exception e) {
-            
+            JOptionPane.showMessageDialog(null, "error abangku"+e.getMessage());
         }
+        
     
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -284,14 +283,31 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtPencarian;
     // End of variables declaration//GEN-END:variables
-      private void loadData() {
-        List<ModelPenjualan> list = servis.tampilData();
-        tblModel.setData(list);
-    }
+ 
 
     private void pencarianData() {
         List<ModelPenjualan> list = servis.pencarianData(txtPencarian.getText());
         tblModel.setData(list);
     }
+    
+    public void tampildata1() {
+        try {
+
+            DefaultTableModel model = (DefaultTableModel) tblData.getModel();
+            String sql = "SELECT * FROM penjualan ";
+            java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
+            java.sql.Statement stm = conn.createStatement();
+            java.sql.ResultSet res = stm.executeQuery(sql);
+            
+            model.setRowCount(0);
+            while (res.next()) {
+                Object[] data = {res.getString("id_penjualan"),res.getString("id_pelanggan"),res.getString("tanggal"),res.getString("total_harga"),
+                    res.getString("id_karyawan"), res.getString("bayar"), res.getString("kembali"), res.getString("diskon")};
+                model.addRow(data);
+            }
+        } catch (Exception e) {
+        }
+    }
+
 }
 
