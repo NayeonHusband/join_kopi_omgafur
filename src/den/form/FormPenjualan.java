@@ -34,7 +34,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.TableColumnModel;
-//import static org.omg.CORBA.ORB.init;
+
 
 public class FormPenjualan extends javax.swing.JPanel {
 
@@ -69,7 +69,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         setLebarKolom();
         setLayoutform();
         setTanggal();
-//        init();
+
     }
 
     private void setLebarKolom() {
