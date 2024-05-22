@@ -22,6 +22,7 @@ public class Panel extends javax.swing.JPanel{
     public Panel(){
 //        putClientProperty(FlatClientProperties.STYLE, "arc: 20");
         setLayout(new BorderLayout());
+        setOpaque(false);
         
 
         // Create a label

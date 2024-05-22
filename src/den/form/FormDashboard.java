@@ -31,7 +31,7 @@ import raven.chart.ChartLegendRenderer;
 
 /**
  *
- * @author den
+ * @author Mas Anies
  */
 public class FormDashboard extends javax.swing.JPanel {
 
@@ -49,15 +49,16 @@ public class FormDashboard extends javax.swing.JPanel {
 
     
     private void init() {
-        JPanel panel1 = new JPanel(new MigLayout("","grow,push"));
-        Bawah = new JPanel(new MigLayout("","grow,push"));
+//        JPanel panel1 = new JPanel(new MigLayout("","grow,push"));
+        Bawah = new JPanel(new MigLayout("fill","grow,push","fill,push"));
         Bawah.setOpaque(true);
         Bawah.putClientProperty(FlatClientProperties.STYLE, "background: tint(@background,50%);"
                 + "border: 16,16,16,16,shade(@background,10%),,8");
+        
 
 
 //        panel1.setBackground(Color.black);
-        panel1.putClientProperty(FlatClientProperties.STYLE, "arc: 20");
+//        panel1.putClientProperty(FlatClientProperties.STYLE, "arc: 20");
         JLabel OverviewText = new JLabel("Overview");
 //        OverviewText.setForeground(Color);
         OverviewText.putClientProperty(FlatClientProperties.STYLE, "font: bold $h2.font;");
@@ -92,9 +93,10 @@ public class FormDashboard extends javax.swing.JPanel {
                     panel1.setOpaque(true); // Ensure panel1 is opaque
 
                     panel2.add(panel1);
-                    panel2.setOpaque(true);
+                    panel2.setOpaque(false);
 
                     panel.setLayout(new MigLayout ("insets 0 20 0 100","push,grow"));
+                    
                     JLabel labelApp = new JLabel("App");
                     labelApp.setFont(new Font("Roboto",Font.BOLD,15));
                     panel.add(labelApp, "split 2");
@@ -142,11 +144,11 @@ public class FormDashboard extends javax.swing.JPanel {
         add(combobox,"span");
 //        panel1.add(combobox);
 //        add(panel1, "wrap,grow");
-        add(Bawah,"grow");
+        add(Bawah,"grow,push");
        
         Bawah.add(new Panel(),"split 3,gapright 20");
         Bawah.add(new Panel(),"gapright 20");
-        Bawah.add(new Panel(),"wrap");
+        Bawah.add(new Panel(),"wrap 20");
 
         createLineChart();
 
@@ -160,10 +162,10 @@ public class FormDashboard extends javax.swing.JPanel {
         int randomDate = 30;
         for (int i = 1; i <= randomDate; i++) {
             String date = df.format(cal.getTime());
-            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Income", date);
-            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Expense", date);
-            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Profit", date);
-            categoryDataset.addValue(ran.nextInt(1000000) + 5, "Test", date);
+            categoryDataset.addValue(ran.nextInt(1000000) , "Income", date);
+            categoryDataset.addValue(ran.nextInt(1000000) , "Expense", date);
+//            categoryDataset.addValue(ran.nextInt(1000000) , "Profit", date);
+//            categoryDataset.addValue(ran.nextInt(1000000) , "Test", date);
 
             cal.add(Calendar.DATE, 1);
         }
@@ -210,7 +212,7 @@ public class FormDashboard extends javax.swing.JPanel {
         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,$Component.borderColor,,20"); //
 //        add(lineChart, "growx, wrap");
-        Bawah.add(lineChart,"growx,wrap");
+        Bawah.add(lineChart,"grow,push");
         createLineChartData();
     }
 

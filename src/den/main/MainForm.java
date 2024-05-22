@@ -75,7 +75,8 @@ public class MainForm extends JLayeredPane {
     private void initMenuEvent(ModelKaryawan mk) {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
-            if (index == 0) {
+            if(mk.getRole()=="Admin"){
+                if (index == 0) {
                 FormMenuUtama.showForm(new FormDashboard());
             } else if (index == 1) {
                 FormMenuUtama.showForm(new FormProduk());
@@ -98,6 +99,24 @@ public class MainForm extends JLayeredPane {
             } else {
                 action.cancel();
             }
+                
+            }else{
+                  if (index == 0) {
+                FormMenuUtama.showForm(new FormDashboard());
+            } else if (index == 1) {
+                FormMenuUtama.showForm(new FormPenjualan(mk));
+            } else if (index == 2) {
+                FormMenuUtama.showForm(new FormProduk());
+            } else if (index == 3) {
+                FormMenuUtama.showForm(new FormLaporanPenjualan());
+            
+            } else{
+                
+                action.cancel();
+            }
+            }
+            
+            
         });
     }
 
