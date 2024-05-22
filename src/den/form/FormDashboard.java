@@ -1,30 +1,26 @@
 package den.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import com.formdev.flatlaf.ui.FlatLineBorder;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+
 import java.awt.Font;
-import java.text.DecimalFormat;
+import java.awt.Insets;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.awt.FlowLayout;
-import java.awt.FontMetrics;
-import java.awt.Insets;
 
 import java.util.Random;
-import javafx.scene.control.ComboBox;
 import javax.swing.BorderFactory;
+
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
-import javax.swing.JList;
+
 import javax.swing.JPanel;
-import javax.swing.ListCellRenderer;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicComboBoxEditor;
+import utils.Panel;
 
 import raven.chart.data.category.DefaultCategoryDataset;
 import net.miginfocom.swing.MigLayout;
@@ -39,42 +35,41 @@ import raven.chart.ChartLegendRenderer;
 public class FormDashboard extends javax.swing.JPanel {
 
     private LineChart lineChart;
+    private JPanel Bawah ;
 
     public FormDashboard() {
         initComponents();
         setLayout(new MigLayout("insets 10", "grow,push"));
+//        setBackground(Color.decode("#e6e6e6"));
+//        putClientProperty(FlatClientProperties.STYLE, "arc:20");
+       
         init();
     }
 
-        private void adjustComboBoxSize(JComboBox comboBox,String[] teks) {
-        FontMetrics fontMetrics = comboBox.getFontMetrics(comboBox.getFont());
-        int maxWidth = 0;
-        for (String item : teks) {
-            int width = fontMetrics.stringWidth(item);
-            if (width > maxWidth) {
-                maxWidth = width+100;
-            }
-        }
-        Insets insets = comboBox.getInsets();
-        int buttonWidth = 20; // approximate width of the arrow button
-        Dimension dimension = new Dimension(maxWidth + insets.left + insets.right + buttonWidth, comboBox.getPreferredSize().height);
-        comboBox.setPreferredSize(dimension);
-    }
     
     private void init() {
         JPanel panel1 = new JPanel(new MigLayout("","grow,push"));
+        Bawah = new JPanel(new MigLayout("","grow,push"));
+        Bawah.setOpaque(true);
+        Bawah.putClientProperty(FlatClientProperties.STYLE, "background: tint(@background,50%);"
+                + "border: 16,16,16,16,shade(@background,10%),,8");
 
-        panel1.setBackground(Color.black);
+
+//        panel1.setBackground(Color.black);
         panel1.putClientProperty(FlatClientProperties.STYLE, "arc: 20");
         JLabel OverviewText = new JLabel("Overview");
-        OverviewText.putClientProperty(FlatClientProperties.STYLE, "font: bold $h2.font;foreground:#EBECF0");
+//        OverviewText.setForeground(Color);
+        OverviewText.putClientProperty(FlatClientProperties.STYLE, "font: bold $h2.font;");
 
+       
+        add(OverviewText,"grow,wrap");
+        
         //baris 2
-        panel1.add(OverviewText, "grow,wrap");
+//        panel1.add(OverviewText, "grow,wrap");
+
+            
 
         String[] teks = {"Test", "Anjay", "ASDASD", "ASDSADAA", "ASDSAAAAAADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA"};
-       
-        
         
         JComboBox combobox = new JComboBox(teks) {
             class MyComboBoxEditor extends javax.swing.plaf.basic.BasicComboBoxEditor {
@@ -91,16 +86,16 @@ public class FormDashboard extends javax.swing.JPanel {
 
                     label.setFont(new Font("Arial", Font.PLAIN, 14));
 
-                    panel1.setLayout(new MigLayout("debug"));
+                    panel1.setLayout(new MigLayout("insets 2 4 2 4"));
                     panel1.putClientProperty(FlatClientProperties.STYLE, "arc:10;background:#da6225");
                     panel1.setOpaque(true); // Ensure panel1 is opaque
 
                     panel2.add(panel1);
                     panel2.setOpaque(true);
 
-                    panel.setLayout(new MigLayout ("insets 1 20 1 100","push,grow"));
+                    panel.setLayout(new MigLayout ("insets 0 20 0 100","push,grow"));
                     JLabel labelApp = new JLabel("App");
-                    labelApp.setFont(new Font("Roboto",Font.BOLD,20));
+                    labelApp.setFont(new Font("Roboto",Font.BOLD,15));
                     panel.add(labelApp, "split 2");
                     panel.add(panel2);
                     
@@ -140,12 +135,19 @@ public class FormDashboard extends javax.swing.JPanel {
 
             }
         };
-        combobox.putClientProperty(FlatClientProperties.STYLE, "buttonSeparatorWidth:1");
-        adjustComboBoxSize(combobox, teks);
+        combobox.putClientProperty(FlatClientProperties.STYLE, "buttonSeparatorWidth:1;");
+
         
-        panel1.add(combobox);
-        add(panel1, "wrap,grow");
-createLineChart();
+        add(combobox,"span");
+//        panel1.add(combobox);
+//        add(panel1, "wrap,grow");
+        add(Bawah,"grow");
+       
+        Bawah.add(new Panel(),"split 3,gapright 20");
+        Bawah.add(new Panel(),"gapright 20");
+        Bawah.add(new Panel(),"wrap");
+
+        createLineChart();
 
     }
 
@@ -206,7 +208,8 @@ createLineChart();
         lineChart.setChartType(LineChart.ChartType.CURVE);
         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,$Component.borderColor,,20"); //
-        add(lineChart, "growx, wrap");
+//        add(lineChart, "growx, wrap");
+        Bawah.add(lineChart,"growx,wrap");
         createLineChartData();
     }
 
