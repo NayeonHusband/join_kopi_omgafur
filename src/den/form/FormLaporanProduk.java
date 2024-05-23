@@ -113,7 +113,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         btncetak = new javax.swing.JButton();
-        jtdate = new com.toedter.calendar.JDateChooser();
+        jdate = new com.toedter.calendar.JDateChooser();
         jdate1 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
 
@@ -194,7 +194,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(jtdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(73, 73, 73)
                         .addComponent(jdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(65, 65, 65)
@@ -214,7 +214,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
                         .addComponent(jLabel3)
                         .addComponent(btncetak)
                         .addComponent(jButton1))
-                    .addComponent(jtdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2)
@@ -237,9 +237,10 @@ public class FormLaporanProduk extends javax.swing.JPanel {
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
         // TODO add your handling code here:
-        String excelFilePath = "/Users/Taufiqur Rahman/Documents/NetBeansProjects/join_kopi_omgafur6/src/laporan/laporan-produk.xlsx"; String tampilan1 = "yyyy-MM-dd";
+        String excelFilePath = "/Users/Taufiqur Rahman/Documents/NetBeansProjects/join_kopi_omgafur6/src/laporan/laporan-produk.xlsx";
+        String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
-        String tanggalawal = String.valueOf(tgl1.format(jdate1.getDate()));
+        String tanggalawal = String.valueOf(tgl1.format(jdate.getDate()));
 
         String tampilan2 = "yyyy-MM-dd";
         SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2); // Fix: Use tampilan2 for tgl2
@@ -318,8 +319,8 @@ try {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.calendar.JDateChooser jdate;
     private com.toedter.calendar.JDateChooser jdate1;
-    private com.toedter.calendar.JDateChooser jtdate;
     // End of variables declaration//GEN-END:variables
 
     public void writeHeaderLine(XSSFSheet sheet) {
