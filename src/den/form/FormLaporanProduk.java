@@ -14,7 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import javafx.scene.control.Cell;
+import java.text.SimpleDateFormat;
+//import javafx.scene.control.Cell;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -92,21 +93,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
             }
     }
     
-    private void fillComboBox() {
-        try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/joininkopi1");
-            Statement stmt = con.createStatement();
-            String query = "SELECT tanggal FROM laporan_penjualan";
-            ResultSet rs = stmt.executeQuery(query);
-
-            while (rs.next()) {
-                String item = rs.getString("tanggal");
-                Combobox1.addItem(item);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -125,10 +112,10 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        Combobox1 = new javax.swing.JComboBox<>();
-        jLabel5 = new javax.swing.JLabel();
-        Combobox3 = new javax.swing.JComboBox<>();
         btncetak = new javax.swing.JButton();
+        jtdate = new com.toedter.calendar.JDateChooser();
+        jdate1 = new com.toedter.calendar.JDateChooser();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -177,19 +164,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         );
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel3.setText("BULAN : ");
-
-        Combobox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret ", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
-        Combobox1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Combobox1ActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        jLabel5.setText("TAHUN :");
-
-        Combobox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jLabel3.setText("Tanggal");
 
         btncetak.setBackground(new java.awt.Color(36, 104, 155));
         btncetak.setFont(new java.awt.Font("Times New Roman", 0, 14)); // NOI18N
@@ -198,6 +173,13 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         btncetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncetakActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Cari");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
             }
         });
 
@@ -210,15 +192,15 @@ public class FormLaporanProduk extends javax.swing.JPanel {
                 .addGap(22, 22, 22)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Combobox1, 0, 172, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Combobox3, 0, 172, Short.MAX_VALUE)
-                        .addGap(395, 395, 395)
-                        .addComponent(btncetak, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE))
+                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(73, 73, 73)
+                        .addComponent(jdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(65, 65, 65)
+                        .addComponent(jButton1)
+                        .addGap(409, 409, 409)
+                        .addComponent(btncetak, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))
                     .addComponent(jScrollPane2))
                 .addGap(41, 41, 41))
         );
@@ -227,12 +209,13 @@ public class FormLaporanProduk extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(Combobox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(Combobox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btncetak))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(btncetak)
+                        .addComponent(jButton1))
+                    .addComponent(jtdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdate1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2)
                 .addContainerGap())
@@ -252,14 +235,17 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void Combobox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combobox1ActionPerformed
-        // TODO add your handling code here:
-        fillComboBox();
-    }//GEN-LAST:event_Combobox1ActionPerformed
-
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
         // TODO add your handling code here:
-        String excelFilePath = "/Users/Taufiqur Rahman/Documents/NetBeansProjects/join_kopi_omgafur6/src/laporan/laporan-produk.xlsx";
+        String excelFilePath = "/Users/Taufiqur Rahman/Documents/NetBeansProjects/join_kopi_omgafur6/src/laporan/laporan-produk.xlsx"; String tampilan1 = "yyyy-MM-dd";
+        SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+        String tanggalawal = String.valueOf(tgl1.format(jdate1.getDate()));
+
+        String tampilan2 = "yyyy-MM-dd";
+        SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2); // Fix: Use tampilan2 for tgl2
+        String tanggalakhir = String.valueOf(tgl2.format(jdate1.getDate()));
+        System.out.println(tanggalawal + tanggalakhir);
+
 
 try {
     String url = "jdbc:mysql://localhost:3306/joininkopi1?serverTimezone=UTC";
@@ -269,7 +255,7 @@ try {
     Connection con = DriverManager.getConnection(url, user, pass);
     Statement st = con.createStatement();
     
-    String sql = "SELECT * FROM laporan_penjualan";
+    String sql = "SELECT * FROM laporan_penjualan WHERE tanggal BETWEEN'"+tanggalawal+"'AND '"+tanggalakhir+"'";
     ResultSet rs = st.executeQuery(sql);
     
     try (XSSFWorkbook workbook = new XSSFWorkbook()) {
@@ -292,20 +278,48 @@ try {
 }
     }//GEN-LAST:event_btncetakActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+                                 
+        String tampilan1 = "yyyy-MM-dd";
+        SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+        String tanggalawal = String.valueOf(tgl1.format(jdate1.getDate()));
+
+        String tampilan2 = "yyyy-MM-dd";
+        SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2); // Fix: Use tampilan2 for tgl2
+        String tanggalakhir = String.valueOf(tgl2.format(jdate1.getDate()));
+        System.out.println(tanggalawal + tanggalakhir);
+        try {
+            int No = 1;
+            String sql = "SELECT * FROM laporan_penjualan WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir +"';";
+            java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
+            // Create a Statement
+            java.sql.Statement stm = conn.createStatement();
+
+            java.sql.ResultSet res = stm.executeQuery(sql);// Fix: Add WHERE clause
+            DefaultTableModel table = (DefaultTableModel) Table1.getModel();
+            table.setRowCount(0);
+            while (res.next()) {
+                table.addRow(new Object[]{res.getString(1), res.getString(2), res.getDate(3), res.getString(4), res.getString(5), res.getString(6),
+                    res.getString(7), res.getString(8), res.getString(9), res.getString(10)});
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error abangku"+e.getMessage());
+        }    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Combobox1;
-    private javax.swing.JComboBox<String> Combobox3;
     private javax.swing.JTable Table1;
     private javax.swing.JButton btncetak;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private com.toedter.calendar.JDateChooser jdate1;
+    private com.toedter.calendar.JDateChooser jtdate;
     // End of variables declaration//GEN-END:variables
 
     public void writeHeaderLine(XSSFSheet sheet) {
