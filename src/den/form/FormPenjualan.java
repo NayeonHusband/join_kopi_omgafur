@@ -55,12 +55,14 @@ public class FormPenjualan extends javax.swing.JPanel {
 
     private final Map<String, Integer> hasMap;
     private Timer timer;
+    private ModelKaryawan mk;
 
     public FormPenjualan(ModelKaryawan modelKar) {
         initComponents();
 
         this.idKaryawan = modelKar.getIdKaryawan();
         tblData.setModel(tblModelPen);
+//        System.out.println(tblModelPen.getRowCount());
         tblDataSementara.setModel(tblModelSmt);
         txtNamaKasir.setText(modelKar.getNamaKaryawan());
 
@@ -377,7 +379,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblHari)
                         .addComponent(lblTanggal)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
@@ -448,7 +450,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(cbxPelanggan, 0, 158, Short.MAX_VALUE)
+            .addComponent(cbxPelanggan, 0, 160, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -477,7 +479,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(lblTotal)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TRANSAKSI", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 12))); // NOI18N
@@ -936,12 +938,13 @@ public class FormPenjualan extends javax.swing.JPanel {
         txtNoTransaksi.setText(servis.noTransaksi());
         getPelanggan();
         btnDetail.setEnabled(false);
-        List<ModelPenjualan> list = servis.tampilData();
+        List<ModelPenjualan> list = servis.tampilData(idKaryawan);
+        System.out.println("a "+list.size());
         tblModelPen.setData(list);
     }
 
     private void loadDataSementara() {
-        List<ModelPenjualan> list = servis.tampilData();
+        List<ModelPenjualan> list = servis.tampilData(idKaryawan);
         tblModelPen.setData(list);
 
         txtDiskon.setText("0");
@@ -1041,9 +1044,9 @@ public class FormPenjualan extends javax.swing.JPanel {
             for (int i = 0; i < tblModelSmt.getRowCount(); i++) {
                 if (tblModelSmt.getData(i).getModelProduk().getBarcode().equals(produk.getBarcode())) {
                     produkSudahAda = true;
-                    break;
+                    break;            }
+
                 }
-            }
             if (!produkSudahAda) {
                 //persiapkan data untuk di tambahkan ke dalam servis penjualan
                 int idProduk = produk.getIdproduk();
@@ -1280,7 +1283,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             double diskon = Double.parseDouble(txtDiskon.getText());
             double bayar = Double.parseDouble(txtBayar.getText());
             double kembali = Double.parseDouble(txtKembali.getText());
-            int idKaryawan = Integer.parseInt(txtNamaKasir.getText());
+//            int idKaryawan = Integer.parseInt(txtNamaKasir.getText());
 
             // Memeriksa apakah idPenjualan sudah ada dalam database
             List<ModelPenjualan> penjualanList = servis.pencarianData(idPenjualan);

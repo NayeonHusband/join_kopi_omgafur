@@ -164,8 +164,8 @@ public class FormDashboard extends javax.swing.JPanel {
             String date = df.format(cal.getTime());
             categoryDataset.addValue(ran.nextInt(1000000) , "Income", date);
             categoryDataset.addValue(ran.nextInt(1000000) , "Expense", date);
-//            categoryDataset.addValue(ran.nextInt(1000000) , "Profit", date);
-//            categoryDataset.addValue(ran.nextInt(1000000) , "Test", date);
+            categoryDataset.addValue(ran.nextInt(1000000) , "Profit", date);
+            categoryDataset.addValue(ran.nextInt(1000000) , "Test", date);
 
             cal.add(Calendar.DATE, 1);
         }

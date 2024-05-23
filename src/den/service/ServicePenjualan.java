@@ -7,7 +7,7 @@ public interface ServicePenjualan {
     
     void tambahData(ModelPenjualan model);
     
-    List<ModelPenjualan> tampilData();
+    List<ModelPenjualan> tampilData(Integer id_karyawan);
     List<ModelPenjualan> pencarianData(String id);
     
     String noTransaksi();
