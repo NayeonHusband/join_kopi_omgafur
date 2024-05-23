@@ -75,7 +75,7 @@ public class MainForm extends JLayeredPane {
     private void initMenuEvent(ModelKaryawan mk) {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
-            if(mk.getRole()=="Admin"){
+            if(mk.getRole().equals("Admin")){
                 if (index == 0) {
                 FormMenuUtama.showForm(new FormDashboard());
             } else if (index == 1) {
