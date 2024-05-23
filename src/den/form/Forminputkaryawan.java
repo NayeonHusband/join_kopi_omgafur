@@ -74,7 +74,7 @@ public class Forminputkaryawan extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("MASTER > PELANGGAN > TAMBAH DATA KARYAWAN");
+        jLabel2.setText("MASTER > KARYAWAN > TAMBAH DATA KARYAWAN");
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
