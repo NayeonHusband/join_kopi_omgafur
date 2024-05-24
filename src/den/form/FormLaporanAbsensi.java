@@ -32,32 +32,20 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  *
  * @author A C E R
  */
-public class FormLaporanPenjualan extends javax.swing.JPanel {
-    private ServicePenjualan servis = new PenjualanDAO();
-    private TableModelPenjualan tblModel = new TableModelPenjualan();
-    private String id;
+public class FormLaporanAbsensi extends javax.swing.JPanel {
 
-   public FormLaporanPenjualan() {
+
+   public FormLaporanAbsensi() {
         initComponents();
         tampildata1();
-        this.id = id;
-      
-        setLebarKolom();
-        setLayoutForm();
-    }
-    private void setLebarKolom() {
-        TableColumnModel kolom = tblData.getColumnModel();
-        kolom.getColumn(0).setPreferredWidth(50);
-        kolom.getColumn(0).setMaxWidth(50);
-        kolom.getColumn(0).setMinWidth(50);
-    }
 
-    private void setLayoutForm() {
-        jPanel1.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-//        txtPencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+      
+  
     }
-    private FormLaporanPenjualan(Frame parent, boolean modal) {
+  
+
+    
+    private FormLaporanAbsensi(Frame parent, boolean modal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -90,12 +78,12 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("LAPORAN>PENJUALAN");
+        jLabel2.setText("LAPORAN>ABSENSI");
 
         jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("LAPORAN PENJUALAN");
+        jLabel3.setText("LAPORAN ABSENSI");
         jLabel3.setFocusCycleRoot(true);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -107,7 +95,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -121,13 +109,13 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
 
         tblData.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID Penjualan", "ID Pelanggan", "Tanggal", "Total Harga", "ID Karyawan", "Bayar", "Kembali", "Diskon"
+                "ID Absensi", "ID Karyawan", "Keterangan", "Absen Masuk", "Absen Keluar"
             }
         ));
         tblData.setRowHeight(30);
@@ -166,13 +154,13 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
+                        .addGap(40, 40, 40)
                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 145, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 325, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -187,7 +175,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,15 +187,15 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(3, 3, 3)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addGap(12, 12, 12)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel4)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -215,16 +203,15 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -240,7 +227,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
         System.out.println(tanggalawal + tanggalakhir);
         try {
             int No = 1;
-            String sql = "SELECT * FROM penjualan WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir +"';";
+            String sql = "SELECT * FROM absensi WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir +"';";
             java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
             // Create a Statement
             java.sql.Statement stm = conn.createStatement();
@@ -251,7 +238,6 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
             while (res.next()) {
                 table.addRow(new Object[]{res.getString(1), res.getString(2), res.getDate(3), res.getString(4), res.getString(5), res.getString(6),
                     res.getString(7), res.getString(8), res.getString(9), res.getString(10)});
-                JOptionPane.showMessageDialog(null, "Berhasil");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error abangku"+e.getMessage());
@@ -276,7 +262,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
 try {
 
     
-    String sql = "SELECT * FROM penjualan WHERE tanggal BETWEEN'"+tanggalawal+"'AND '"+tanggalakhir+"'";
+    String sql = "SELECT * FROM absensi WHERE tanggal BETWEEN'"+tanggalawal+"'AND '"+tanggalakhir+"'";
      java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
     Statement st = conn.createStatement();
     ResultSet rs = st.executeQuery(sql);
@@ -329,15 +315,15 @@ try {
         try {
 
             DefaultTableModel model = (DefaultTableModel) tblData.getModel();
-            String sql = "SELECT * FROM penjualan ";
+            String sql = "SELECT * FROM absensi ";
             java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
             
             model.setRowCount(0);
             while (res.next()) {
-                Object[] data = {res.getString("id_penjualan"),res.getString("id_pelanggan"),res.getString("tanggal"),res.getString("total_harga"),
-                    res.getString("id_karyawan"), res.getString("bayar"), res.getString("kembali"), res.getString("diskon")};
+                Object[] data = {res.getString("id_absensi"),res.getString("id_karyawan"),res.getString("keterangan"),res.getString("tgl_absenmasuk"),
+                    res.getString("tgl_absenkeluar")};
                 model.addRow(data);
             }
         } catch (Exception e) {
@@ -348,35 +334,23 @@ try {
         
         // Tanggal
         XSSFCell headerCell = headerRow.createCell(0);
-        headerCell.setCellValue("id_penjualan");
+        headerCell.setCellValue("id_absensi");
         
         // ID Pelanggan
         headerCell = headerRow.createCell(1);
-        headerCell.setCellValue("id_pelanggan");
+        headerCell.setCellValue("id_karyawan");
         
         // ID Produk
         headerCell = headerRow.createCell(2);
-        headerCell.setCellValue("tanggal");
+        headerCell.setCellValue("keterangan");
         
         // Nama Produk
         headerCell = headerRow.createCell(3);
-        headerCell.setCellValue("total_harga");
+        headerCell.setCellValue("tgl_absenmasuk");
         
         // Jumlah
         headerCell = headerRow.createCell(4);
-        headerCell.setCellValue("id_karyawan");
-        
-        //bayar
-        headerCell = headerRow.createCell(5);
-        headerCell.setCellValue("bayar");
-        
-        //kembali
-        headerCell = headerRow.createCell(6);
-        headerCell.setCellValue("kembali");
-        
-        //diskon
-        headerCell = headerRow.createCell(7);
-        headerCell.setCellValue("diskon");
+        headerCell.setCellValue("tgl_absenkeluar");
         
         
     }
@@ -385,41 +359,30 @@ try {
         int rowCount = 1;
         
         while(rs.next()) {
-            String IDPenjualan = rs.getString("id_penjualan");
-            String IDPelanggan = rs.getString("id_pelanggan");
-            String Tanggal = rs.getString("tanggal");
-            String totalHarga = rs.getString("total_harga");
-            String IDKaryawan = rs.getString("id_karyawan");
-            String Bayar = rs.getString("bayar");
-            String Kembali = rs.getString("kembali");
-            String Diskon = rs.getString("diskon");
+            String ID_Absensi = rs.getString("id_absensi");
+            String ID_Karyawan = rs.getString("id_karyawan");
+            String Keterangan = rs.getString("keterangan");
+            String AbsenMasuk = rs.getString("tgl_absenmasuk");
+            String AbsenKeluar = rs.getString("tgl_absenkeluar");
             XSSFRow row = sheet.createRow(rowCount++);
             
             int columnCount = 0;
             
             XSSFCell cell = row.createCell(columnCount++);
-            cell.setCellValue(IDPenjualan);
+            cell.setCellValue(ID_Absensi);
             
             cell = row.createCell(columnCount++);
-            cell.setCellValue(IDPelanggan);
+            cell.setCellValue(ID_Karyawan);
             
             cell = row.createCell(columnCount++);
-            cell.setCellValue(Tanggal);
+            cell.setCellValue(Keterangan);
             
             cell = row.createCell(columnCount++);
-            cell.setCellValue(totalHarga);
+            cell.setCellValue(AbsenMasuk);
             
             cell = row.createCell(columnCount);
-            cell.setCellValue(IDKaryawan);
-            
-            cell = row.createCell(columnCount);
-            cell.setCellValue(Bayar);
-            
-            cell = row.createCell(columnCount);
-            cell.setCellValue(Kembali);
-            
-            cell = row.createCell(columnCount);
-            cell.setCellValue(Diskon);
+            cell.setCellValue(AbsenKeluar);
+          
         }
     }
 }
