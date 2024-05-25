@@ -48,13 +48,16 @@ public class FormProduk extends javax.swing.JPanel {
         test_generate = new javax.swing.JButton();
         generate_qr = new javax.swing.JButton();
 
+        jPanel1.setPreferredSize(new java.awt.Dimension(1002, 759));
+
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
         jPanel2.setPreferredSize(new java.awt.Dimension(189, 91));
 
+        jLabel2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MASTER > PRODUK ");
 
-        jLabel3.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("DATA PRODUK");
@@ -68,7 +71,7 @@ public class FormProduk extends javax.swing.JPanel {
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
+                .addContainerGap()
                 .addComponent(jLabel3)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -82,6 +85,7 @@ public class FormProduk extends javax.swing.JPanel {
         );
 
         btnhapus.setBackground(new java.awt.Color(36, 104, 155));
+        btnhapus.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnhapus.setForeground(new java.awt.Color(255, 255, 255));
         btnhapus.setText("HAPUS");
         btnhapus.addActionListener(new java.awt.event.ActionListener() {
@@ -91,6 +95,7 @@ public class FormProduk extends javax.swing.JPanel {
         });
 
         btnperbarui.setBackground(new java.awt.Color(36, 104, 155));
+        btnperbarui.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btnperbarui.setForeground(new java.awt.Color(255, 255, 255));
         btnperbarui.setText("PERBARUI");
         btnperbarui.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +105,7 @@ public class FormProduk extends javax.swing.JPanel {
         });
 
         btntambah.setBackground(new java.awt.Color(36, 104, 155));
+        btntambah.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btntambah.setForeground(new java.awt.Color(255, 255, 255));
         btntambah.setText("TAMBAH");
         btntambah.addActionListener(new java.awt.event.ActionListener() {
@@ -132,10 +138,11 @@ public class FormProduk extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblData);
 
-        jLabel1.setFont(new java.awt.Font("Berlin Sans FB Demi", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel1.setText("Search :");
 
         test_generate.setBackground(new java.awt.Color(36, 104, 155));
+        test_generate.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         test_generate.setForeground(new java.awt.Color(255, 255, 255));
         test_generate.setText("Test Generate");
         test_generate.addActionListener(new java.awt.event.ActionListener() {
@@ -145,6 +152,7 @@ public class FormProduk extends javax.swing.JPanel {
         });
 
         generate_qr.setBackground(new java.awt.Color(36, 104, 155));
+        generate_qr.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         generate_qr.setForeground(new java.awt.Color(255, 255, 255));
         generate_qr.setText("Generate qr");
         generate_qr.addActionListener(new java.awt.event.ActionListener() {
@@ -158,22 +166,22 @@ public class FormProduk extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1211, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1045, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(47, 47, 47)
                 .addComponent(test_generate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btntambah, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnperbarui, javax.swing.GroupLayout.DEFAULT_SIZE, 89, Short.MAX_VALUE)
+                .addComponent(btnperbarui, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(btnhapus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(generate_qr, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(297, 297, 297)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addGap(198, 198, 198)
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 306, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel1Layout.setVerticalGroup(
@@ -194,7 +202,7 @@ public class FormProduk extends javax.swing.JPanel {
                         .addComponent(test_generate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(generate_qr, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 579, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -203,11 +211,11 @@ public class FormProduk extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1201, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 592, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 

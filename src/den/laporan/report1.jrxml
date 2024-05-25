@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="226" pageHeight="425" columnWidth="186" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9af77959-0f0f-486a-a912-efa893f3f291">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     penjualan.`id_penjualan` AS penjualan_id_penjualan,
+     penjualan.`id_pelanggan` AS penjualan_id_pelanggan,
+     penjualan.`tanggal` AS penjualan_tanggal,
+     penjualan.`total_harga` AS penjualan_total_harga,
+     penjualan.`id_karyawan` AS penjualan_id_karyawan,
+     penjualan.`bayar` AS penjualan_bayar,
+     penjualan.`kembali` AS penjualan_kembali,
+     penjualan.`diskon` AS penjualan_diskon,
+     penjualan.`create_at` AS penjualan_create_at,
+     penjualan.`update_at` AS penjualan_update_at,
+     penjualan_smt.`id_penjualan` AS penjualan_smt_id_penjualan,
+     penjualan_smt.`id_produk` AS penjualan_smt_id_produk,
+     penjualan_smt.`barcode` AS penjualan_smt_barcode,
+     penjualan_smt.`nama_produk` AS penjualan_smt_nama_produk,
+     penjualan_smt.`harga` AS penjualan_smt_harga,
+     penjualan_smt.`stok` AS penjualan_smt_stok,
+     penjualan_smt.`jumlah` AS penjualan_smt_jumlah,
+     penjualan_smt.`subtotal` AS penjualan_smt_subtotal
+FROM
+     `penjualan` penjualan INNER JOIN `penjualan_smt` penjualan_smt ON penjualan.`id_penjualan` = penjualan_smt.`id_penjualan`]]>
+	</queryString>
+	<field name="penjualan_id_penjualan" class="java.lang.String"/>
+	<field name="penjualan_id_pelanggan" class="java.lang.Integer"/>
+	<field name="penjualan_tanggal" class="java.sql.Date"/>
+	<field name="penjualan_total_harga" class="java.math.BigDecimal"/>
+	<field name="penjualan_id_karyawan" class="java.lang.Integer"/>
+	<field name="penjualan_bayar" class="java.math.BigDecimal"/>
+	<field name="penjualan_kembali" class="java.math.BigDecimal"/>
+	<field name="penjualan_diskon" class="java.math.BigDecimal"/>
+	<field name="penjualan_create_at" class="java.sql.Timestamp"/>
+	<field name="penjualan_update_at" class="java.sql.Timestamp"/>
+	<field name="penjualan_smt_id_penjualan" class="java.lang.String"/>
+	<field name="penjualan_smt_id_produk" class="java.lang.Integer"/>
+	<field name="penjualan_smt_barcode" class="java.lang.String"/>
+	<field name="penjualan_smt_nama_produk" class="java.lang.String"/>
+	<field name="penjualan_smt_harga" class="java.math.BigDecimal"/>
+	<field name="penjualan_smt_stok" class="java.lang.Integer"/>
+	<field name="penjualan_smt_jumlah" class="java.lang.Integer"/>
+	<field name="penjualan_smt_subtotal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="47" y="19" width="114" height="45" uuid="20792053-57d6-4457-a51a-b10b03a38e41"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Comic Sans MS" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Joinin Kopi]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="2" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="186" height="1" uuid="b7693eea-a06b-4b1a-90a4-086e931002ca"/>
+			</line>
+			<line>
+				<reportElement x="0" y="29" width="186" height="1" uuid="b38c2fca-f97d-4c0f-8066-d60ac7b5e878"/>
+				<graphicElement>
+					<pen lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="10" width="57" height="20" uuid="524db24e-d464-48d8-87d2-17d11d3d826c"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nama Produk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="129" y="10" width="57" height="20" uuid="b9e7f135-ce2d-4ed9-95ee-d5405216fb5d"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Total Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="93" y="10" width="36" height="19" uuid="f0d0a4fe-e02a-4020-b12d-1e9a56a1d311"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Harga]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="57" y="10" width="36" height="20" uuid="b81fae8a-8df4-4d58-ba32-7045bcd9ff25"/>
+				<textElement textAlignment="Center">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="86" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="57" height="20" uuid="2ffc1b97-2043-47f2-8fdd-e8d5bf18e530"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{penjualan_smt_nama_produk}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="129" y="0" width="57" height="20" uuid="cd7ee7f9-90aa-4986-8439-0687dc83c391"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{penjualan_total_harga}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="93" y="0" width="36" height="20" uuid="332418b0-7519-4f70-aae4-295f3396edaa"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{penjualan_smt_jumlah}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="57" y="0" width="36" height="20" uuid="b8f1aaac-3802-4c1f-9a0e-906853489212"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{penjualan_smt_jumlah}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

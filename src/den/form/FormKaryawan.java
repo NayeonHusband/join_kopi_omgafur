@@ -127,7 +127,7 @@ public class FormKaryawan extends javax.swing.JPanel {
                 .addGap(423, 423, 423)
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)

@@ -45,7 +45,7 @@
                       <EmptySpace min="-2" pref="356" max="-2" attributes="0"/>
                       <Component id="jLabel3" max="32767" attributes="0"/>
                       <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtpencarian" pref="298" max="32767" attributes="0"/>
+                      <Component id="txtpencarian" pref="300" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
                   <Component id="jPanel2" alignment="1" max="32767" attributes="0"/>
@@ -57,7 +57,7 @@
                       <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtpencarian" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                          <Component id="txtpencarian" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="btntambah" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="btnedit" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           <Component id="btnhapus" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
@@ -82,7 +82,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="976" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="978" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
