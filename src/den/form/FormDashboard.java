@@ -1,12 +1,10 @@
 package den.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
-import com.formdev.flatlaf.ui.FlatLineBorder;
 import java.awt.Color;
 import java.awt.Component;
 
 import java.awt.Font;
-import java.awt.Insets;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -15,7 +13,6 @@ import java.util.Date;
 
 import java.util.Random;
 
-import javax.swing.BorderFactory;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;

@@ -1,6 +1,7 @@
 
 package den.form;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.dateTime;
+import com.formdev.flatlaf.FlatClientProperties;
+//import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.dateTime;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,6 +23,13 @@ public class formabsensikeluar extends javax.swing.JPanel {
     public formabsensikeluar() {
         initComponents();
         txtTanggalKeluar();
+        setlayout();
+    }
+    
+    private void setlayout() {
+        txtrfid.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tempelkan RFID");
+        txtuser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "username");
+        txttanggal.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "tanggal");
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

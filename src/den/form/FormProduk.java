@@ -26,6 +26,10 @@ public class FormProduk extends javax.swing.JPanel {
         initComponents();
         tblData.setModel(tblModel);
         loadData();
+        setlayout();
+    }
+    private void setlayout() {
+        txtpencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
     }
 
     @SuppressWarnings("unchecked")

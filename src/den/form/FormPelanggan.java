@@ -1,5 +1,6 @@
 package den.form;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import den.DAO.PelangganDAO;
 import den.model.ModelPelanggan;
 import den.service.ServicePelanggan;
@@ -18,8 +19,11 @@ public class FormPelanggan extends javax.swing.JPanel {
         tblData.setModel(tblModel);
         loadData();
         setLebarKolom();
+        setlayout();
     }
-    
+    private void setlayout() {
+        txtpencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+    }
     private void setLebarKolom() {
         TableColumnModel kolom = tblData.getColumnModel();
         kolom.getColumn(0).setPreferredWidth(50);

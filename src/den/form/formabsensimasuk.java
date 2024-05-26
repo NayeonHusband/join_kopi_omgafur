@@ -1,6 +1,6 @@
 package den.form;
 
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.dateTime;
+import com.formdev.flatlaf.FlatClientProperties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,8 +24,13 @@ public class formabsensimasuk extends javax.swing.JPanel {
         initComponents();
         txtTanggalMasuk();
         visible();
+        setlayout();
     }
-
+        private void setlayout() {
+        txtrfid.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tempelkan RFID");
+        txtuser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "username");
+        txttanggal.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "tanggal");
+        }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -253,7 +258,7 @@ public class formabsensimasuk extends javax.swing.JPanel {
             pst.execute();
             JOptionPane.showMessageDialog(null, "Absensi berhasil");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Absensi gagal");
+            JOptionPane.showMessageDialog(null, "Absensi gagal "+ e.getMessage());
         }
     }//GEN-LAST:event_txtrfidActionPerformed
 

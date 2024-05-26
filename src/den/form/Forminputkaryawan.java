@@ -396,11 +396,11 @@ public class Forminputkaryawan extends javax.swing.JDialog {
     private void dataTable() {
 
         idKaryawan = karyawan.getIdKaryawan();
-        jLabel6.setVisible(false);
-        txtPassword.setVisible(false);
+        jLabel6.setVisible(true);
+        txtPassword.setVisible(true);
         txtnama.setText(karyawan.getNamaKaryawan());
         txtUsername.setText(karyawan.getUsername());
-        //txtPassword.setText(karyawan.getPassword());
+        txtPassword.setText(karyawan.getPassword());
         txtTelp.setText(karyawan.getTelepon());
         txtalamat.setText(karyawan.getAlamat());
         cbxRole.setSelectedItem(karyawan.getRole());
@@ -415,7 +415,7 @@ public class Forminputkaryawan extends javax.swing.JDialog {
     private void perbaruiData() {
         String namaKaryawan = txtnama.getText();
         String username = txtUsername.getText();
-        // String Password = txtPassword.getText();
+        String Password = txtPassword.getText();
         String TelpKaryawan = txtTelp.getText();
         String alamatKaryawan = txtalamat.getText();
         String roleKaryawan = cbxRole.getSelectedItem().toString();
@@ -424,7 +424,7 @@ public class Forminputkaryawan extends javax.swing.JDialog {
         model.setIdKaryawan(idKaryawan);
         model.setNamaKaryawan(namaKaryawan);
         model.setUsername(username);
-        //  model.setPassword(Password);
+        model.setPassword(Password);
         model.setTelepon(TelpKaryawan);
         model.setAlamat(alamatKaryawan);
         model.setRole(roleKaryawan);

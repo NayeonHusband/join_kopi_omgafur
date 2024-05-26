@@ -19,8 +19,12 @@ public class FormKaryawan extends javax.swing.JPanel {
         tblData.setModel(tblModel);
         loadData();
         setLebarKolom();
+        setlayout();
     }
-
+    private void setlayout() {
+        txtpencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+    }
+    
     private void setLebarKolom() {
         TableColumnModel kolom = tblData.getColumnModel();
         kolom.getColumn(0).setPreferredWidth(150);
