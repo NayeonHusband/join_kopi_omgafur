@@ -38,22 +38,22 @@ public class Menu extends JPanel {
         {"~Laporan~"},
         {"Laporan Produk"},
         {"Laporan Penjualan"},
-        {"Laporan Pembelian"},
-        {"Keluar"},
-    };
-    
+        {"Laporan Absensi"},
+        {"Keluar"},};
+
     private final String menuItemsUser[][] = {
+        {"~Absen~"},
+        {"Absensi Masuk"},
+        {"Absensi Keluar"},
         {"~MAIN~"},
         {"Dashboard"},
         {"~Transaksi~"},
         {"Penjualan"},
-        {"Pembelian"},
         {"~Laporan~"},
         {"Laporan Produk"},
         {"Laporan Penjualan"},
-        {"Laporan Pembelian"},
-        {"Keluar"},
-    };
+        {"Laporan Absensi"},
+        {"Keluar"},};
 
     public boolean isMenuFull() {
         return menuFull;
@@ -81,7 +81,7 @@ public class Menu extends JPanel {
     private boolean menuFull = true;
     private final String headerName = "Join Kopi";
     private ModelKaryawan mk;
-    private String[][] menuItems=null;
+    private String[][] menuItems = null;
 
     protected final boolean hideMenuTitleOnMinimum = true;
     protected final int menuTitleLeftInset = 5;
@@ -93,13 +93,12 @@ public class Menu extends JPanel {
     public Menu() {
         init();
     }
-    
-    public Menu(ModelKaryawan model){
+
+    public Menu(ModelKaryawan model) {
         this.mk = model;
         init();
 
     }
-
 
     private void init() {
         setLayout(new MenuLayout());
@@ -142,12 +141,12 @@ public class Menu extends JPanel {
     }
 
     private void createMenu() {
-        if (mk.getRole().equals("Admin")){
+        if (mk.getRole().equals("Admin")) {
             menuItems = menuItemsAdmin;
-        }else{
+        } else {
             menuItems = menuItemsUser;
         }
-        
+
         int index = 0;
         for (int i = 0; i < menuItems.length; i++) {
             String menuName = menuItems[i][0];
@@ -276,7 +275,7 @@ public class Menu extends JPanel {
                 int hgap = menuFull ? sheaderFullHgap : 0;
                 int accentColorHeight = 0;
                 if (toolBarAccentColor.isVisible()) {
-                    accentColorHeight = toolBarAccentColor.getPreferredSize().height+gap;
+                    accentColorHeight = toolBarAccentColor.getPreferredSize().height + gap;
                 }
 
                 header.setBounds(x + hgap, y, iconWidth - (hgap * 2), iconHeight);
@@ -284,7 +283,7 @@ public class Menu extends JPanel {
                 int ldWidth = width - ldgap * 2;
                 int ldHeight = lightDarkMode.getPreferredSize().height;
                 int ldx = x + ldgap;
-                int ldy = y + height - ldHeight - ldgap  - accentColorHeight;
+                int ldy = y + height - ldHeight - ldgap - accentColorHeight;
 
                 int menux = x;
                 int menuy = y + iconHeight + gap;

@@ -91,22 +91,22 @@ public class FormPenjualan extends javax.swing.JPanel {
     private void setLayoutform() {
         //viewPanel.putClientProperty(FlatClientProperties.STYLE, ""
         //  + "background:$Menu.background");
-        addPanel.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnTambahSmt.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnDetail.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnSimpanSmt.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnBatal.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnPerbaruiSmt.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnHapusSmt.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
-        btnBatalSmt.putClientProperty(FlatClientProperties.STYLE, ""
-                + "background:$Menu.background");
+//        addPanel.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnTambahSmt.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnDetail.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnSimpanSmt.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnBatal.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnPerbaruiSmt.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnHapusSmt.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
+//        btnBatalSmt.putClientProperty(FlatClientProperties.STYLE, ""
+//                + "background:$Menu.background");
 
         txtpencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
         txtBarcode.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Barcode");
@@ -379,7 +379,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblHari)
                         .addComponent(lblTanggal)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
@@ -1283,12 +1283,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             double diskon = Double.parseDouble(txtDiskon.getText());
             double bayar = Double.parseDouble(txtBayar.getText());
             double kembali = Double.parseDouble(txtKembali.getText());
-//            int idKaryawan = Integer.parseInt(txtNamaKasir.getText());
 
-            // Memeriksa apakah idPenjualan sudah ada dalam database
-            List<ModelPenjualan> penjualanList = servis.pencarianData(idPenjualan);
-
-            if (penjualanList.isEmpty()) {
                 ModelPenjualan modelPen = new ModelPenjualan();
                 ModelProduk modelPro = new ModelProduk();
                 ModelPelanggan modelPel = new ModelPelanggan();
@@ -1316,17 +1311,12 @@ public class FormPenjualan extends javax.swing.JPanel {
                 servisDet.tambahData(modelDet);
                 servisDet.hapusDataSementara();
 
-//                System.out.println(servis.tampilData().size());
                 tblModelPen.insertData(modelPen);
                 showPanel();
                 loadData(); // Memuat ulang data ke tabel
                 loadDataSementara();
                 resetProduk();
                 resetPembayaran();
-            } else {
-                // Menangani kasus jika idPenjualan sudah ada (misalnya, tampilkan pesan peringatan)
-                System.out.println("ID Transaksi sudah ada di database. Data tidak boleh duplikat.");
-            }
         }
     }
 }

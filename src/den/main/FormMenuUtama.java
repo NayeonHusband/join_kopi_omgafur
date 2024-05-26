@@ -88,8 +88,8 @@ public class FormMenuUtama extends javax.swing.JFrame {
         FlatRobotoFont.install();
         FlatLaf.registerCustomDefaultsSource("den.theme");
         UIManager.put("defaultFont", new Font(FlatRobotoFont.FAMILY, Font.PLAIN, 13));
-        //FlatMacDarkLaf.setup();
-        FlatLightLaf.setup();
+        FlatMacDarkLaf.setup();
+        //FlatLightLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new FormMenuUtama();
             //  app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);

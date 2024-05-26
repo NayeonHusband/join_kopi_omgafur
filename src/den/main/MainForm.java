@@ -32,7 +32,7 @@ import den.model.ModelKaryawan;
 public class MainForm extends JLayeredPane {
 
     public MainForm(ModelKaryawan mk) {
-        
+
         init(mk);
 
     }
@@ -75,52 +75,59 @@ public class MainForm extends JLayeredPane {
     private void initMenuEvent(ModelKaryawan mk) {
         menu.addMenuEvent((int index, int subIndex, MenuAction action) -> {
             // FormMenuUtama.mainForm.showForm(new DefaultForm("Form : " + index + " " + subIndex));
-            if(mk.getRole().equals("Admin")){
+            if (mk.getRole().equals("Admin")) {
                 if (index == 0) {
-                FormMenuUtama.showForm(new FormDashboard());
-            } else if (index == 1) {
-                FormMenuUtama.showForm(new FormProduk());
-                if (subIndex == 1) {
+                    FormMenuUtama.showForm(new FormDashboard());
+                } else if (index == 1) {
+                    FormMenuUtama.showForm(new FormProduk());
+                    if (subIndex == 1) {
+                    }
+                } else if (index == 2) {
+                    FormMenuUtama.showForm(new FormKategori());
+                } else if (index == 3) {
+                    FormMenuUtama.showForm(new FormSupplier());
+                } else if (index == 4) {
+                    FormMenuUtama.showForm(new FormKaryawan());
+                } else if (index == 5) {
+                    FormMenuUtama.showForm(new FormPelanggan());
+                } else if (index == 6) {
+                    FormMenuUtama.showForm(new FormPenjualan(mk));
+                } else if (index == 8) {
+                    FormMenuUtama.showForm(new FormLaporanProduk());
+                } else if (index == 9) {
+                    FormMenuUtama.showForm(new FormLaporanPenjualan());
+                } else if (index == 10) {
+                    FormMenuUtama.showForm(new FormLaporanAbsensi());
+                } else if (index == 11) {
+                    FormMenuUtama.logout();
+                } else {
+                    action.cancel();
                 }
-            } else if (index == 2) {
-                FormMenuUtama.showForm(new FormKategori());
-            } else if (index == 3) {
-                FormMenuUtama.showForm(new FormSupplier());
-            } else if (index == 4) {
-                FormMenuUtama.showForm(new FormKaryawan());
-            } else if (index == 5) {
-                FormMenuUtama.showForm(new FormPelanggan());
-            } else if (index == 6) {
-                FormMenuUtama.showForm(new FormPenjualan(mk));
-            }else if (index == 8) {
-                FormMenuUtama.showForm(new FormLaporanProduk());
-            }else if (index == 9) {
-                FormMenuUtama.showForm(new FormLaporanPenjualan());
-            }else if (index == 10) {
-                FormMenuUtama.showForm(new FormLaporanAbsensi());
-            }else if (index == 11) {
-                FormMenuUtama.logout();
+
             } else {
-                action.cancel();
+                if (index == 0) {
+                    FormMenuUtama.showForm(new formabsensimasuk());
+                } else if (index == 1) {
+                    FormMenuUtama.showForm(new formabsensikeluar());
+                } else if (index == 2) {
+                    FormMenuUtama.showForm(new FormDashboard());
+                } else if (index == 3) {
+                    FormMenuUtama.showForm(new FormPenjualan(mk));
+                } else if (index == 4) {
+                    FormMenuUtama.showForm(new FormLaporanProduk());
+                } else if (index == 5) {
+                    FormMenuUtama.showForm(new FormLaporanPenjualan());
+                } else if (index == 6) {
+                    FormMenuUtama.showForm(new FormLaporanAbsensi());
+                } else if (index == 7) {
+                    FormMenuUtama.logout();
+
+                } else {
+
+                    action.cancel();
+                }
             }
-                
-            }else{
-                  if (index == 0) {
-                FormMenuUtama.showForm(new FormDashboard());
-            } else if (index == 1) {
-                FormMenuUtama.showForm(new FormPenjualan(mk));
-            } else if (index == 2) {
-                FormMenuUtama.showForm(new FormProduk());
-            } else if (index == 3) {
-                FormMenuUtama.showForm(new FormLaporanPenjualan());
-            
-            } else{
-                
-                action.cancel();
-            }
-            }
-            
-            
+
         });
     }
 
