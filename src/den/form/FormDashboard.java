@@ -71,7 +71,7 @@ public class FormDashboard extends javax.swing.JPanel {
 
             
 
-        String[] teks = {"Test", "Anjay", "ASDASD", "ASDSADAA", "ASDSAAAAAADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA", "ASDSADAA"};
+        String[] teks = {"Mingguan","Bulanan","Tahunan"};
         
         JComboBox combobox = new JComboBox(teks) {
             class MyComboBoxEditor extends javax.swing.plaf.basic.BasicComboBoxEditor {
@@ -97,7 +97,7 @@ public class FormDashboard extends javax.swing.JPanel {
 
                     panel.setLayout(new MigLayout ("insets 0 20 0 100","push,grow"));
                     
-                    JLabel labelApp = new JLabel("App");
+                    JLabel labelApp = new JLabel("Rentang");
                     labelApp.setFont(new Font("Roboto",Font.BOLD,15));
                     panel.add(labelApp, "split 2");
                     panel.add(panel2);
@@ -146,9 +146,9 @@ public class FormDashboard extends javax.swing.JPanel {
 //        add(panel1, "wrap,grow");
         add(Bawah,"grow,push");
        
-        Bawah.add(new Panel(),"split 3,gapright 20");
-        Bawah.add(new Panel(),"gapright 20");
-        Bawah.add(new Panel(),"wrap 20");
+        Bawah.add(new Panel("Pendapatan","11,274"),"split 3,gapright 20");
+        Bawah.add(new Panel("Customer","84"),"gapright 20");
+        Bawah.add(new Panel("Best Seller","Arabica"),"wrap 20");
 
         createLineChart();
 
