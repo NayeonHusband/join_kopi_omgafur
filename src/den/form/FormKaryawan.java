@@ -19,8 +19,12 @@ public class FormKaryawan extends javax.swing.JPanel {
         tblData.setModel(tblModel);
         loadData();
         setLebarKolom();
+        setlayout();
     }
-
+    private void setlayout() {
+        txtpencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+    }
+    
     private void setLebarKolom() {
         TableColumnModel kolom = tblData.getColumnModel();
         kolom.getColumn(0).setPreferredWidth(150);
@@ -140,10 +144,10 @@ public class FormKaryawan extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()

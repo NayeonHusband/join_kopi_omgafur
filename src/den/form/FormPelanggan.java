@@ -1,5 +1,6 @@
 package den.form;
 
+import com.formdev.flatlaf.FlatClientProperties;
 import den.DAO.PelangganDAO;
 import den.model.ModelPelanggan;
 import den.service.ServicePelanggan;
@@ -18,8 +19,11 @@ public class FormPelanggan extends javax.swing.JPanel {
         tblData.setModel(tblModel);
         loadData();
         setLebarKolom();
+        setlayout();
     }
-    
+    private void setlayout() {
+        txtpencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
+    }
     private void setLebarKolom() {
         TableColumnModel kolom = tblData.getColumnModel();
         kolom.getColumn(0).setPreferredWidth(50);
@@ -48,6 +52,7 @@ public class FormPelanggan extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         jLabel3 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
         jPanel2.setBackground(new java.awt.Color(36, 104, 155));
 
@@ -77,7 +82,7 @@ public class FormPelanggan extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         txtpencarian.addActionListener(new java.awt.event.ActionListener() {
@@ -156,12 +161,17 @@ public class FormPelanggan extends javax.swing.JPanel {
                 .addComponent(txtpencarian, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE))
             .addComponent(jScrollPane2)
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btntambah, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -222,6 +232,7 @@ public class FormPelanggan extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblData;
     private javax.swing.JTextField txtpencarian;
     // End of variables declaration//GEN-END:variables

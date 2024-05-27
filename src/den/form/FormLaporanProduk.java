@@ -35,19 +35,19 @@ public class FormLaporanProduk extends javax.swing.JPanel {
     private Statement st;
     private String sql = "";
     private ResultSet rs;
+
     /**
      * Creates new form FormLaporanProduk
      */
     public FormLaporanProduk() {
-                con = koneksi.getConnection();
+        con = koneksi.getConnection();
 
         initComponents();
         tampildata();
     }
-    
-    private void tampildata(){
-        
-        
+
+    private void tampildata() {
+
         DefaultTableModel data = new DefaultTableModel();
         data.addColumn("No");
         data.addColumn("Tanggal");
@@ -55,45 +55,43 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         data.addColumn("id_produk");
         data.addColumn("Nama Produk");
         data.addColumn("Jumlah");
-        
-        try{
+
+        try {
             int i = 1;
             String sql;
-            if (nmr != null){
-                sql = "SELECT * FROM laporan_penjualan WHERE tanggal LIKE ?" ;
+            if (nmr != null) {
+                sql = "SELECT * FROM laporan_produk WHERE tanggal LIKE ?";
             } else {
-                sql = "SELECT * FROM laporan_penjualan";
+                sql = "SELECT * FROM laporan_produk";
             }
-            
-            try{
+
+            try {
                 PreparedStatement pstmt = con.prepareStatement(sql);
-                if (nmr != null){
+                if (nmr != null) {
                     pstmt.setString(1, "%" + nmr + "%");
                 }
-                
-                try (ResultSet rs = pstmt.executeQuery()){
+
+                try (ResultSet rs = pstmt.executeQuery()) {
                     while (rs.next()) {
                         data.addRow(new Object[]{
-                        i++,
-                        rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3),
-                        rs.getString(4),
-                        rs.getString(5)
-                    });
+                            i++,
+                            rs.getString(1),
+                            rs.getString(2),
+                            rs.getString(3),
+                            rs.getString(4),
+                            rs.getString(5)
+                        });
                     }
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
             Table1.setModel(data);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, " ERROR \n Gagal Memuat ke Database \n Aktifkan Database Sebelum Memulai");
-                e.printStackTrace();
-            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, " ERROR \n Gagal Memuat ke Database \n Aktifkan Database Sebelum Memulai");
+            e.printStackTrace();
+        }
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,6 +114,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         jdate = new com.toedter.calendar.JDateChooser();
         jdate1 = new com.toedter.calendar.JDateChooser();
         jButton1 = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
         Table1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         Table1.setModel(new javax.swing.table.DefaultTableModel(
@@ -139,6 +138,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("LAPORAN PRODUK");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -148,10 +148,10 @@ public class FormLaporanProduk extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 943, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(461, 461, 461))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +159,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addGap(0, 57, Short.MAX_VALUE))
+                .addGap(0, 30, Short.MAX_VALUE))
         );
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -168,7 +168,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         btncetak.setBackground(new java.awt.Color(36, 104, 155));
         btncetak.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btncetak.setForeground(new java.awt.Color(255, 255, 255));
-        btncetak.setText("CETAK");
+        btncetak.setText("Cari");
         btncetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncetakActionPerformed(evt);
@@ -192,22 +192,25 @@ public class FormLaporanProduk extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdate, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(jdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(73, 73, 73)
-                .addComponent(jdate1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
+                .addComponent(jdate1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(59, 59, 59)
                 .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(415, 415, 415)
-                .addComponent(btncetak, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
+                .addComponent(btncetak, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(41, 41, 41))
             .addComponent(jScrollPane2)
+            .addComponent(jSeparator1)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 5, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -216,8 +219,8 @@ public class FormLaporanProduk extends javax.swing.JPanel {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jdate1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(jPanel1);
@@ -230,13 +233,13 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
         // TODO add your handling code here:
-        String excelFilePath = "/Users/Taufiqur Rahman/Documents/NetBeansProjects/join_kopi_omgafur6/src/laporan/laporan-produk.xlsx";
+        String excelFilePath = "/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/laporan/laporan-produk.xlsx";
         String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
         String tanggalawal = String.valueOf(tgl1.format(jdate.getDate()));
@@ -246,40 +249,39 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         String tanggalakhir = String.valueOf(tgl2.format(jdate1.getDate()));
         System.out.println(tanggalawal + tanggalakhir);
 
+        try {
+            String url = "jdbc:mysql://localhost:3306/joininkopi1?serverTimezone=UTC";
+            String user = "root";
+            String pass = "";
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection(url, user, pass);
+            Statement st = con.createStatement();
 
-try {
-    String url = "jdbc:mysql://localhost:3306/joininkopi1?serverTimezone=UTC";
-    String user = "root";
-    String pass = "";
-    Class.forName("com.mysql.cj.jdbc.Driver");
-    Connection con = DriverManager.getConnection(url, user, pass);
-    Statement st = con.createStatement();
-    
-    String sql = "SELECT * FROM laporan_penjualan WHERE tanggal BETWEEN'"+tanggalawal+"'AND '"+tanggalakhir+"'";
-    ResultSet rs = st.executeQuery(sql);
-    
-    try (XSSFWorkbook workbook = new XSSFWorkbook()) {
-        XSSFSheet sheet = workbook.createSheet("laporan");
-        
-        writeHeaderLine(sheet);
-        
-        writeDataLines(rs, workbook, sheet);
-        
-        try (FileOutputStream outputStream = new FileOutputStream(excelFilePath)) {
-            workbook.write(outputStream);
+            String sql = "SELECT * FROM laporan_produk WHERE tanggal BETWEEN'" + tanggalawal + "'AND '" + tanggalakhir + "'";
+            ResultSet rs = st.executeQuery(sql);
+
+            try (XSSFWorkbook workbook = new XSSFWorkbook()) {
+                XSSFSheet sheet = workbook.createSheet("laporan");
+
+                writeHeaderLine(sheet);
+
+                writeDataLines(rs, workbook, sheet);
+
+                try (FileOutputStream outputStream = new FileOutputStream(excelFilePath)) {
+                    workbook.write(outputStream);
+                }
+
+                st.close();
+                con.close();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Koneksi gagal");
+            e.printStackTrace();
         }
-        
-        st.close();
-        con.close();
-    }
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(null, "Koneksi gagal");
-    e.printStackTrace();
-}
     }//GEN-LAST:event_btncetakActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-                                 
+
         String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
         String tanggalawal = String.valueOf(tgl1.format(jdate1.getDate()));
@@ -290,8 +292,8 @@ try {
         System.out.println(tanggalawal + tanggalakhir);
         try {
             int No = 1;
-            String sql = "SELECT * FROM laporan_penjualan WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir +"';";
-            java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
+            String sql = "SELECT * FROM laporan_produk WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
+            java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
             // Create a Statement
             java.sql.Statement stm = conn.createStatement();
 
@@ -299,11 +301,11 @@ try {
             DefaultTableModel table = (DefaultTableModel) Table1.getModel();
             table.setRowCount(0);
             while (res.next()) {
-                table.addRow(new Object[]{res.getString(1), res.getString(2), res.getDate(3), res.getString(4), res.getString(5), res.getString(6),
-                    res.getString(7), res.getString(8), res.getString(9), res.getString(10)});
+                table.addRow(new Object[]{res.getDate(1), res.getString(2), res.getString(3), res.getString(4),
+                    res.getString(5)});
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "error abangku"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "error abangku" + e.getMessage());
         }    }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -318,29 +320,30 @@ try {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
     private com.toedter.calendar.JDateChooser jdate;
     private com.toedter.calendar.JDateChooser jdate1;
     // End of variables declaration//GEN-END:variables
 
     public void writeHeaderLine(XSSFSheet sheet) {
         XSSFRow headerRow = sheet.createRow(0);
-        
+
         // Tanggal
         XSSFCell headerCell = headerRow.createCell(0);
         headerCell.setCellValue("tanggal");
-        
+
         // ID Pelanggan
         headerCell = headerRow.createCell(1);
         headerCell.setCellValue("id_pelanggan");
-        
+
         // ID Produk
         headerCell = headerRow.createCell(2);
         headerCell.setCellValue("id_produk");
-        
+
         // Nama Produk
         headerCell = headerRow.createCell(3);
         headerCell.setCellValue("nama_produk");
-        
+
         // Jumlah
         headerCell = headerRow.createCell(4);
         headerCell.setCellValue("jumlah");
@@ -348,35 +351,34 @@ try {
 
     public void writeDataLines(ResultSet rs, XSSFWorkbook workbook, XSSFSheet sheet) throws SQLException {
         int rowCount = 1;
-        
-        while(rs.next()) {
+
+        while (rs.next()) {
             String tanggal = rs.getString("tanggal");
             String idpelanggan = rs.getString("id_pelanggan");
             String idproduk = rs.getString("id_produk");
             String namaproduk = rs.getString("nama_produk");
             String jumlah = rs.getString("jumlah");
-            
+
             XSSFRow row = sheet.createRow(rowCount++);
-            
+
             int columnCount = 0;
-            
+
             XSSFCell cell = row.createCell(columnCount++);
             cell.setCellValue(tanggal);
-            
+
             cell = row.createCell(columnCount++);
             cell.setCellValue(idpelanggan);
-            
+
             cell = row.createCell(columnCount++);
-            
+
             cell.setCellValue(idproduk);
-            
+
             cell = row.createCell(columnCount++);
             cell.setCellValue(namaproduk);
-            
+
             cell = row.createCell(columnCount);
             cell.setCellValue(jumlah);
-            
-            
+
         }
     }
 }

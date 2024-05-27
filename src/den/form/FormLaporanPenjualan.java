@@ -1,25 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package den.form;
 
-import com.formdev.flatlaf.FlatClientProperties;
 import den.DAO.PenjualanDAO;
-import den.model.ModelPenjualan;
 import den.service.ServicePenjualan;
-import den.service.ServicePenjualanDetail;
 import den.tablemodel.TableModelPenjualan;
-import den.tablemodel.TableModelPenjualanDetail;
-import java.awt.Frame;
 import java.io.FileOutputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
@@ -56,9 +46,6 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
    //     jPanel1.putClientProperty(FlatClientProperties.STYLE, ""
        //         + "background:$Menu.background");
 //        txtPencarian.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Pencarian");
-    }
-    private FormLaporanPenjualan(Frame parent, boolean modal) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -106,20 +93,20 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(422, 422, 422)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(427, 427, 427))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         tblData.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -138,7 +125,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblData);
 
         jButton1.setBackground(new java.awt.Color(36, 104, 155));
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 10)); // NOI18N
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cetak");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -158,9 +145,9 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
         jLabel5.setText("TANGGAL");
 
         jButton2.setBackground(new java.awt.Color(36, 104, 155));
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 10)); // NOI18N
+        jButton2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("CARI");
+        jButton2.setText("Cari");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -175,16 +162,16 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jdate, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                .addComponent(jdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jdate2, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE)
-                .addGap(48, 48, 48)
-                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
-                .addGap(234, 234, 234)
+                .addComponent(jdate2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(50, 50, 50)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(232, 232, 232)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(51, 51, 51))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -260,8 +247,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
             table.setRowCount(0);
             while (res.next()) {
                 table.addRow(new Object[]{res.getString(1), res.getString(2), res.getDate(3), res.getString(4), res.getString(5), res.getString(6),
-                    res.getString(7), res.getString(8), res.getString(9), res.getString(10)});
-                JOptionPane.showMessageDialog(null, "Berhasil");
+                    res.getString(7), res.getString(8)});
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "error abangku"+e.getMessage());
@@ -272,7 +258,7 @@ public class FormLaporanPenjualan extends javax.swing.JPanel {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
            // TODO add your handling code here:
-        String excelFilePath = "/Users/A C E R/OneDrive/Documents/NetBeansProjects/join_kopi_omgafur1/src/laporan/Laporan-Penjualan.xlsx";
+        String excelFilePath = "/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/laporan/laporan-penjualan.xlsx";
         String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
         String tanggalawal = String.valueOf(tgl1.format(jdate.getDate()));

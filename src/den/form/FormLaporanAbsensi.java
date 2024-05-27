@@ -4,25 +4,15 @@
  */
 package den.form;
 
-import com.formdev.flatlaf.FlatClientProperties;
-import den.DAO.PenjualanDAO;
-import den.model.ModelPenjualan;
-import den.service.ServicePenjualan;
-import den.service.ServicePenjualanDetail;
-import den.tablemodel.TableModelPenjualan;
-import den.tablemodel.TableModelPenjualanDetail;
 import java.awt.Frame;
 import java.io.FileOutputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableColumnModel;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -34,17 +24,12 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  */
 public class FormLaporanAbsensi extends javax.swing.JPanel {
 
-
-   public FormLaporanAbsensi() {
+    public FormLaporanAbsensi() {
         initComponents();
         tampildata1();
 
-      
-  
     }
-  
 
-    
     private FormLaporanAbsensi(Frame parent, boolean modal) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
@@ -91,20 +76,20 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(446, 446, 446))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         tblData.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
@@ -141,7 +126,7 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
         jButton2.setBackground(new java.awt.Color(36, 104, 155));
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("CARI");
+        jButton2.setText("Cari");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -152,26 +137,25 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSeparator1)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jdate, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
-                        .addGap(24, 24, 24)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jdate2, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE)
-                        .addGap(42, 42, 42)
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                        .addGap(411, 411, 411)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1)))
+                .addGap(4, 4, 4)
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jdate, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jdate2, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                .addGap(42, 42, 42)
+                .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 87, Short.MAX_VALUE)
+                .addGap(399, 399, 399)
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                .addGap(22, 22, 22))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jSeparator1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -190,7 +174,7 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jdate2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 558, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -198,7 +182,9 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,7 +195,7 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-                                        
+
         String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
         String tanggalawal = String.valueOf(tgl1.format(jdate.getDate()));
@@ -220,8 +206,8 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
         System.out.println(tanggalawal + tanggalakhir);
         try {
             int No = 1;
-            String sql = "SELECT * FROM absensi WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir +"';";
-            java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
+            String sql = "SELECT * FROM absensi WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
+            java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
             // Create a Statement
             java.sql.Statement stm = conn.createStatement();
 
@@ -229,19 +215,18 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
             DefaultTableModel table = (DefaultTableModel) tblData.getModel();
             table.setRowCount(0);
             while (res.next()) {
-                table.addRow(new Object[]{res.getString(1), res.getString(2), res.getDate(3), res.getString(4), res.getString(5), res.getString(6),
-                    res.getString(7), res.getString(8), res.getString(9), res.getString(10)});
+                table.addRow(new Object[]{res.getString(1), res.getString(2), res.getString(3), res.getDate(4), res.getDate(5)});
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "error abangku"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "error abangku" + e.getMessage());
         }
-        
-    
+
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-           // TODO add your handling code here:
-        String excelFilePath = "/Users/A C E R/OneDrive/Documents/NetBeansProjects/join_kopi_omgafur1/src/laporan/Laporan-Penjualan.xlsx";
+        // TODO add your handling code here:
+        String excelFilePath = "/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/laporan/laporan-absensi.xlsx";
         String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
         String tanggalawal = String.valueOf(tgl1.format(jdate.getDate()));
@@ -251,37 +236,34 @@ public class FormLaporanAbsensi extends javax.swing.JPanel {
         String tanggalakhir = String.valueOf(tgl2.format(jdate2.getDate()));
         System.out.println(tanggalawal + tanggalakhir);
 
+        try {
 
-try {
+            String sql = "SELECT * FROM absensi WHERE tanggal BETWEEN'" + tanggalawal + "'AND '" + tanggalakhir + "'";
+            java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
+            Statement st = conn.createStatement();
+            ResultSet rs = st.executeQuery(sql);
 
-    
-    String sql = "SELECT * FROM absensi WHERE tanggal BETWEEN'"+tanggalawal+"'AND '"+tanggalakhir+"'";
-     java.sql.Connection conn = (Connection)den.koneksi.koneksi.getConnection();
-    Statement st = conn.createStatement();
-    ResultSet rs = st.executeQuery(sql);
-    
-    
-    try (XSSFWorkbook workbook = new XSSFWorkbook()) {
-        XSSFSheet sheet = workbook.createSheet("laporan");
-        
-        writeHeaderLine(sheet);
-        
-        writeDataLines(rs, workbook, sheet);
-        
-        try (FileOutputStream outputStream = new FileOutputStream(excelFilePath)) {
-            workbook.write(outputStream);
+            try (XSSFWorkbook workbook = new XSSFWorkbook()) {
+                XSSFSheet sheet = workbook.createSheet("laporan");
+
+                writeHeaderLine(sheet);
+
+                writeDataLines(rs, workbook, sheet);
+
+                try (FileOutputStream outputStream = new FileOutputStream(excelFilePath)) {
+                    workbook.write(outputStream);
+                }
+
+                st.close();
+                conn.close();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Koneksi gagal");
+            e.printStackTrace();
         }
-        
-        st.close();
-        conn.close();
-    }
-} catch (Exception e) {
-    JOptionPane.showMessageDialog(null, "Koneksi gagal");
-    e.printStackTrace();
-}
     }//GEN-LAST:event_jButton1ActionPerformed
 
-     
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -297,7 +279,7 @@ try {
     private com.toedter.calendar.JDateChooser jdate2;
     private javax.swing.JTable tblData;
     // End of variables declaration//GEN-END:variables
- 
+
 //
 //    private void pencarianData() {
 //        List<ModelPenjualan> list = servis.pencarianData(txtPencarian.getText());
@@ -312,71 +294,70 @@ try {
             java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
             java.sql.Statement stm = conn.createStatement();
             java.sql.ResultSet res = stm.executeQuery(sql);
-            
+
             model.setRowCount(0);
             while (res.next()) {
-                Object[] data = {res.getString("id_absensi"),res.getString("id_karyawan"),res.getString("keterangan"),res.getString("tgl_absenmasuk"),
+                Object[] data = {res.getString("id_absensi"), res.getString("id_karyawan"), res.getString("keterangan"), res.getString("tgl_absenmasuk"),
                     res.getString("tgl_absenkeluar")};
                 model.addRow(data);
             }
         } catch (Exception e) {
         }
     }
-     public void writeHeaderLine(XSSFSheet sheet) {
+
+    public void writeHeaderLine(XSSFSheet sheet) {
         XSSFRow headerRow = sheet.createRow(0);
-        
+
         // Tanggal
         XSSFCell headerCell = headerRow.createCell(0);
         headerCell.setCellValue("id_absensi");
-        
+
         // ID Pelanggan
         headerCell = headerRow.createCell(1);
         headerCell.setCellValue("id_karyawan");
-        
+
         // ID Produk
         headerCell = headerRow.createCell(2);
         headerCell.setCellValue("keterangan");
-        
+
         // Nama Produk
         headerCell = headerRow.createCell(3);
         headerCell.setCellValue("tgl_absenmasuk");
-        
+
         // Jumlah
         headerCell = headerRow.createCell(4);
         headerCell.setCellValue("tgl_absenkeluar");
-        
-        
+
     }
 
     public void writeDataLines(ResultSet rs, XSSFWorkbook workbook, XSSFSheet sheet) throws SQLException {
         int rowCount = 1;
-        
-        while(rs.next()) {
+
+        while (rs.next()) {
             String ID_Absensi = rs.getString("id_absensi");
             String ID_Karyawan = rs.getString("id_karyawan");
             String Keterangan = rs.getString("keterangan");
             String AbsenMasuk = rs.getString("tgl_absenmasuk");
             String AbsenKeluar = rs.getString("tgl_absenkeluar");
             XSSFRow row = sheet.createRow(rowCount++);
-            
+
             int columnCount = 0;
-            
+
             XSSFCell cell = row.createCell(columnCount++);
             cell.setCellValue(ID_Absensi);
-            
+
             cell = row.createCell(columnCount++);
             cell.setCellValue(ID_Karyawan);
-            
+
             cell = row.createCell(columnCount++);
             cell.setCellValue(Keterangan);
-            
+
             cell = row.createCell(columnCount++);
             cell.setCellValue(AbsenMasuk);
-            
+
             cell = row.createCell(columnCount);
             cell.setCellValue(AbsenKeluar);
-          
+
         }
     }
 }
-

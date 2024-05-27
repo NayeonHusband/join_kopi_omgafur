@@ -1,6 +1,6 @@
-
 package den.form;
-import static com.sun.org.apache.xalan.internal.lib.ExsltDatetime.dateTime;
+
+import com.formdev.flatlaf.FlatClientProperties;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,17 +12,25 @@ import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
 
-
 public class formabsensimasuk extends javax.swing.JPanel {
+
     Statement st;
     ResultSet rs;
-     Connection cn = den.koneksi.koneksi.getConnection();
-     static boolean isAbsenMasuk = false;
-     String id;
+    Connection cn = den.koneksi.koneksi.getConnection();
+    static boolean isAbsenMasuk = false;
+    String id;
+
     public formabsensimasuk() {
         initComponents();
         txtTanggalMasuk();
+        visible();
+        setlayout();
     }
+        private void setlayout() {
+        txtrfid.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "Tempelkan RFID");
+        txtuser.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "username");
+        txttanggal.putClientProperty(FlatClientProperties.PLACEHOLDER_TEXT, "tanggal");
+        }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -47,23 +55,24 @@ public class formabsensimasuk extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(36, 104, 155));
 
-        jLabel3.setFont(new java.awt.Font("Gill Sans Ultra Bold Condensed", 0, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(36, 104, 155));
         jLabel3.setText("ABSENSI MASUK KARYAWAN");
 
-        jLabel4.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel4.setText("RFID");
 
-        jLabel5.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel5.setText("Username");
 
-        jLabel7.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel7.setText("Keterangan");
 
-        jLabel8.setFont(new java.awt.Font("MS Reference Sans Serif", 1, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel8.setText("Tanggal");
 
         btnkirim.setBackground(new java.awt.Color(36, 104, 155));
+        btnkirim.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         btnkirim.setText("Kirim");
         btnkirim.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,6 +102,7 @@ public class formabsensimasuk extends javax.swing.JPanel {
             }
         });
 
+        cmpilih.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         cmpilih.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Masuk", "izin", "sakit" }));
         cmpilih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +128,7 @@ public class formabsensimasuk extends javax.swing.JPanel {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(64, Short.MAX_VALUE)
+                .addContainerGap(59, Short.MAX_VALUE)
                 .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60))
         );
@@ -148,7 +158,7 @@ public class formabsensimasuk extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtrfid, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 176, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -159,15 +169,6 @@ public class formabsensimasuk extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(174, 174, 174))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,6 +178,15 @@ public class formabsensimasuk extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(399, 399, 399))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(75, 75, 75)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(142, 142, 142)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,27 +197,28 @@ public class formabsensimasuk extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7)
-                    .addComponent(txtrfid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmpilih, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtrfid, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmpilih, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(71, 71, 71)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtuser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
-                .addComponent(btnkirim, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                    .addComponent(txttanggal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addComponent(btnkirim, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(52, 52, 52))
         );
 
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 11)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("MASTER > ABSENSI MASUK");
 
-        jLabel2.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ABSENSI KARYAWAN");
 
@@ -218,11 +229,11 @@ public class formabsensimasuk extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addComponent(jLabel2)
-                .addContainerGap(895, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -230,88 +241,95 @@ public class formabsensimasuk extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(30, 30, 30)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void visible() {
+        jLabel5.setVisible(false);
+        txtuser.setVisible(false);
+    }
+
     private void txtrfidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtrfidActionPerformed
-         try {
-            String sql = "INSERT INTO absensi VALUES(NULL,'"+id+cmpilih.getSelectedItem()+"','"+txttanggal. getText()+"')";
+        try {
+            String sql = "INSERT INTO absensi VALUES(NULL,'" + id + cmpilih.getSelectedItem() + "','" + txttanggal.getText() + "')";
             java.sql.PreparedStatement pst = cn.prepareStatement(sql);
             pst.execute();
-             JOptionPane.showMessageDialog(null, "Absensi berhasil");
+            JOptionPane.showMessageDialog(null, "Absensi berhasil");
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Absensi gagal");
+            JOptionPane.showMessageDialog(null, "Absensi gagal "+ e.getMessage());
         }
     }//GEN-LAST:event_txtrfidActionPerformed
 
     private void btnkirimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnkirimMouseClicked
-   
+
     }//GEN-LAST:event_btnkirimMouseClicked
 
     private void txtrfidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtrfidKeyReleased
-    String rfid = txtrfid.getText();
+        String rfid = txtrfid.getText();
         try {
             String sql = "select * from karyawan WHERE id_karyawan = ?";
             java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
             java.sql.PreparedStatement stm = conn.prepareStatement(sql);
             stm.setString(1, rfid);
             java.sql.ResultSet res = stm.executeQuery();
-            if (res.next()){
+            if (res.next()) {
                 txtrfid.setText(res.getString("id_karyawan"));
                 txtuser.setText(res.getString("username"));
-               
+
                 absen();
-              
-                
+
             }
         } catch (Exception e) {
-            System.out.println("Error"+e.getMessage());
-        }}
-        private void txtTanggalMasuk(){
-            LocalDateTime datetime = LocalDateTime.now();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm", new Locale("id","ID"));
-            String formattedDateTime = datetime.format(formatter);
-            txttanggal.setText(formattedDateTime);
+            System.out.println("Error" + e.getMessage());
         }
-        private void absen(){
-           String Iduser = txtrfid.getText();
-            try {
-                String sqlCheck = "SELECT COUNT(*) FROM absensi WHERE id_karyawan = ? AND DATE(tgl_absenmasuk) = CURDATE()";
+    }
+
+    private void txtTanggalMasuk() {
+        LocalDateTime datetime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm", new Locale("id", "ID"));
+        String formattedDateTime = datetime.format(formatter);
+        txttanggal.setText(formattedDateTime);
+    }
+
+    private void absen() {
+        String Iduser = txtrfid.getText();
+        try {
+            String sqlCheck = "SELECT COUNT(*) FROM absensi WHERE id_karyawan = ? AND DATE(tgl_absenmasuk) = CURDATE()";
             PreparedStatement statementCheck = cn.prepareStatement(sqlCheck);
             statementCheck.setString(1, Iduser);
             ResultSet rsCheck = statementCheck.executeQuery();
             rsCheck.next();
             int count = rsCheck.getInt(1);
-            
-                if (count > 0) {
-                    JOptionPane.showMessageDialog(null, "Anda sudah melakukan absensi masuk hari ini");
-                }else{
-                    String keterangan = (String) cmpilih.getSelectedItem();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                    Date date = new Date();
-                    String tanggalMasuk =  dateFormat.format(date);
-                    
-                    String sql ="SELECT INTO absensi (id_karyawan,keterangan,tgl_absenmasuk) VALUES (?, ?, ?)";
-                    
-                    PreparedStatement statement = cn.prepareStatement(sql);
-                    statement.setString(1, Iduser);
-                    statement.setString(2, keterangan);
-                    statement.setString(3, tanggalMasuk);
-                    
-                    statement.executeUpdate();
-                    
-                    JOptionPane.showMessageDialog(null, "Absensi masuk berhasil pada tanggal");
-                    isAbsenMasuk = true;
-                    
-                    statement.close();
-                    cn.close();
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
+
+            if (count > 0) {
+                JOptionPane.showMessageDialog(null, "Anda sudah melakukan absensi masuk hari ini");
+            } else {
+                String keterangan = (String) cmpilih.getSelectedItem();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                Date date = new Date();
+                String tanggalMasuk = dateFormat.format(date);
+
+                String sql = "SELECT INTO absensi (id_karyawan,keterangan,tgl_absenmasuk) VALUES (?, ?, ?)";
+
+                PreparedStatement statement = cn.prepareStatement(sql);
+                statement.setString(1, Iduser);
+                statement.setString(2, keterangan);
+                statement.setString(3, tanggalMasuk);
+
+                statement.executeUpdate();
+
+                JOptionPane.showMessageDialog(null, "Absensi masuk berhasil pada tanggal");
+                isAbsenMasuk = true;
+
+                statement.close();
+                cn.close();
             }
-        
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }//GEN-LAST:event_txtrfidKeyReleased
 
     private void txtuserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtuserActionPerformed

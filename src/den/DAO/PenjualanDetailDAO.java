@@ -25,9 +25,9 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         try {
 
-            String sql = "INSERT INTO detail_penjualan (id_penjualan, id_produk, jumlah, subtotal)"
-                    + " SELECT'" + model.getModelPenjualan().getIdPenjualan() + "', "
-                    + "id_produk,jumlah,subtotal FROM penjualan_smt";
+            String sql = "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah, subtotal) "
+                    + "SELECT '" + model.getModelPenjualan().getIdPenjualan() + "', "
+                    + "id_produk, jumlah, subtotal FROM penjualan_smt";
             st = conn.prepareStatement(sql);
             st.executeUpdate();
             st.close();
@@ -78,15 +78,16 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
     public List<ModelPenjualanDetail> tampilData(String id) {
         PreparedStatement st = null;
         ResultSet rs = null;
-        List list = new ArrayList();
-        String sql = "SELECT pj.id_penjualan,pd.id_produk,pd.nama_produk,det.jumlah,det.subtotal\n"
-                + "FROM detail_penjualan det\n"
-                + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
-                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk"
-                + "WHERE pj.id_penjualan='" + id + "'";
+        List<ModelPenjualanDetail> list = new ArrayList<>();
+        String sql = "SELECT pj.id_penjualan, pd.id_produk, pd.nama_produk, det.jumlah, det.subtotal "
+                + "FROM detail_penjualan det "
+                + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan "
+                + "INNER JOIN product pd ON pd.id_produk = det.id_produk "
+                + "WHERE pj.id_penjualan = ?";
 
         try {
             st = conn.prepareStatement(sql);
+            st.setString(1, id);
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
@@ -97,34 +98,53 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
                 pd.setIdproduk(rs.getInt("id_produk"));
                 pd.setNamaProduk(rs.getString("nama_produk"));
                 det.setJumlah(rs.getInt("jumlah"));
-                det.setSubTotal(rs.getLong("subtotal"));
+                det.setSubTotal(rs.getDouble("subtotal"));
 
                 det.setModelPenjualan(pj);
                 det.setModelProduk(pd);
 
                 list.add(det);
-
             }
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // Tutup sumber daya
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }
- @Override
-    public List<ModelPenjualanDetail> pencarianData(String id,String kataKunci) {
+
+    @Override
+    public List<ModelPenjualanDetail> pencarianData(String id, String kataKunci) {
         PreparedStatement st = null;
         ResultSet rs = null;
-        List list = new ArrayList();
-        String sql = "SELECT pj.id_penjualan, pd.id_produk, pd.nama_produk, det.jumlah, det.subtotal\n"
-                + "FROM detail_penjualan det\n"
-                + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
-                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk "
-                + "WHERE pj.id_penjualan='"+ id +"'"
-                + "AND (pj.id_penjualan LIKE '%"+kataKunci+"%',"
-                + "OR pd.id_produk LIKE '%"+kataKunci+"%'"
-                + "OR pd.nama_produk LIKE '%"+kataKunci+"%')";
+        List<ModelPenjualanDetail> list = new ArrayList<>();
+        String sql = "SELECT pj.id_penjualan, pd.id_produk, pd.nama_produk, det.jumlah, det.subtotal "
+                + "FROM detail_penjualan det "
+                + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan "
+                + "INNER JOIN product pd ON pd.id_produk = det.id_produk "
+                + "WHERE pj.id_penjualan = ? "
+                + "AND (pj.id_penjualan LIKE ? "
+                + "OR pd.id_produk LIKE ? "
+                + "OR pd.nama_produk LIKE ?)";
+
         try {
             st = conn.prepareStatement(sql);
+            st.setString(1, id);
+            String queryParam = "%" + kataKunci + "%";
+            st.setString(2, queryParam);
+            st.setString(3, queryParam);
+            st.setString(4, queryParam);
+
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
@@ -135,19 +155,27 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
                 pd.setIdproduk(rs.getInt("id_produk"));
                 pd.setNamaProduk(rs.getString("nama_produk"));
                 det.setJumlah(rs.getInt("jumlah"));
-                det.setSubTotal(rs.getLong("subtotal"));
+                det.setSubTotal(rs.getDouble("subtotal"));
 
                 det.setModelPenjualan(pj);
                 det.setModelProduk(pd);
 
                 list.add(det);
             }
-            rs.close();
-            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }
-
 }

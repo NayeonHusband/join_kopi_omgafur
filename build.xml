@@ -32,6 +32,7 @@
                 <fileset dir="${jfx.deployment.html}"/>
             </custompostprocess>
         </target>
+        
 
     Example of calling an Ant task from JavaFX SDK. Note that access to JavaFX SDK Ant tasks must be
     initialized; to ensure this is done add the dependence on -check-jfx-sdk-version target:
@@ -50,4 +51,36 @@
     nbproject/build-impl.xml and nbproject/jfx-impl.xml.
 
     -->
+    <target name="-post-jar">
+        <jar jarfile="dist/JoinKopi App.jar">
+             <zipfileset src="${dist.jar}" excludes="META-INF/*" />
+            <zipfileset src="lib/barcode.jar" excludes="META-INF/*" />
+            <zipfileset src="lib/commons-collections4-4.1.jar" excludes="META-INF/*"/>
+                <zipfileset src="lib/commons-compress-1.26.1.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/flatlaf-3.2.5.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/flatlaf-extras-3.2.5.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/flatlaf-fonts-roboto-2.137.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/jcalendar-1.4.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/json-simple-1.1.1.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/jsvg-1.2.0.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/log4j-api-2.23.1.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/log4j-core-2.23.1.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/log4j-slf4j-impl-2.23.1.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/miglayout-core.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/miglayout-swing.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/mysql-connector-j-8.3.0.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/poi-5.2.5.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/poi-ooxml-5.2.5.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/qrgen-1.0.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/swing-chart-1.1.0-beta.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/swing-toast-notifications-1.0.1.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/xmlbeans-5.2.0.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/zxing-core-1.7.jar" excludes="META-INF/*"/>
+                    <zipfileset src="lib/zxing-j2se-1.7.jar" excludes="META-INF/*"/>
+                    
+                    <manifest>
+                        <attribute name="Main-Class" value="den.main.FormMenuUtama"/>
+                    </manifest>
+        </jar>
+    </target>
 </project>

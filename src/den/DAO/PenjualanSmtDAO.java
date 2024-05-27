@@ -46,8 +46,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
     public void perbaruiData(ModelPenjualanSmt model) {
         PreparedStatement st = null;
         try {
-            String sql = "UPDATE penjualan_smt SET barcode=?,nama_produk=?,"
-                    + " harga=?, stok=?, jumlah=? ,subtotal=? WHERE id_produk=?";
+            String sql = "UPDATE penjualan_smt SET barcode=?,nama_produk=?, harga=?, stok=?, jumlah=? ,subtotal=? WHERE id_produk=?";
             st = conn.prepareStatement(sql);
             
             st.setString        (1, model.getModelProduk().getBarcode());
@@ -66,7 +65,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
     @Override
     public void hapusData(ModelPenjualanSmt model) {
         PreparedStatement st = null;
-        String sql = "DELETE FROM penjualan WHERE id_produk=? AND barcode=? AND nama_produk=? AND harga=? AND stok=? AND jumlah=? AND subtotal=?" ;
+        String sql = "DELETE FROM penjualan_smt WHERE id_produk=? AND barcode=? AND nama_produk=? AND harga=? AND stok=? AND jumlah=? AND subtotal=?";
         try {
             st = conn.prepareStatement(sql);
             
