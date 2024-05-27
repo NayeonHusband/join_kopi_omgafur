@@ -15,10 +15,19 @@ import den.service.ServiceKaryawan;
 import javax.swing.JOptionPane;
 import den.koneksi.koneksi;
 import den.menu.Menu;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
+import java.awt.geom.AffineTransform;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JButton;
 
 /**
  *
@@ -27,8 +36,10 @@ import java.sql.ResultSet;
 public class FormLogin extends javax.swing.JPanel {
 
     private ServiceKaryawan servis = new KaryawanDAO();
+    private JButton button;
 
     public FormLogin() {
+                AbsButton();
         initComponents();
         setLayoutForm();
     }
@@ -54,17 +65,15 @@ public class FormLogin extends javax.swing.JPanel {
         if (validasiInput() == true) {
             String user = txtUser.getText();
             String pass = txtPass.getText();
-            
-            
-            
-          ModelKaryawan model = new ModelKaryawan();
+
+            ModelKaryawan model = new ModelKaryawan();
             model.setUsername(user);
             model.setPassword(pass);
 
             ModelKaryawan modelKar = servis.prosesLogin(model);
             if (modelKar != null) {
                 FormMenuUtama.login(modelKar);
-                
+
                 resetForm();
             } else {
                 JOptionPane.showMessageDialog(null,
@@ -85,6 +94,7 @@ public class FormLogin extends javax.swing.JPanel {
         txtUser = new javax.swing.JTextField();
         lbPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
+        jPanel1 = new javax.swing.JPanel();
 
         cmdLogin.setText("Login");
         cmdLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -163,6 +173,17 @@ public class FormLogin extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -170,13 +191,20 @@ public class FormLogin extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(129, 129, 129)
                 .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(174, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addComponent(login, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(79, 79, 79)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -194,10 +222,85 @@ public class FormLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPassActionPerformed
 
     private void txtPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPassKeyPressed
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
-      prosesLogin();
-   }
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            prosesLogin();
+        }
     }//GEN-LAST:event_txtPassKeyPressed
+
+    private void AbsButton(){
+       Dimension size = getSize();
+       int width = size.width;
+       int height  = size.width;
+       
+    button = new JButton("Rfid");
+        
+        add(button);
+    }
+    
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        // Cast the Graphics object to Graphics2D
+        Graphics2D g2d = (Graphics2D) g;
+
+        Font font =null;
+        
+        try{
+            File fontStyle = new File("src/utils/Kontora-ExtraBlack.otf");
+             font = Font.createFont(Font.TRUETYPE_FONT, fontStyle).deriveFont(40f);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        
+        // Get the size of the panel
+        Dimension size = getSize();
+        int width = size.width;
+        int height = size.height;
+
+        // Set rendering hints for better graphics quality
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+        // Draw a filled rectangle that fits the panel
+        // Draw the white oval
+        g2d.setColor(new Color(139, 69, 19));  // Coffee color
+        g2d.fillOval(5 + width / 10, height / 2 - width / 10, width / 4, width / 4);
+
+        // Draw a smaller white oval on top to represent the foam
+        g2d.setColor(Color.WHITE);
+        int foamWidth = width / 4 - 20;
+        int foamHeight = width / 4 - 20;
+        g2d.fillOval(5 + width / 10 + 10, height / 2 - width / 10 + 10, foamWidth, foamHeight);
+
+        AffineTransform reset = g2d.getTransform();
+// Set the font and color for the text
+//        Font font = new Font("Serif", Font.PLAIN, 100);
+        g2d.setFont(font);
+        g2d.setColor(Color.white);
+
+        // Calculate the middle y-coordinate to align with the middle of the text
+        FontMetrics metrics = g2d.getFontMetrics(font);
+        int textHeight = metrics.getAscent() + metrics.getDescent();
+        int yMiddle = height / 2 - textHeight / 2;
+
+        // Draw the text at the calculated y-coordinate
+        String text = "Joinin Kopi";
+        int textX = 20 + width / 10;
+        g2d.translate(-70, metrics.getAscent()+100);
+        g2d.drawString(text, 5 + width / 10, 0);
+
+        g2d.setTransform(reset);
+
+        g2d.setColor(Color.red);
+        g2d.drawLine(width / 2, 0, width / 2, height);
+
+        g2d.setColor(Color.red);
+        g2d.drawLine(0, height / 2, width, height / 2);
+
+//        // Draw a border around the rectangle
+//        g2d.setColor(Color.BLACK);
+//        g2d.drawRect(0, 0, width - 1, height - 1);
+    }
 
     private void setLayoutForm() {
         setLayout(new LoginFormLayout());
@@ -250,9 +353,10 @@ public class FormLogin extends javax.swing.JPanel {
                 int height = parent.getHeight();
                 int loginWidth = UIScale.scale(400);
                 int loginHeight = login.getPreferredSize().height;
-                int x = (width - loginWidth) / 2;
-                int y = (height - loginHeight) / 2;
+                int x = (width - loginWidth) / 10 * 9;
+                int y = (height - loginHeight) / 10 * 5;
                 login.setBounds(x, y, loginWidth, loginHeight);
+               button.setBounds(5 + width / 10, height / 2 + width / 10, (int) (width / 4*.5), (int) (width/4*.1));
             }
         }
     }
@@ -329,6 +433,7 @@ public class FormLogin extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cmdLogin;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbPass;
     private javax.swing.JLabel lbTitle;
     private javax.swing.JLabel lbUser;

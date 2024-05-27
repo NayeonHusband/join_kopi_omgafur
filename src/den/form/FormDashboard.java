@@ -52,7 +52,7 @@ public class FormDashboard extends javax.swing.JPanel {
 //        JPanel panel1 = new JPanel(new MigLayout("","grow,push"));
         Bawah = new JPanel(new MigLayout("fill","grow,push","fill,push"));
         Bawah.setOpaque(true);
-        Bawah.putClientProperty(FlatClientProperties.STYLE, "background: tint(@background,50%);"
+        Bawah.putClientProperty(FlatClientProperties.STYLE, "background: tint(@background,10%);"
                 + "border: 16,16,16,16,shade(@background,10%),,8");
         
 
