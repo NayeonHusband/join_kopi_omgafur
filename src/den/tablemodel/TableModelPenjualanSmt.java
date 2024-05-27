@@ -46,7 +46,7 @@ public class TableModelPenjualanSmt extends AbstractTableModel {
         JOptionPane.showMessageDialog(null, "Data Berhasil Dihapus");
     }
 
-    private final String[] ColumnNames = {"NO", "ID Produk", "Barcode", "Nama Produk", "Harga", "Stok", "Jumlah", "SubTotal"};
+    private final String[] ColumnNames = {"ID","ID Produk", "Barcode", "Nama Produk", "Harga", "Stok", "Jumlah", "SubTotal"};
 
     @Override
     public int getRowCount() {

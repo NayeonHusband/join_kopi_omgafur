@@ -378,7 +378,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                     .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblHari)
                         .addComponent(lblTanggal)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         btnBatal.setBackground(new java.awt.Color(36, 104, 155));
@@ -938,17 +938,17 @@ public class FormPenjualan extends javax.swing.JPanel {
         getPelanggan();
         btnDetail.setEnabled(false);
         List<ModelPenjualan> list = servis.tampilData(idKaryawan);
-        System.out.println("a "+list.size());
         tblModelPen.setData(list);
     }
 
     private void loadDataSementara() {
-        List<ModelPenjualan> list = servis.tampilData(idKaryawan);
-        tblModelPen.setData(list);
+        List<ModelPenjualanSmt> list = servisSmt.tampilData();
+        tblModelSmt.setData(list);
 
         txtDiskon.setText("0");
         nonAktif();
         txtBarcode.requestFocus();
+        txtBarcode.setEditable(true);
         btnProduk.setEnabled(true);
         btnTambahSmt.setEnabled(true);
     }
@@ -982,7 +982,6 @@ public class FormPenjualan extends javax.swing.JPanel {
     private void nonAktif() {
         txtBarcode.setEditable(false);
         txtNamaproduk.setEditable(false);
-        txtBarcode.setEditable(false);
         txtNamaKasir.setEditable(false);
         txtHarga.setEditable(false);
         txtStok.setEditable(false);
@@ -1162,6 +1161,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         txtJumlah.setText(tblDataSementara.getValueAt(row, 6).toString());
 
         nonAktif();
+        txtBarcode.setEditable(true);
         txtJumlah.setEditable(true);
         btnPerbaruiSmt.setEnabled(true);
         btnHapusSmt.setEnabled(true);
@@ -1203,7 +1203,7 @@ public class FormPenjualan extends javax.swing.JPanel {
 
             loadDataSementara();
             resetProduk();
-            txtBarcode.setEnabled(true);
+            txtBarcode.setEditable(true);
             btnProduk.setEnabled(true);
             btnTambahSmt.setEnabled(true);
 

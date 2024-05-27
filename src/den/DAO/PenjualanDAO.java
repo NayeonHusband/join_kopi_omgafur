@@ -52,9 +52,8 @@ public class PenjualanDAO implements ServicePenjualan {
                 + "pj.total_harga, pj.bayar, pj.diskon, pj.kembali, ky.id_karyawan, ky.nama_karyawan "
                 + "FROM penjualan pj "
                 + "INNER JOIN pelanggan pl ON pl.id_pelanggan = pj.id_pelanggan "
-                + "INNER JOIN karyawan ky ON ky.id_karyawan = (SELECT ky2.id_karyawan FROM karyawan ky2 WHERE ky2.id_karyawan = ky.id_karyawan LIMIT 1) where ky.id_karyawan = ?  "
-                + "GROUP BY pj.id_penjualan, pl.id_pelanggan, pl.nama_pelanggan, pj.tanggal, "
-                + "pj.total_harga, pj.bayar, pj.diskon, pj.kembali, ky.id_karyawan, ky.nama_karyawan ";
+                + "INNER JOIN karyawan ky ON ky.id_karyawan = pj.id_karyawan "
+                + "WHERE ky.id_karyawan = ?";
 
         try {
             st = conn.prepareStatement(sql);
@@ -106,26 +105,35 @@ public class PenjualanDAO implements ServicePenjualan {
     public List<ModelPenjualan> pencarianData(String id) {
         PreparedStatement st = null;
         ResultSet rs = null;
-        List list = new ArrayList();
-        String sql = "SELECT pj.id_penjualan,pl.id_pelanggan,pl.nama_pelanggan,pj.tanggal,"
-                + "pj.total_harga,pj.bayar,pj.diskon,pj.kembali,ky.id_karyawan,ky.nama_karyawan\n"
-                + "FROM penjualan pj\n"
-                + "INNER JOIN pelanggan pl ON pl.id_pelanggan = pj.id_pelanggan\n"
-                + "INNER JOIN karyawan ky ON ky.id_karyawan = ky.id_karyawan "
-                + "WHERE pj.id_penjualan LIKE '%" + id + "%'"
-                + "OR pl.id_pelanggan LIKE '%" + id + "%'"
-                + "OR pl.nama_pelanggan LIKE '%" + id + "%'"
-                + "OR pj.tanggal LIKE '%" + id + "%'"
-                + "OR ky.id_karyawan LIKE '%" + id + "%'"
-                + "OR ky.nama_karyawan LIKE '%" + id + "%'";
+        List<ModelPenjualan> list = new ArrayList<>();
+        String sql = "SELECT pj.id_penjualan, pl.id_pelanggan, pl.nama_pelanggan, pj.tanggal, "
+                + "pj.total_harga, pj.bayar, pj.diskon, pj.kembali, ky.id_karyawan, ky.nama_karyawan "
+                + "FROM penjualan pj "
+                + "INNER JOIN pelanggan pl ON pl.id_pelanggan = pj.id_pelanggan "
+                + "INNER JOIN karyawan ky ON ky.id_karyawan = pj.id_karyawan "
+                + "WHERE pj.id_penjualan LIKE ? "
+                + "OR pl.id_pelanggan LIKE ? "
+                + "OR pl.nama_pelanggan LIKE ? "
+                + "OR pj.tanggal LIKE ? "
+                + "OR ky.id_karyawan LIKE ? "
+                + "OR ky.nama_karyawan LIKE ?";
         try {
             st = conn.prepareStatement(sql);
+            String queryParam = "%" + id + "%";
+            st.setString(1, queryParam);
+            st.setString(2, queryParam);
+            st.setString(3, queryParam);
+            st.setString(4, queryParam);
+            st.setString(5, queryParam);
+            st.setString(6, queryParam);
+
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelPenjualan pj = new ModelPenjualan();
                 ModelPelanggan pl = new ModelPelanggan();
                 ModelKaryawan ky = new ModelKaryawan();
 
+                // Set nilai dari hasil set ke objek model
                 pj.setIdPenjualan(rs.getString("id_penjualan"));
                 pl.setIdpelanggan(rs.getInt("id_pelanggan"));
                 pl.setNamapelanggan(rs.getString("nama_pelanggan"));
@@ -137,15 +145,27 @@ public class PenjualanDAO implements ServicePenjualan {
                 ky.setIdKaryawan(rs.getInt("id_karyawan"));
                 ky.setNamaKaryawan(rs.getString("nama_karyawan"));
 
+                // Menghubungkan pelanggan dan karyawan ke penjualan
                 pj.setModelPelanggan(pl);
                 pj.setModelKaryawan(ky);
 
+                // Tambahkan ke daftar
                 list.add(pj);
             }
-            rs.close();
-            st.close();
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            // Tutup sumber daya
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (st != null) {
+                    st.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return list;
     }
