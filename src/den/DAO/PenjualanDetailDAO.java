@@ -25,9 +25,9 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         try {
 
-            String sql = "INSERT INTO detail_penjualan (id_penjualan, id_produk, jumlah, subtotal)"
-                    + " SELECT'" + model.getModelPenjualan().getIdPenjualan() + "', "
-                    + "id_produk,jumlah,subtotal FROM penjualan_smt";
+            String sql = "INSERT INTO detail_penjualan(id_penjualan, id_produk, jumlah, subtotal) "
+                    + "SELECT '" +model.getModelPenjualan().getIdPenjualan()+"', "
+                    + "id_produk, jumlah, subtotal FROM penjualan_smt";
             st = conn.prepareStatement(sql);
             st.executeUpdate();
             st.close();
@@ -79,11 +79,11 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
         PreparedStatement st = null;
         ResultSet rs = null;
         List list = new ArrayList();
-        String sql = "SELECT pj.id_penjualan,pd.id_produk,pd.nama_produk,det.jumlah,det.subtotal\n"
+        String sql = "SELECT pj.id_penjualan, pd.id_produk, pd.nama_produk, det.jumlah, det.subtotal\n"
                 + "FROM detail_penjualan det\n"
                 + "INNER JOIN penjualan pj ON pj.id_penjualan = det.id_penjualan\n"
-                + "INNER JOIN produk pd ON pd.id_produk = det.id_produk"
-                + "WHERE pj.id_penjualan='" + id + "'";
+                + "INNER JOIN product pd ON pd.id_produk = det.id_produk "
+                + "WHERE pj.id_penjualan='"+id+"'";
 
         try {
             st = conn.prepareStatement(sql);
@@ -97,7 +97,7 @@ public class PenjualanDetailDAO implements ServicePenjualanDetail {
                 pd.setIdproduk(rs.getInt("id_produk"));
                 pd.setNamaProduk(rs.getString("nama_produk"));
                 det.setJumlah(rs.getInt("jumlah"));
-                det.setSubTotal(rs.getLong("subtotal"));
+                det.setSubTotal(rs.getDouble("subtotal"));
 
                 det.setModelPenjualan(pj);
                 det.setModelProduk(pd);

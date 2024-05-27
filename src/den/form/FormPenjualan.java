@@ -62,7 +62,6 @@ public class FormPenjualan extends javax.swing.JPanel {
 
         this.idKaryawan = modelKar.getIdKaryawan();
         tblData.setModel(tblModelPen);
-//        System.out.println(tblModelPen.getRowCount());
         tblDataSementara.setModel(tblModelSmt);
         txtNamaKasir.setText(modelKar.getNamaKaryawan());
 
