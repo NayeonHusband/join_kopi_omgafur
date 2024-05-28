@@ -944,10 +944,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             private void loadDataSementaras() {
         List<ModelPenjualanSmt> list = servisSmt.tampilData();
                
-                System.out.println("List  " + list);
-        for(ModelPenjualanSmt x : list){
-            System.out.println(x);
-        }
+
         tblModelSmt.setData(list);
         tblModelSmt.fireTableDataChanged();
 
