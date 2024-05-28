@@ -28,7 +28,7 @@ public class DataPenjualanDetail extends javax.swing.JDialog {
 
     private void setLebarKolom() {
         TableColumnModel kolom = tblData.getColumnModel();
-        kolom.getColumn(0).setPreferredWidth(50);
+        kolom.getColumn(0).setPreferredWidth(50);   
         kolom.getColumn(0).setMaxWidth(50);
         kolom.getColumn(0).setMinWidth(50);
     }

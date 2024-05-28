@@ -250,7 +250,7 @@ public class DataProduk extends javax.swing.JDialog {
         if (row != -1) {
             modelDialog.setIdproduk(Integer.parseInt(tblData.getModel().getValueAt(row, 0).toString().trim()));
             modelDialog.setNamaProduk(tblData.getModel().getValueAt(row, 1).toString());
-            modelDialog.setHarga(Double.parseDouble(tblData.getModel().getValueAt(row, 3).toString()));
+            modelDialog.setHarga(Long.parseLong(tblData.getModel().getValueAt(row, 3).toString()));
             modelDialog.setStok(Integer.parseInt(tblData.getModel().getValueAt(row, 4).toString()));
             modelDialog.setBarcode(tblData.getModel().getValueAt(row, 7).toString());
 
