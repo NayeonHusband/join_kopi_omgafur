@@ -33,7 +33,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
             st.setString                (3, model.getModelProduk().getNamaProduk());
             st.setDouble                (4, model.getModelProduk().getHarga());
             st.setInt                   (5, model.getModelProduk().getStok());
-            st.setInt                   (6, model.getModelPenDet().getJumlah());
+            st.setInt                   (6, 1);
             st.setDouble                (7, model.getModelPenDet().getSubTotal());      
             st.executeUpdate();
             st.close();
@@ -109,7 +109,7 @@ public class PenjualanSmtDAO implements ServicePenjualanSmt {
                 smt.setModelProduk((pd));
                 smt.setModelPenDet(det);
                 
-                list.add(det);
+                list.add(smt);
                 
             }
         } catch (SQLException e) {

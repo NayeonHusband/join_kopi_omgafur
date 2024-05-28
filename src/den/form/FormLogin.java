@@ -21,6 +21,8 @@ import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.geom.AffineTransform;
 import java.io.File;
@@ -28,6 +30,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JButton;
+import raven.glasspanepopup.GlassPanePopup;
+import utils.RFID;
 
 /**
  *
@@ -233,6 +237,15 @@ public class FormLogin extends javax.swing.JPanel {
        int height  = size.width;
        
     button = new JButton("Rfid");
+    button.addActionListener(new ActionListener(){
+           @Override
+           public void actionPerformed(ActionEvent e) {
+               GlassPanePopup.showPopup(new RFID());
+
+           }
+        
+    });
+    
         
         add(button);
     }
@@ -276,7 +289,7 @@ public class FormLogin extends javax.swing.JPanel {
 // Set the font and color for the text
 //        Font font = new Font("Serif", Font.PLAIN, 100);
         g2d.setFont(font);
-        g2d.setColor(Color.white);
+        g2d.setColor(Color.BLACK);
 
         // Calculate the middle y-coordinate to align with the middle of the text
         FontMetrics metrics = g2d.getFontMetrics(font);
@@ -286,7 +299,7 @@ public class FormLogin extends javax.swing.JPanel {
         // Draw the text at the calculated y-coordinate
         String text = "Joinin Kopi";
         int textX = 20 + width / 10;
-        g2d.translate(-70, metrics.getAscent()+100);
+        g2d.translate(-70,  height / 2 - width / 10 + 10+metrics.getAscent());
         g2d.drawString(text, 5 + width / 10, 0);
 
         g2d.setTransform(reset);

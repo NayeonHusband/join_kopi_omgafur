@@ -12,6 +12,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.UIManager;
 import den.form.FormLogin;
 import den.model.ModelKaryawan;
+import raven.glasspanepopup.GlassPanePopup;
 import raven.toast.Notifications;
 
 /**
@@ -92,9 +93,12 @@ public class FormMenuUtama extends javax.swing.JFrame {
         //FlatLightLaf.setup();
         java.awt.EventQueue.invokeLater(() -> {
             app = new FormMenuUtama();
+            GlassPanePopup.install(app);
+
             //  app.applyComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
             app.setVisible(true);
         });
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

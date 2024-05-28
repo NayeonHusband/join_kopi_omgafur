@@ -937,13 +937,31 @@ public class FormPenjualan extends javax.swing.JPanel {
         txtNoTransaksi.setText(servis.noTransaksi());
         getPelanggan();
         btnDetail.setEnabled(false);
-        List<ModelPenjualan> list = servis.tampilData(idKaryawan);
+        List<ModelPenjualan> list = servis.tampilData();
         tblModelPen.setData(list);
     }
 
-    private void loadDataSementara() {
+            private void loadDataSementaras() {
         List<ModelPenjualanSmt> list = servisSmt.tampilData();
+               
+                System.out.println("List  " + list);
+        for(ModelPenjualanSmt x : list){
+            System.out.println(x);
+        }
         tblModelSmt.setData(list);
+        tblModelSmt.fireTableDataChanged();
+
+        txtDiskon.setText("0");
+        nonAktif();
+        txtBarcode.requestFocus();
+        txtBarcode.setEditable(true);
+        btnProduk.setEnabled(true);
+        btnTambahSmt.setEnabled(true);
+    }
+    
+    private void loadDataSementara() {
+        List<ModelPenjualan> list = servis.tampilData();
+        tblModelPen.setData(list);
 
         txtDiskon.setText("0");
         nonAktif();
@@ -1040,6 +1058,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             //sek apakah produk sudah ada salam data sementara
             boolean produkSudahAda = false;
             for (int i = 0; i < tblModelSmt.getRowCount(); i++) {
+                System.out.println("ada : " +tblModelSmt.getRowCount() );
                 if (tblModelSmt.getData(i).getModelProduk().getBarcode().equals(produk.getBarcode())) {
                     produkSudahAda = true;
                     break;            }
@@ -1059,15 +1078,19 @@ public class FormPenjualan extends javax.swing.JPanel {
                 ModelProduk pd = new ModelProduk();
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
 
+                
+                //masukkan data ke ModelProduk 
                 pd.setIdproduk(idProduk);
                 pd.setBarcode(barcode);
                 pd.setNamaProduk(namaProduk);
                 pd.setHarga(harga);
                 pd.setStok(stok);
 
+                //masukkan data kedalam modelpenjualandetail
                 det.setJumlah(jumlah);
                 det.setSubTotal(subTotal);
 
+                //masukkan data kedalam model penjualan 
                 smt.setModelProduk(pd);
                 smt.setModelPenDet(det);
 
@@ -1079,7 +1102,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                 txtTotal.setText(total);
                 lblTotal.setText("Rp. " + total);
 
-                loadDataSementara();
+                loadDataSementaras();
                 resetProduk();
             } else {
                 JOptionPane.showMessageDialog(null, "Produk sudah di Tambahkan");
@@ -1141,7 +1164,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                 txtTotal.setText(total);
                 lblTotal.setText("Rp. " + total);
 
-                loadDataSementara();
+                loadDataSementaras();
             } else {
                 JOptionPane.showMessageDialog(null, "Produk sudah di Tambahkan");
                 resetProduk();

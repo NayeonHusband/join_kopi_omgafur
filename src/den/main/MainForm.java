@@ -192,7 +192,7 @@ public class MainForm extends JLayeredPane {
         public void layoutContainer(Container parent) {
             synchronized (parent.getTreeLock()) {
                 boolean ltr = parent.getComponentOrientation().isLeftToRight();
-                System.out.println("ltr" + String.valueOf(ltr));
+//                System.out.println("ltr" + String.valueOf(ltr));
                 Insets insets = UIScale.scale(parent.getInsets());
                 int x = insets.left;
                 int y = insets.top;

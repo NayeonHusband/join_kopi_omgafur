@@ -44,7 +44,7 @@ public class PenjualanDAO implements ServicePenjualan {
     }
 
     @Override
-    public List<ModelPenjualan> tampilData(Integer id_karyawan) {
+    public List<ModelPenjualan> tampilData() {
         PreparedStatement st = null;
         ResultSet rs = null;
         List<ModelPenjualan> list = new ArrayList<>();
@@ -52,12 +52,11 @@ public class PenjualanDAO implements ServicePenjualan {
                 + "pj.total_harga, pj.bayar, pj.diskon, pj.kembali, ky.id_karyawan, ky.nama_karyawan "
                 + "FROM penjualan pj "
                 + "INNER JOIN pelanggan pl ON pl.id_pelanggan = pj.id_pelanggan "
-                + "INNER JOIN karyawan ky ON ky.id_karyawan = pj.id_karyawan "
-                + "WHERE ky.id_karyawan = ?";
+                + "INNER JOIN karyawan ky ON ky.id_karyawan = pj.id_karyawan ";
 
         try {
             st = conn.prepareStatement(sql);
-            st.setInt(1, id_karyawan);
+            
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelPenjualan pj = new ModelPenjualan();
@@ -69,7 +68,7 @@ public class PenjualanDAO implements ServicePenjualan {
                 pl.setIdpelanggan(rs.getInt("id_pelanggan"));
                 pl.setNamapelanggan(rs.getString("nama_pelanggan"));
                 pj.setTanggal(rs.getString("tanggal"));
-                pj.setTotalHarga(rs.getLong("total_harga"));
+                pj.setTotalHarga(rs.getDouble("total_harga"));
                 pj.setBayar(rs.getDouble("bayar"));
                 pj.setDiskon(rs.getDouble("diskon"));
                 pj.setKembali(rs.getDouble("kembali"));
