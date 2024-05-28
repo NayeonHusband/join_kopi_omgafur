@@ -59,6 +59,7 @@ public class RFID extends javax.swing.JPanel {
 
             area.requestFocus();
             area.addKeyListener(keyAdapter);
+                    
         });
     }
 
@@ -87,7 +88,7 @@ public class RFID extends javax.swing.JPanel {
         if (area != null && keyAdapter != null) {
             area.removeKeyListener(keyAdapter);
                     GlassPanePopup.closePopupAll();
-                    System.out.println("Triggered");
+//                    System.out.println("Triggered");
                     inputBuffer.setLength(0);
 
         }

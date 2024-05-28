@@ -1,10 +1,15 @@
 package den.form;
 
 import com.formdev.flatlaf.FlatClientProperties;
+import den.koneksi.koneksi;
 import java.awt.Color;
 import java.awt.Component;
 
 import java.awt.Font;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -12,7 +17,6 @@ import java.util.Calendar;
 import java.util.Date;
 
 import java.util.Random;
-
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -33,26 +37,23 @@ import raven.chart.ChartLegendRenderer;
 public class FormDashboard extends javax.swing.JPanel {
 
     private LineChart lineChart;
-    private JPanel Bawah ;
+    private JPanel Bawah;
 
     public FormDashboard() {
         initComponents();
         setLayout(new MigLayout("insets 10", "grow,push"));
 //        setBackground(Color.decode("#e6e6e6"));
 //        putClientProperty(FlatClientProperties.STYLE, "arc:20");
-       
+
         init();
     }
 
-    
     private void init() {
 //        JPanel panel1 = new JPanel(new MigLayout("","grow,push"));
-        Bawah = new JPanel(new MigLayout("fill","grow,push","fill,push"));
+        Bawah = new JPanel(new MigLayout("fill", "grow,push", "fill,push"));
         Bawah.setOpaque(true);
         Bawah.putClientProperty(FlatClientProperties.STYLE, "background: tint(@background,10%);"
                 + "border: 16,16,16,16,shade(@background,10%),,8");
-        
-
 
 //        panel1.setBackground(Color.black);
 //        panel1.putClientProperty(FlatClientProperties.STYLE, "arc: 20");
@@ -60,16 +61,12 @@ public class FormDashboard extends javax.swing.JPanel {
 //        OverviewText.setForeground(Color);
         OverviewText.putClientProperty(FlatClientProperties.STYLE, "font: bold $h2.font;");
 
-       
-        add(OverviewText,"grow,wrap");
-        
+        add(OverviewText, "grow,wrap");
+
         //baris 2
 //        panel1.add(OverviewText, "grow,wrap");
+        String[] teks = {"Mingguan", "Bulanan", "Tahunan"};
 
-            
-
-        String[] teks = {"Mingguan","Bulanan","Tahunan"};
-        
         JComboBox combobox = new JComboBox(teks) {
             class MyComboBoxEditor extends javax.swing.plaf.basic.BasicComboBoxEditor {
 
@@ -78,8 +75,6 @@ public class FormDashboard extends javax.swing.JPanel {
                 private JPanel panel1 = new JPanel();
                 private JPanel panel2 = new JPanel();
                 private Object selectedItem;
-                
-                
 
                 public MyComboBoxEditor() {
 
@@ -92,13 +87,13 @@ public class FormDashboard extends javax.swing.JPanel {
                     panel2.add(panel1);
                     panel2.setOpaque(false);
 
-                    panel.setLayout(new MigLayout ("insets 0 20 0 100","push,grow"));
-                    
+                    panel.setLayout(new MigLayout("insets 0 20 0 100", "push,grow"));
+
                     JLabel labelApp = new JLabel("Rentang");
-                    labelApp.setFont(new Font("Roboto",Font.BOLD,15));
+                    labelApp.setFont(new Font("Roboto", Font.BOLD, 15));
                     panel.add(labelApp, "split 2");
                     panel.add(panel2);
-                    
+
                 }
 
                 @Override
@@ -137,36 +132,46 @@ public class FormDashboard extends javax.swing.JPanel {
         };
         combobox.putClientProperty(FlatClientProperties.STYLE, "buttonSeparatorWidth:1;");
 
-        
-        add(combobox,"span");
+        add(combobox, "span");
 //        panel1.add(combobox);
 //        add(panel1, "wrap,grow");
-        add(Bawah,"grow,push");
-       
-        Bawah.add(new Panel("Pendapatan","11,274"),"split 3,gapright 20");
-        Bawah.add(new Panel("Customer","84"),"gapright 20");
-        Bawah.add(new Panel("Best Seller","Arabica"),"wrap 20");
+        add(Bawah, "grow,push");
+
+        Bawah.add(new Panel("Pendapatan", "11,274"), "split 3,gapright 20");
+        Bawah.add(new Panel("Customer", "84"), "gapright 20");
+        Bawah.add(new Panel("Best Seller", "Arabica"), "wrap 20");
 
         createLineChart();
 
     }
 
     private void createLineChartData() {
+
         DefaultCategoryDataset<String, String> categoryDataset = new DefaultCategoryDataset<>();
         Calendar cal = Calendar.getInstance();
         SimpleDateFormat df = new SimpleDateFormat("MMM dd");
         Random ran = new Random();
         int randomDate = 30;
-        for (int i = 1; i <= randomDate; i++) {
-            String date = df.format(cal.getTime());
-            categoryDataset.addValue(ran.nextInt(1000000) , "Income", date);
-            categoryDataset.addValue(ran.nextInt(1000000) , "Expense", date);
-            categoryDataset.addValue(ran.nextInt(1000000) , "Profit", date);
-            categoryDataset.addValue(ran.nextInt(1000000) , "Test", date);
+//        for (int i = 1; i <= randomDate; i++) {
+//            String date = df.format(cal.getTime());
+//            categoryDataset.addValue(ran.nextInt(1000000), "Income", date);
+//            categoryDataset.addValue(ran.nextInt(1000000), "Expense", date);
+//            categoryDataset.addValue(ran.nextInt(1000000), "Profit", date);
+//           
+//
+//            cal.add(Calendar.DATE, 1);
+//        }
 
-            cal.add(Calendar.DATE, 1);
+        try {
+            PreparedStatement stm = koneksi.getConnection().prepareStatement("select total_harga,tanggal from penjualan ");
+
+            ResultSet rs = stm.executeQuery();
+            while(rs.next()){
+                categoryDataset.addValue(rs.getInt("total_harga"), "Penjualan", df.format(rs.getDate("tanggal")));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
         /**
          * Control the legend we do not show all legend
          */
@@ -209,7 +214,7 @@ public class FormDashboard extends javax.swing.JPanel {
         lineChart.putClientProperty(FlatClientProperties.STYLE, ""
                 + "border:5,5,5,5,$Component.borderColor,,20"); //
 //        add(lineChart, "growx, wrap");
-        Bawah.add(lineChart,"grow,push");
+        Bawah.add(lineChart, "grow,push");
         createLineChartData();
     }
 

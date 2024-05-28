@@ -245,8 +245,6 @@ public class FormLogin extends javax.swing.JPanel {
            }
         
     });
-    
-        
         add(button);
     }
     
@@ -407,6 +405,7 @@ public class FormLogin extends javax.swing.JPanel {
                 height += txtPass.getPreferredSize().height;
                 height += UIScale.scale(buttonGap);
                 height += cmdLogin.getPreferredSize().height;
+                
                 return new Dimension(0, height);
             }
         }

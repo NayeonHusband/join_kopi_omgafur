@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 
 /**
  *
+ * 
  * @author User
  */
 public class Panel extends javax.swing.JPanel{
