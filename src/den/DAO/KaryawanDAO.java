@@ -53,7 +53,7 @@ public class KaryawanDAO implements ServiceKaryawan {
             st.setString(3, model.getTelepon());
             st.setString(4, model.getAlamat());
             st.setString(5, model.getRole());
-            st.setInt(6, model.getIdKaryawan());
+            st.setString(6, model.getIdKaryawan());
 
             st.executeUpdate();
         } catch (SQLException e) {
@@ -67,7 +67,7 @@ public class KaryawanDAO implements ServiceKaryawan {
         String sql = "DELETE FROM karyawan WHERE id_karyawan=?";
         try {
             st = conn.prepareStatement(sql);
-            st.setInt(1, model.getIdKaryawan());
+            st.setString(1, model.getIdKaryawan());
             st.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,7 +85,7 @@ public class KaryawanDAO implements ServiceKaryawan {
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelKaryawan model = new ModelKaryawan();
-                model.setIdKaryawan(rs.getInt("id_karyawan"));
+                model.setIdKaryawan(rs.getString("id_karyawan"));
                 model.setNamaKaryawan(rs.getString("nama_karyawan"));
                 model.setUsername(rs.getString("username"));
                 //   model.setPassword(rs.getString("password"));
@@ -118,7 +118,7 @@ public class KaryawanDAO implements ServiceKaryawan {
             rs = st.executeQuery();
             while (rs.next()) {
                 ModelKaryawan model = new ModelKaryawan();
-                model.setIdKaryawan(rs.getInt("id_karyawan"));
+                model.setIdKaryawan(rs.getString("id_karyawan"));
                 model.setNamaKaryawan(rs.getString("nama_karyawan"));
                 model.setUsername(rs.getString("username"));
                 model.setTelepon(rs.getString("telepon"));
@@ -170,7 +170,7 @@ public class KaryawanDAO implements ServiceKaryawan {
             rs = st.executeQuery();         
             if (rs.next()) {
                 modelKar = new ModelKaryawan();
-                modelKar.setIdKaryawan(rs.getInt("id_karyawan"));
+                modelKar.setIdKaryawan(rs.getString("id_karyawan"));
                 modelKar.setNamaKaryawan(rs.getString("nama_karyawan"));
                 modelKar.setUsername(rs.getString("username"));
                 modelKar.setRole(rs.getString("role"));

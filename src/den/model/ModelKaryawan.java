@@ -4,7 +4,7 @@ import java.sql.Connection;
 
 public class ModelKaryawan {
        
-    private int idKaryawan;
+    private String idKaryawan;
     private String namaKaryawan;
     private String username;
     private String password;
@@ -13,11 +13,11 @@ public class ModelKaryawan {
     private String role; 
 
     
-    public int getIdKaryawan() {
+    public String getIdKaryawan() {
         return idKaryawan;
     }
 
-    public void setIdKaryawan(int idKaryawan) {
+    public void setIdKaryawan(String idKaryawan) {
         this.idKaryawan = idKaryawan;
     }
 

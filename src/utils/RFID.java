@@ -14,6 +14,16 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.SwingUtilities;
 import raven.glasspanepopup.GlassPanePopup;
 import com.formdev.flatlaf.FlatClientProperties;
+import den.koneksi.koneksi;
+import den.main.FormMenuUtama;
+import den.model.ModelKaryawan;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import javax.swing.JScrollPane;
 
 /**
@@ -22,33 +32,52 @@ import javax.swing.JScrollPane;
  */
 public class RFID extends javax.swing.JPanel {
 
-    /**
-     * Creates new form RFID
-     */
     private StringBuilder inputBuffer;
     private KeyAdapter keyAdapter;
+    private List<ModelKaryawan> model = new ArrayList<ModelKaryawan>() ;
+    private Iterator<ModelKaryawan> iterate;
 
     private void processInput(String input) {
-        if (input.length() == 10) {
-//            textArea.append("RFID Input Detected: " + input + "\n");
+        while(iterate.hasNext()){
+            ModelKaryawan mk = iterate.next();
+        if (input.length() == 10 && input.equals(mk.getIdKaryawan())) {
+            FormMenuUtama.login(mk);
+            GlassPanePopup.closePopupAll();
             System.out.println("RFID: " + input + "\n");
-        } else {//            textArea.append("RFID Input Detected: " + input + "\n");
-//            textArea.append("Keyboard Input Detected: " + input + "\n");
-            System.out.println("Keyboard:  " + input + "\n");
+            
+        } else {
+            System.out.println("Keyboard:  " + mk.getIdKaryawan() + "\n");
 
         }
-    }
+    }}
 
     public RFID() {
+        try {
+            ResultSet rs = koneksi.getConnection().createStatement().executeQuery("select  id_karyawan, nama_karyawan,role from karyawan");
+            while(rs.next()){
+                ModelKaryawan mk = new ModelKaryawan();
+                mk.setIdKaryawan(rs.getString(1));
+                mk.setNamaKaryawan(rs.getString(2));
+                mk.setRole(rs.getString(3));
+            
+                model.add(mk);
+            }
+           iterate = model.iterator();
+            
+            System.out.println("Model : "+model);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
         initComponents();
         setOpaque(false);
         txt.setForeground(Color.BLACK);
         area.setEditable(false);
+
 //        area.setBackground(new Color(0, 0, 0, 0));
 //        JScrollPane scrollPane = new JScrollPane(area);
 //        scrollPane.getViewport().setOpaque(false);
 //        scrollPane.setOpaque(false);
-
         inputBuffer = new StringBuilder();
 
         keyAdapter = new KeyAdapter() {
@@ -67,7 +96,7 @@ public class RFID extends javax.swing.JPanel {
 
             area.requestFocus();
             area.addKeyListener(keyAdapter);
-        area.setVisible(false);
+//        area.setVisible(false);
 
         });
     }
@@ -126,23 +155,22 @@ public class RFID extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(txt))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(70, 70, 70)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(70, 70, 70)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(txt)
+                .addGap(147, 147, 147))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addGap(52, 52, 52)
                 .addComponent(txt)
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(128, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(214, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -51,7 +51,7 @@ public class FormPenjualan extends javax.swing.JPanel {
 
     private Integer idProduk;
     private Integer idPelanggan;
-    private Integer idKaryawan;
+    private String idKaryawan;
 
     private final Map<String, Integer> hasMap;
     private Timer timer;

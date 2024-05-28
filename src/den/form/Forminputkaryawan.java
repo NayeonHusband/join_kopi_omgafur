@@ -16,7 +16,7 @@ public class Forminputkaryawan extends javax.swing.JDialog {
     private TableModelKaryawan tblModel = new TableModelKaryawan();
     private ServiceKaryawan servis = new KaryawanDAO();
     private ModelKaryawan karyawan;
-    private int idKaryawan;
+    private String idKaryawan;
     private int row;
     private FormKaryawan formKaryawan;
 

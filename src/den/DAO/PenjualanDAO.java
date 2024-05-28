@@ -35,7 +35,7 @@ public class PenjualanDAO implements ServicePenjualan {
             st.setDouble(5, model.getBayar());
             st.setDouble(6, model.getDiskon());
             st.setDouble(7, model.getKembali());
-            st.setInt(8, model.getModelKaryawan().getIdKaryawan());
+            st.setString(8, model.getModelKaryawan().getIdKaryawan());
             st.executeUpdate();
             st.close();
         } catch (SQLException e) {
@@ -72,7 +72,7 @@ public class PenjualanDAO implements ServicePenjualan {
                 pj.setBayar(rs.getDouble("bayar"));
                 pj.setDiskon(rs.getDouble("diskon"));
                 pj.setKembali(rs.getDouble("kembali"));
-                ky.setIdKaryawan(rs.getInt("id_karyawan"));
+                ky.setIdKaryawan(rs.getString("id_karyawan"));
                 ky.setNamaKaryawan(rs.getString("nama_karyawan"));
 
                 // Menghubungkan pelanggan dan karyawan ke penjualan
@@ -141,7 +141,7 @@ public class PenjualanDAO implements ServicePenjualan {
                 pj.setBayar(rs.getDouble("bayar"));
                 pj.setDiskon(rs.getDouble("diskon"));
                 pj.setKembali(rs.getDouble("kembali"));
-                ky.setIdKaryawan(rs.getInt("id_karyawan"));
+                ky.setIdKaryawan(rs.getString("id_karyawan"));
                 ky.setNamaKaryawan(rs.getString("nama_karyawan"));
 
                 // Menghubungkan pelanggan dan karyawan ke penjualan
