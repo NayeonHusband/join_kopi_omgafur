@@ -31,7 +31,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javax.swing.JButton;
 import raven.glasspanepopup.GlassPanePopup;
+import utils.ForgotPassword;
 import utils.RFID;
+import utils.RFIDFP;
 
 /**
  *
@@ -46,6 +48,8 @@ public class FormLogin extends javax.swing.JPanel {
                 AbsButton();
         initComponents();
         setLayoutForm();
+        
+        
     }
 
     private void resetForm() {
@@ -98,6 +102,7 @@ public class FormLogin extends javax.swing.JPanel {
         txtUser = new javax.swing.JTextField();
         lbPass = new javax.swing.JLabel();
         txtPass = new javax.swing.JPasswordField();
+        FP = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
 
         cmdLogin.setText("Login");
@@ -133,6 +138,13 @@ public class FormLogin extends javax.swing.JPanel {
             }
         });
 
+        FP.setText("forgot password?");
+        FP.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                FPMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout loginLayout = new javax.swing.GroupLayout(login);
         login.setLayout(loginLayout);
         loginLayout.setHorizontalGroup(
@@ -156,7 +168,9 @@ public class FormLogin extends javax.swing.JPanel {
                 .addGap(12, 12, 12))
             .addGroup(loginLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(cmdLogin)
+                .addGroup(loginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cmdLogin)
+                    .addComponent(FP, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         loginLayout.setVerticalGroup(
@@ -172,7 +186,9 @@ public class FormLogin extends javax.swing.JPanel {
                 .addComponent(lbPass)
                 .addGap(5, 5, 5)
                 .addComponent(txtPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(75, 75, 75)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(FP)
+                .addGap(53, 53, 53)
                 .addComponent(cmdLogin)
                 .addContainerGap())
         );
@@ -230,6 +246,10 @@ public class FormLogin extends javax.swing.JPanel {
             prosesLogin();
         }
     }//GEN-LAST:event_txtPassKeyPressed
+
+    private void FPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FPMouseClicked
+      GlassPanePopup.showPopup(new RFIDFP());
+    }//GEN-LAST:event_FPMouseClicked
 
     private void AbsButton(){
        Dimension size = getSize();
@@ -370,6 +390,7 @@ public class FormLogin extends javax.swing.JPanel {
                 int y = (height - loginHeight) / 10 * 5;
                 login.setBounds(x, y, loginWidth, loginHeight);
                button.setBounds(5 + width / 10, height / 2 + width / 10, (int) (width / 4*.5), (int) (width/4*.1));
+               
             }
         }
     }
@@ -407,6 +428,8 @@ public class FormLogin extends javax.swing.JPanel {
                 height += txtPass.getPreferredSize().height;
                 height += UIScale.scale(buttonGap);
                 height += cmdLogin.getPreferredSize().height;
+                 height += UIScale.scale(buttonGap);
+                height += FP.getPreferredSize().height;
                 return new Dimension(0, height);
             }
         }
@@ -440,11 +463,15 @@ public class FormLogin extends javax.swing.JPanel {
                 y += txtPass.getPreferredSize().height + UIScale.scale(buttonGap);
 
                 cmdLogin.setBounds(x, y, width, cmdLogin.getPreferredSize().height);
+                 y += cmdLogin.getPreferredSize().height + UIScale.scale(buttonGap);
+                FP.setBounds(x, y, width, FP.getPreferredSize().height);
+
             }
         }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel FP;
     private javax.swing.JButton cmdLogin;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbPass;

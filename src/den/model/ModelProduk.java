@@ -7,7 +7,7 @@ public class ModelProduk {
     private int idproduk;
     private String namaProduk;
     private int idKategori;
-    private Double harga;
+    private double harga;
     private int stok;
     private int gram;
     private int idSupplier;
@@ -38,11 +38,11 @@ public class ModelProduk {
         this.idKategori = idKategori;
     }
 
-    public Double getHarga() {
+    public double getHarga() {
         return harga;
     }
 
-    public void setHarga(Double harga) {
+    public void setHarga(double harga) {
         this.harga = harga;
     }
 
