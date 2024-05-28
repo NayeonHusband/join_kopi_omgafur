@@ -248,7 +248,9 @@ public class FormLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_txtPassKeyPressed
 
     private void FPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_FPMouseClicked
-      GlassPanePopup.showPopup(new RFIDFP());
+      GlassPanePopup.showPopup(new RFID(true),"rfid");
+
+//GlassPanePopup.showPopup(new ForgotPassword());
     }//GEN-LAST:event_FPMouseClicked
 
     private void AbsButton(){
@@ -260,7 +262,7 @@ public class FormLogin extends javax.swing.JPanel {
     button.addActionListener(new ActionListener(){
            @Override
            public void actionPerformed(ActionEvent e) {
-               GlassPanePopup.showPopup(new RFID());
+               GlassPanePopup.showPopup(new RFID(false));
 
            }
         

@@ -36,22 +36,25 @@ public class RFID extends javax.swing.JPanel {
     private KeyAdapter keyAdapter;
     private List<ModelKaryawan> model = new ArrayList<ModelKaryawan>() ;
     private Iterator<ModelKaryawan> iterate;
+    private boolean forgot;
 
     private void processInput(String input) {
         while(iterate.hasNext()){
             ModelKaryawan mk = iterate.next();
         if (input.length() == 10 && input.equals(mk.getIdKaryawan())) {
             FormMenuUtama.login(mk);
-            GlassPanePopup.closePopupAll();
+            GlassPanePopup.closePopupLast();
             System.out.println("RFID: " + input + "\n");
-            
+           if(forgot){
+               GlassPanePopup.showPopup(new ForgotPassword());
+               System.out.println("DONER");
+           } 
         } else {
             System.out.println("Keyboard:  " + mk.getIdKaryawan() + "\n");
-
         }
     }}
 
-    public RFID() {
+    public RFID(boolean Forgot) {
         try {
             ResultSet rs = koneksi.getConnection().createStatement().executeQuery("select  id_karyawan, nama_karyawan,role from karyawan");
             while(rs.next()){
@@ -63,8 +66,7 @@ public class RFID extends javax.swing.JPanel {
                 model.add(mk);
             }
            iterate = model.iterator();
-            
-            System.out.println("Model : "+model);
+           forgot = Forgot; 
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -124,7 +126,7 @@ public class RFID extends javax.swing.JPanel {
     public void removeNotify() {
         if (area != null && keyAdapter != null) {
             area.removeKeyListener(keyAdapter);
-            GlassPanePopup.closePopupAll();
+//            GlassPanePopup.closePopupAll();
 //                    System.out.println("Triggered");
             inputBuffer.setLength(0);
 

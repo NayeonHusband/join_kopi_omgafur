@@ -5,10 +5,9 @@
         <group>
             <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/form/FormPenjualan.java</file>
             <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/form/FormLogin.java</file>
-            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/DAO/PenjualanSmtDAO.java</file>
-            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/form/FormDashboard.java</file>
-            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/DAO/PenjualanDetailDAO.java</file>
-            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/tablemodel/TableModelPenjualanSmt.java</file>
+            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/utils/RFID.java</file>
+            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/den/DAO/KaryawanDAO.java</file>
+            <file>file:/C:/Users/User/Desktop/join_kopi_omgafur/join_kopi_omgafur/src/utils/ForgotPassword.java</file>
         </group>
     </open-files>
 </project-private>
