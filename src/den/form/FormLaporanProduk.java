@@ -48,50 +48,47 @@ public class FormLaporanProduk extends javax.swing.JPanel {
 
     private void tampildata() {
 
-        DefaultTableModel data = new DefaultTableModel();
-        data.addColumn("No");
-        data.addColumn("Tanggal");
-        data.addColumn("ID Pelanggan");
-        data.addColumn("id_produk");
-        data.addColumn("Nama Produk");
-        data.addColumn("Jumlah");
+    DefaultTableModel data = new DefaultTableModel();
+    data.addColumn("Tanggal");
+    data.addColumn("ID Pelanggan");
+    data.addColumn("id_produk");
+    data.addColumn("Nama Produk");
+    data.addColumn("Jumlah");
+
+    try {
+        String sql;
+        if (nmr != null) {
+            sql = "SELECT * FROM laporan_produk WHERE tanggal LIKE ?";
+        } else {
+            sql = "SELECT * FROM laporan_produk";
+        }
 
         try {
-            int i = 1;
-            String sql;
+            PreparedStatement pstmt = con.prepareStatement(sql);
             if (nmr != null) {
-                sql = "SELECT * FROM laporan_produk WHERE tanggal LIKE ?";
-            } else {
-                sql = "SELECT * FROM laporan_produk";
+                pstmt.setString(1, "%" + nmr + "%");
             }
 
-            try {
-                PreparedStatement pstmt = con.prepareStatement(sql);
-                if (nmr != null) {
-                    pstmt.setString(1, "%" + nmr + "%");
+            try (ResultSet rs = pstmt.executeQuery()) {
+                while (rs.next()) {
+                    data.addRow(new Object[]{
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5)
+                    });
                 }
-
-                try (ResultSet rs = pstmt.executeQuery()) {
-                    while (rs.next()) {
-                        data.addRow(new Object[]{
-                            i++,
-                            rs.getString(1),
-                            rs.getString(2),
-                            rs.getString(3),
-                            rs.getString(4),
-                            rs.getString(5)
-                        });
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
             }
-            Table1.setModel(data);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, " ERROR \n Gagal Memuat ke Database \n Aktifkan Database Sebelum Memulai");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+        Table1.setModel(data);
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, " ERROR \n Gagal Memuat ke Database \n Aktifkan Database Sebelum Memulai");
+        e.printStackTrace();
     }
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -168,7 +165,7 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         btncetak.setBackground(new java.awt.Color(36, 104, 155));
         btncetak.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         btncetak.setForeground(new java.awt.Color(255, 255, 255));
-        btncetak.setText("Cari");
+        btncetak.setText("Cetak");
         btncetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btncetakActionPerformed(evt);
@@ -239,7 +236,48 @@ public class FormLaporanProduk extends javax.swing.JPanel {
 
     private void btncetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncetakActionPerformed
         // TODO add your handling code here:
-        String excelFilePath = "/C:/Users/user/Documents/NetBeansProjects/join_kopi_omgafur/src/den/laporan/laporan-produk.xlsx";
+        String excelFilePath = "/C:/Users/Taufiqur Rahman/Documents/NetBeansProjects/join_kopi_omgafur1/src/den/laporan/laporan-produk.xlsx";
+String tampilan1 = "yyyy-MM-dd";
+SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
+String tanggalawal = tgl1.format(jdate.getDate());
+
+String tampilan2 = "yyyy-MM-dd";
+SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2);
+String tanggalakhir = tgl2.format(jdate1.getDate());
+
+try {
+    String url = "jdbc:mysql://localhost:3306/joininkopi1?serverTimezone=UTC";
+    String user = "root";
+    String pass = "";
+    Class.forName("com.mysql.cj.jdbc.Driver");
+    Connection con = DriverManager.getConnection(url, user, pass);
+    Statement st = con.createStatement();
+
+    String sql = "SELECT * FROM laporan_produk WHERE tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "'";
+    ResultSet rs = st.executeQuery(sql);
+
+    XSSFWorkbook workbook = new XSSFWorkbook();
+    XSSFSheet sheet = workbook.createSheet("laporan");
+
+    writeHeaderLine(sheet);
+
+    writeDataLines(rs, workbook, sheet);
+
+    try (FileOutputStream outputStream = new FileOutputStream(excelFilePath)) {
+        workbook.write(outputStream);
+    }
+
+    rs.close();
+    st.close();
+    con.close();
+} catch (Exception e) {
+    JOptionPane.showMessageDialog(null, "Koneksi gagal");
+    e.printStackTrace();
+}
+    }//GEN-LAST:event_btncetakActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
         String tampilan1 = "yyyy-MM-dd";
         SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
         String tanggalawal = String.valueOf(tgl1.format(jdate.getDate()));
@@ -248,50 +286,8 @@ public class FormLaporanProduk extends javax.swing.JPanel {
         SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2); // Fix: Use tampilan2 for tgl2
         String tanggalakhir = String.valueOf(tgl2.format(jdate1.getDate()));
         System.out.println(tanggalawal + tanggalakhir);
-
         try {
-            String url = "jdbc:mysql://localhost:3306/joininkopi1?serverTimezone=UTC";
-            String user = "root";
-            String pass = "";
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection(url, user, pass);
-            Statement st = con.createStatement();
-
-            String sql = "SELECT * FROM laporan_produk WHERE tanggal BETWEEN'" + tanggalawal + "'AND '" + tanggalakhir + "'";
-            ResultSet rs = st.executeQuery(sql);
-
-            try (XSSFWorkbook workbook = new XSSFWorkbook()) {
-                XSSFSheet sheet = workbook.createSheet("laporan");
-
-                writeHeaderLine(sheet);
-
-                writeDataLines(rs, workbook, sheet);
-
-                try (FileOutputStream outputStream = new FileOutputStream(excelFilePath)) {
-                    workbook.write(outputStream);
-                }
-
-                st.close();
-                con.close();
-            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Koneksi gagal");
-            e.printStackTrace();
-        }
-    }//GEN-LAST:event_btncetakActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        String tampilan1 = "yyyy-MM-dd";
-        SimpleDateFormat tgl1 = new SimpleDateFormat(tampilan1);
-        String tanggalawal = String.valueOf(tgl1.format(jdate1.getDate()));
-
-        String tampilan2 = "yyyy-MM-dd";
-        SimpleDateFormat tgl2 = new SimpleDateFormat(tampilan2); // Fix: Use tampilan2 for tgl2
-        String tanggalakhir = String.valueOf(tgl2.format(jdate1.getDate()));
-        System.out.println(tanggalawal + tanggalakhir);
-        try {
-            int No = 1;
+            int i = 1;
             String sql = "SELECT * FROM laporan_produk WHERE  tanggal BETWEEN '" + tanggalawal + "' AND '" + tanggalakhir + "';";
             java.sql.Connection conn = (Connection) den.koneksi.koneksi.getConnection();
             // Create a Statement
