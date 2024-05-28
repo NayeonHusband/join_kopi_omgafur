@@ -255,9 +255,9 @@ public class FormProduk extends javax.swing.JPanel {
             barcode.setI(11.0f);
             
             
-            barcode.renderBarcode(System.getProperty("user.dir")+"/src/utils/1.png");
+            barcode.renderBarcode(System.getProperty("user.dir")+"/src/utils/"+produk.getIdproduk()+".png");
             
-            JOptionPane.showMessageDialog(null, System.getProperty("user.dir")+"src/utils/1.png");
+            JOptionPane.showMessageDialog(null, "Kode telah digenerate");
          } else {
             JOptionPane.showMessageDialog(null, "Pilih Data Yang Ingin Diperbarui");
         }}

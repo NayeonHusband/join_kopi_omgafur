@@ -13,6 +13,8 @@ import java.awt.event.KeyEvent;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.SwingUtilities;
 import raven.glasspanepopup.GlassPanePopup;
+import com.formdev.flatlaf.FlatClientProperties;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -30,7 +32,7 @@ public class RFID extends javax.swing.JPanel {
         if (input.length() == 10) {
 //            textArea.append("RFID Input Detected: " + input + "\n");
             System.out.println("RFID: " + input + "\n");
-        } else {
+        } else {//            textArea.append("RFID Input Detected: " + input + "\n");
 //            textArea.append("Keyboard Input Detected: " + input + "\n");
             System.out.println("Keyboard:  " + input + "\n");
 
@@ -42,7 +44,13 @@ public class RFID extends javax.swing.JPanel {
         setOpaque(false);
         txt.setForeground(Color.BLACK);
         area.setEditable(false);
+//        area.setBackground(new Color(0, 0, 0, 0));
+//        JScrollPane scrollPane = new JScrollPane(area);
+//        scrollPane.getViewport().setOpaque(false);
+//        scrollPane.setOpaque(false);
+
         inputBuffer = new StringBuilder();
+
         keyAdapter = new KeyAdapter() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -59,7 +67,8 @@ public class RFID extends javax.swing.JPanel {
 
             area.requestFocus();
             area.addKeyListener(keyAdapter);
-                    
+        area.setVisible(false);
+
         });
     }
 
@@ -82,20 +91,20 @@ public class RFID extends javax.swing.JPanel {
 //            area.addKeyListener(keyAdapter);
 //        }
 //    }
-
     @Override
     public void removeNotify() {
         if (area != null && keyAdapter != null) {
             area.removeKeyListener(keyAdapter);
-                    GlassPanePopup.closePopupAll();
+            GlassPanePopup.closePopupAll();
 //                    System.out.println("Triggered");
-                    inputBuffer.setLength(0);
+            inputBuffer.setLength(0);
 
         }
         super.removeNotify();
 
     }
 //    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
