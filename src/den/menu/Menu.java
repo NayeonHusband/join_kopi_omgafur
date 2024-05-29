@@ -34,7 +34,6 @@ public class Menu extends JPanel {
         {"Pelanggan"},
         {"~Transaksi~"},
         {"Penjualan"},
-        {"Pembelian"},
         {"~Laporan~"},
         {"Laporan Produk"},
         {"Laporan Penjualan"},

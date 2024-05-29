@@ -23,6 +23,7 @@ import den.tablemodel.TableModelPenjualan;
 import den.tablemodel.TableModelPenjualanSmt;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -30,14 +31,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import static javax.management.remote.JMXConnectorFactory.connect;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.TableColumnModel;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 //import static org.omg.CORBA.ORB.init
-
-
 public class FormPenjualan extends javax.swing.JPanel {
 
     private TableModelPenjualan tblModelPen = new TableModelPenjualan();
@@ -48,6 +57,14 @@ public class FormPenjualan extends javax.swing.JPanel {
     private ServicePenjualanSmt servisSmt = new PenjualanSmtDAO();
     private ServicePelanggan servisPel = new PelangganDAO();
     private ServiceProduk servisProd = new produkDAO();
+
+    private JButton cetakStruk;
+    private JTextField menu_amount;
+    private int totalP;
+    private int cID;
+    private Connection connect;
+    
+    
 
     private Integer idProduk;
     private Integer idPelanggan;
@@ -138,6 +155,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         timer.start();
     }
 
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -154,6 +172,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblData = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        btnDetail1 = new javax.swing.JButton();
         addPanel = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -292,19 +311,31 @@ public class FormPenjualan extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLabel1.setText("Search :");
 
+        btnDetail1.setBackground(new java.awt.Color(36, 104, 155));
+        btnDetail1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        btnDetail1.setForeground(new java.awt.Color(255, 255, 255));
+        btnDetail1.setText("CETAK STRUK");
+        btnDetail1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDetail1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
         viewPanel.setLayout(viewPanelLayout);
         viewPanelLayout.setHorizontalGroup(
             viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1124, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
             .addGroup(viewPanelLayout.createSequentialGroup()
                 .addGap(67, 67, 67)
-                .addComponent(btnTambahSmt, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
+                .addComponent(btnTambahSmt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
-                .addGap(531, 531, 531)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE)
+                .addComponent(btnDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnDetail1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(438, 438, 438)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtpencarian, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -322,9 +353,10 @@ public class FormPenjualan extends javax.swing.JPanel {
                         .addComponent(jLabel1))
                     .addGroup(viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTambahSmt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnTambahSmt, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDetail1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 602, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE))
         );
 
         mainPanel.add(viewPanel, "card2");
@@ -470,7 +502,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addContainerGap(425, Short.MAX_VALUE)
+                .addContainerGap(459, Short.MAX_VALUE)
                 .addComponent(lblTotal)
                 .addContainerGap())
         );
@@ -478,7 +510,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                 .addComponent(lblTotal)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addGap(0, 16, Short.MAX_VALUE))
         );
 
         jPanel7.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "TRANSAKSI", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("SansSerif", 0, 12))); // NOI18N
@@ -515,6 +547,7 @@ public class FormPenjualan extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblDataSementara);
 
+        btnPerbaruiSmt.setBackground(new java.awt.Color(36, 104, 155));
         btnPerbaruiSmt.setForeground(new java.awt.Color(255, 255, 255));
         btnPerbaruiSmt.setText("Perbarui");
         btnPerbaruiSmt.addActionListener(new java.awt.event.ActionListener() {
@@ -523,6 +556,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             }
         });
 
+        btnHapusSmt.setBackground(new java.awt.Color(36, 104, 155));
         btnHapusSmt.setForeground(new java.awt.Color(255, 255, 255));
         btnHapusSmt.setText("Hapus");
         btnHapusSmt.addActionListener(new java.awt.event.ActionListener() {
@@ -531,6 +565,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             }
         });
 
+        btnBatalSmt.setBackground(new java.awt.Color(36, 104, 155));
         btnBatalSmt.setForeground(new java.awt.Color(255, 255, 255));
         btnBatalSmt.setText("Batal");
         btnBatalSmt.addActionListener(new java.awt.event.ActionListener() {
@@ -720,7 +755,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1124, Short.MAX_VALUE)
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 1158, Short.MAX_VALUE)
             .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel5Layout.setVerticalGroup(
@@ -735,7 +770,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                     .addComponent(btnBatal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
                     .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -802,6 +837,7 @@ public class FormPenjualan extends javax.swing.JPanel {
 // Form Tambah Data Penjualan-----------------------------------------------------------------
     private void btnSimpanSmtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSimpanSmtActionPerformed
         simpanData();
+        cetakStruk();
     }//GEN-LAST:event_btnSimpanSmtActionPerformed
 
     private void btnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBatalActionPerformed
@@ -854,6 +890,11 @@ public class FormPenjualan extends javax.swing.JPanel {
     private void txtNamaKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNamaKasirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNamaKasirActionPerformed
+
+    private void btnDetail1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDetail1ActionPerformed
+        
+
+    }//GEN-LAST:event_btnDetail1ActionPerformed
 // Form Tambah Data Penjualan-----------------------------------------------------------------
 
 
@@ -862,6 +903,7 @@ public class FormPenjualan extends javax.swing.JPanel {
     private javax.swing.JButton btnBatal;
     private javax.swing.JButton btnBatalSmt;
     private javax.swing.JButton btnDetail;
+    private javax.swing.JButton btnDetail1;
     private javax.swing.JButton btnHapusSmt;
     private javax.swing.JButton btnPerbaruiSmt;
     private javax.swing.JButton btnProduk;
@@ -919,11 +961,37 @@ public class FormPenjualan extends javax.swing.JPanel {
     private javax.swing.JPanel viewPanel;
     // End of variables declaration//GEN-END:variables
 
+    private void cetakStruk() {
+            HashMap<String, Object> map = new HashMap<>();
+            map.put("getReceipt", (cID - 1));
+
+            try {
+                JasperDesign jDesign = JRXmlLoader.load("C:\\Users\\user\\Desktop\\Aplikasi\\join_kopi_omgafur\\src\\den\\laporan\\report2.jrxml");
+                JasperReport jReport = JasperCompileManager.compileReport(jDesign);
+                JasperPrint jPrint = JasperFillManager.fillReport(jReport, map, connect);
+                JasperViewer.viewReport(jPrint, false);
+
+                menuRestart();
+                loadDataSementara();
+                resetProduk();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    
     private void showPanel() {
         mainPanel.removeAll();
         mainPanel.add(viewPanel);
         mainPanel.repaint();
         mainPanel.revalidate();
+    }
+
+    private void menuRestart() {
+        // Reset or restart the menu/order process as needed
+        txtBayar.setText("");
+        totalP = 0;
+        // Other reset logic
     }
 
     private void tambahData() {
@@ -941,24 +1009,11 @@ public class FormPenjualan extends javax.swing.JPanel {
         tblModelPen.setData(list);
     }
 
-            private void loadDataSementaras() {
+    private void loadDataSementara() {
         List<ModelPenjualanSmt> list = servisSmt.tampilData();
-               
 
         tblModelSmt.setData(list);
         tblModelSmt.fireTableDataChanged();
-
-        txtDiskon.setText("0");
-        nonAktif();
-        txtBarcode.requestFocus();
-        txtBarcode.setEditable(true);
-        btnProduk.setEnabled(true);
-        btnTambahSmt.setEnabled(true);
-    }
-    
-    private void loadDataSementara() {
-        List<ModelPenjualan> list = servis.tampilData();
-        tblModelPen.setData(list);
 
         txtDiskon.setText("0");
         nonAktif();
@@ -1009,6 +1064,7 @@ public class FormPenjualan extends javax.swing.JPanel {
     }
 
     private void resetProduk() {
+        txtJumlah.setText("");
         txtBarcode.setText("");
         txtNamaproduk.setText("");
         txtStok.setText("");
@@ -1055,12 +1111,13 @@ public class FormPenjualan extends javax.swing.JPanel {
             //sek apakah produk sudah ada salam data sementara
             boolean produkSudahAda = false;
             for (int i = 0; i < tblModelSmt.getRowCount(); i++) {
-                System.out.println("ada : " +tblModelSmt.getRowCount() );
+                System.out.println("ada : " + tblModelSmt.getRowCount());
                 if (tblModelSmt.getData(i).getModelProduk().getBarcode().equals(produk.getBarcode())) {
                     produkSudahAda = true;
-                    break;            }
-
+                    break;
                 }
+
+            }
             if (!produkSudahAda) {
                 //persiapkan data untuk di tambahkan ke dalam servis penjualan
                 int idProduk = produk.getIdproduk();
@@ -1075,7 +1132,6 @@ public class FormPenjualan extends javax.swing.JPanel {
                 ModelProduk pd = new ModelProduk();
                 ModelPenjualanDetail det = new ModelPenjualanDetail();
 
-                
                 //masukkan data ke ModelProduk 
                 pd.setIdproduk(idProduk);
                 pd.setBarcode(barcode);
@@ -1099,7 +1155,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                 txtTotal.setText(total);
                 lblTotal.setText("Rp. " + total);
 
-                loadDataSementaras();
+                loadDataSementara();
                 resetProduk();
             } else {
                 JOptionPane.showMessageDialog(null, "Produk sudah di Tambahkan");
@@ -1161,7 +1217,7 @@ public class FormPenjualan extends javax.swing.JPanel {
                 txtTotal.setText(total);
                 lblTotal.setText("Rp. " + total);
 
-                loadDataSementaras();
+                loadDataSementara();
             } else {
                 JOptionPane.showMessageDialog(null, "Produk sudah di Tambahkan");
                 resetProduk();
@@ -1181,7 +1237,6 @@ public class FormPenjualan extends javax.swing.JPanel {
         txtJumlah.setText(tblDataSementara.getValueAt(row, 6).toString());
 
         nonAktif();
-        txtBarcode.setEditable(true);
         txtJumlah.setEditable(true);
         btnPerbaruiSmt.setEnabled(true);
         btnHapusSmt.setEnabled(true);
@@ -1213,7 +1268,7 @@ public class FormPenjualan extends javax.swing.JPanel {
             smt.setModelProduk(pd);
             smt.setModelPenDet(det);
 
-            servisSmt.tambahData(smt);
+            servisSmt.perbaruiData(smt);
             servisDet.sumTotal(det);
 
             txtSubtotal.setText(String.valueOf(det.getSubTotal()));
@@ -1303,39 +1358,39 @@ public class FormPenjualan extends javax.swing.JPanel {
             double bayar = Double.parseDouble(txtBayar.getText());
             double kembali = Double.parseDouble(txtKembali.getText());
 
-                ModelPenjualan modelPen = new ModelPenjualan();
-                ModelProduk modelPro = new ModelProduk();
-                ModelPelanggan modelPel = new ModelPelanggan();
-                ModelKaryawan modelKar = new ModelKaryawan();
-                ModelPenjualanDetail modelDet = new ModelPenjualanDetail();
+            ModelPenjualan modelPen = new ModelPenjualan();
+            ModelProduk modelPro = new ModelProduk();
+            ModelPelanggan modelPel = new ModelPelanggan();
+            ModelKaryawan modelKar = new ModelKaryawan();
+            ModelPenjualanDetail modelDet = new ModelPenjualanDetail();
 
-                // Menambah Penjualan
-                modelPen.setIdPenjualan(idPenjualan);
-                modelPen.setTanggal(tanggal);
-                modelPen.setTotalHarga(total);
-                modelPen.setBayar(bayar);
-                modelPen.setDiskon(diskon);
-                modelPen.setKembali(kembali);
-                modelPel.setIdpelanggan(idPelanggan);
-                modelKar.setIdKaryawan(idKaryawan);
+            // Menambah Penjualan
+            modelPen.setIdPenjualan(idPenjualan);
+            modelPen.setTanggal(tanggal);
+            modelPen.setTotalHarga(total);
+            modelPen.setBayar(bayar);
+            modelPen.setDiskon(diskon);
+            modelPen.setKembali(kembali);
+            modelPel.setIdpelanggan(idPelanggan);
+            modelKar.setIdKaryawan(idKaryawan);
 
-                modelPen.setModelPelanggan(modelPel);
-                modelPen.setModelKaryawan(modelKar);
+            modelPen.setModelPelanggan(modelPel);
+            modelPen.setModelKaryawan(modelKar);
 
-                // Tambah detail penjualan
-                modelDet.setModelPenjualan(modelPen);
-                modelDet.setModelProduk(modelPro);
+            // Tambah detail penjualan
+            modelDet.setModelPenjualan(modelPen);
+            modelDet.setModelProduk(modelPro);
 
-                servis.tambahData(modelPen);
-                servisDet.tambahData(modelDet);
-                servisDet.hapusDataSementara();
+            servis.tambahData(modelPen);
+            servisDet.tambahData(modelDet);
+            servisDet.hapusDataSementara();
 
-                tblModelPen.insertData(modelPen);
-                showPanel();
-                loadData(); // Memuat ulang data ke tabel
-                loadDataSementara();
-                resetProduk();
-                resetPembayaran();
+            tblModelPen.insertData(modelPen);
+            showPanel();
+            loadData(); // Memuat ulang data ke tabel
+            loadDataSementara();
+            resetProduk();
+            resetPembayaran();
         }
     }
 }

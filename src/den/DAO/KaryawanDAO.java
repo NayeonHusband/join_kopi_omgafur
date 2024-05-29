@@ -23,7 +23,7 @@ public class KaryawanDAO implements ServiceKaryawan {
     public void tambahData(ModelKaryawan model) {
         PreparedStatement st = null;
         try {
-            String sql = "INSERT INTO karyawan(nama_karyawan, username, password, telepon, alamat, role) VALUES (?,?,?,?,?,?)";
+            String sql = "INSERT INTO karyawan(nama_karyawan, username, password, telepon, alamat, role,id_karyawan) VALUES (?,?,?,?,?,?)";
 
             st = conn.prepareStatement(sql);
             st.setString(1, model.getNamaKaryawan());
@@ -32,6 +32,7 @@ public class KaryawanDAO implements ServiceKaryawan {
             st.setString(4, model.getTelepon());
             st.setString(5, model.getAlamat());
             st.setString(6, model.getRole());
+            st.setString(7, "81929038");// perlu diperbaiki
 
             st.executeUpdate();
             st.close();

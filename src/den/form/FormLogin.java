@@ -15,11 +15,13 @@ import den.service.ServiceKaryawan;
 import javax.swing.JOptionPane;
 import den.koneksi.koneksi;
 import den.menu.Menu;
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -272,10 +274,11 @@ public class FormLogin extends javax.swing.JPanel {
     
     @Override
     protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
 
         // Cast the Graphics object to Graphics2D
+        Rectangle rec = new Rectangle();
         Graphics2D g2d = (Graphics2D) g;
+        super.paintComponent(g);
 
         Font font =null;
         
@@ -303,6 +306,8 @@ public class FormLogin extends javax.swing.JPanel {
         g2d.setColor(Color.WHITE);
         int foamWidth = width / 4 - 20;
         int foamHeight = width / 4 - 20;
+                                
+
         g2d.fillOval(5 + width / 10 + 10, height / 2 - width / 10 + 10, foamWidth, foamHeight);
 
         AffineTransform reset = g2d.getTransform();
@@ -320,7 +325,12 @@ public class FormLogin extends javax.swing.JPanel {
         String text = "Joinin Kopi";
         int textX = 20 + width / 10;
         g2d.translate(-70,  height / 2 - width / 10 + 10+metrics.getAscent());
+
+                        
+
+        
         g2d.drawString(text, 5 + width / 10, 0);
+        
 
         g2d.setTransform(reset);
 
@@ -333,6 +343,8 @@ public class FormLogin extends javax.swing.JPanel {
 //        // Draw a border around the rectangle
 //        g2d.setColor(Color.BLACK);
 //        g2d.drawRect(0, 0, width - 1, height - 1);
+        
+
     }
 
     private void setLayoutForm() {

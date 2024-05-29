@@ -163,11 +163,11 @@ public class FormDashboard extends javax.swing.JPanel {
 //        }
 
         try {
-            PreparedStatement stm = koneksi.getConnection().prepareStatement("select total_harga,tanggal from penjualan ");
+            PreparedStatement stm = koneksi.getConnection().prepareStatement("select SUM(total_harga) AS total ,tanggal from penjualan GROUP BY tanggal");
 
             ResultSet rs = stm.executeQuery();
             while(rs.next()){
-                categoryDataset.addValue(rs.getInt("total_harga"), "Penjualan", df.format(rs.getDate("tanggal")));
+                categoryDataset.addValue(rs.getInt(1), "Penjualan", df.format(rs.getDate(2)));
             }
         } catch (SQLException e) {
             e.printStackTrace();

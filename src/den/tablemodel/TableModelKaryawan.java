@@ -62,7 +62,7 @@ public class TableModelKaryawan extends AbstractTableModel {
         ModelKaryawan model = list.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return "    " + model.getIdKaryawan();
+                return  model.getIdKaryawan();
             case 1:
                 return model.getNamaKaryawan();
             case 2:

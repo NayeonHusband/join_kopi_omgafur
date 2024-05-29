@@ -5,6 +5,7 @@ import com.formdev.flatlaf.FlatLightLaf;
 import com.formdev.flatlaf.extras.FlatAnimatedLafChange;
 import com.formdev.flatlaf.fonts.roboto.FlatRobotoFont;
 import com.formdev.flatlaf.themes.FlatMacDarkLaf;
+import com.formdev.flatlaf.util.UIScale;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -28,7 +29,7 @@ public class FormMenuUtama extends javax.swing.JFrame {
 
     public FormMenuUtama() {
         initComponents();
-        setSize(new Dimension(1366, 768));
+        setSize(UIScale.scale(new Dimension(1366, 768)));
         setLocationRelativeTo(null); //centering
         loginForm = new FormLogin();
         setContentPane(loginForm);
